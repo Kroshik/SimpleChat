@@ -1,2 +1,2 @@
 #!/bin/bash
-nohup scripts/start.sh $1 > phms.out 2> phms.err < /dev/null &
+nohup scripts/start.sh $1 > babbler.out 2> babbler.err < /dev/null &
