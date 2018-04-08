@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <title>Warehouse</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar('warehouse')"></nav>
+<div class="container">
+<h1>Warehouse</h1>
+<p>
+    <form th:action="@{/warehouse/addStockItem}" th:object="${stockItem}" method="post">
+        <div class="form-group">
+            <label for="newStockItem" class="control-label">New stock item</label>
+            <input id="newStockItem"
+                   class="form-control"
+                   th:field="*{name}"/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Add</button>
+        </div>
+    </form>
+</p>
+<p>
+    <table id="StockItemsTable" border="1" class="table" title="Stock items">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Count</th>
+            <th>Change</th>
+        </tr>
+    </thead>
+    <tbody>
+        <th:block th:each="stockItem : ${stockItems}">
+            <tr class="clickable-row" th:href="@{/warehouse(audit=${stockItem.id})}">
+                <td th:text="${stockItem.id}">...</td>
+                <td th:text="${stockItem.name}">...</td>
+                <td th:text="${stockItem.count}">...</td>
+                <td>
+                    <form th:action="@{'/warehouse/addAudit/'+${stockItem.id}}" th:object="${stockItemAudit}" method="post">
+                        <div class="form-group">
+                            <input id="newStockItemAudit"
+                                   class="form-control disable-click"
+                                   th:field="*{count}"/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-change">Change</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+    </tbody>
+    </table>
+</p>
+<div id="audit" th:if="${param.audit != null}">
+<p>
+    <table id="StockItemsAuditTable" border="1" class="table" title="Stock items audit">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Stock item ID</th>
+            <th>Date</th>
+            <th>User ID</th>
+            <th>Stock item name</th>
+            <th>Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <th:block th:each="stockItemAudit : ${stockItemsAudit}">
+            <tr>
+                <td th:text="${stockItemAudit.id}">...</td>
+                <td th:text="${stockItemAudit.itemId}">...</td>
+                <td th:text="${stockItemAudit.date}">...</td>
+                <td th:text="${stockItemAudit.userId}">...</td>
+                <td th:text="${stockItemAudit.itemName}">...</td>
+                <td th:text="${stockItemAudit.count}">...</td>
+            </tr>
+        </th:block>
+    </tbody>
+    </table>
+</p>
+</div>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" class="btn btn-success" value="Sign Out"/>
+</form>
+</div>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/warehouse.js}"></script>
+</body>
+</html>
