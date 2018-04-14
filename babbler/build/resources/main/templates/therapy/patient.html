@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar('patient')"></nav>
+
+<div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <!--Patient info-->
+                <h2>Patient info:</h2>
+                <form th:action="@{/patient/{id}/save(id=${id})}" th:object="${patient}" method="post"
+                      class="editable-form readonly">
+
+                    <p class="error-message"
+                       th:if="${#fields.hasGlobalErrors()}"
+                       th:each="error : ${#fields.errors('global')}"
+                       th:text="${error}">Validation error</p>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('fullName')}? 'has-error':''">
+                        <label for="fullName" class="control-label">Full name</label>
+                        <input id="fullName"
+                               class="form-control"
+                               th:field="*{fullName}"
+                               readonly/>
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('fullName')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('age')}? 'has-error':''">
+                        <label for="age" class="control-label">Age</label>
+                        <input id="age"
+                               class="form-control"
+                               th:field="*{age}"
+                               readonly/>
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('age')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('birthDate')}? 'has-error':''">
+                        <label for="birthDate" class="control-label">Birth date</label>
+                        <input id="birthDate"
+                               class="form-control"
+                               th:field="*{birthDate}"
+                               readonly/>
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('birthDate')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('arrivalDate')}? 'has-error':''">
+                        <label for="arrivalDate" class="control-label">Arrival date</label>
+                        <input id="arrivalDate"
+                               class="form-control"
+                               th:field="*{arrivalDate}"
+                               readonly/>
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('arrivalDate')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('building')}? 'has-error':''">
+                        <label for="building" class="control-label">Building</label>
+                        <input id="building"
+                               class="form-control"
+                               th:field="*{building}"
+                               readonly/>
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('building')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('diagnosis')}? 'has-error':''">
+                        <label for="diagnosis" class="control-label">Diagnosis</label>
+                        <input id="diagnosis"
+                               class="form-control"
+                               th:field="*{diagnosis}"
+                               readonly/>
+                        <p class="error-message"
+                           th:each="error: ${#fields.errors('diagnosis')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info btn-edit">Edit</button>
+                        <button type="submit" class="btn btn-success btn-save hidden">Save</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h2>Person condition vs time:</h2>
+                <!-- Experiment conditions -->
+                <div id="experiments-canvas-holder"></div>
+                <select id="experiment-picker" class="selectpicker pull-right">
+                    <option>Whole period</option>
+                    <th:block th:each="experiment : ${patient.experiments}">
+                        <option th:text="${experiment.description}"></option>
+                    </th:block>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Condition history:</h2>
+                <table id="table-patient-condition-history" class="table" title="Patient Condition History">
+                    <thead>
+                    <tr>
+                        <th>Mental</th>
+                        <th>Physical</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="condition : ${patient.conditionHistory}">
+                        <tr>
+                            <td th:text="${condition.mental}">...</td>
+                            <td th:text="${condition.physical}">...</td>
+                            <td th:text="${#dates.format(condition.createdAt, 'dd.MM.yyyy HH:mm')}">...</td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <!-- Experiments -->
+                <h2>Experiment history:</h2>
+                <table id="table-patient-experiments" class="table" title="Experiments">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th>Success rate</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="experiment : ${patient.experiments}">
+                        <tr>
+                            <td th:text="${experiment.id}">...</td>
+                            <td th:text="${experiment.description}">...</td>
+                            <td th:text="${#dates.format(experiment.startDate, 'dd.MM.yyyy HH:mm')}">...</td>
+                            <td th:text="${#dates.format(experiment.endDate, 'dd.MM.yyyy HH:mm')}">...</td>
+                            <td th:text="${experiment.successRate}">...</td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var conditionHistory = [[${patient.conditionHistory}]];
+    var experiments = [[${patient.experiments}]];
+</script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/patient.js}"></script>
+</body>
+</html>

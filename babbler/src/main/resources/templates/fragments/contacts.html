@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+<div th:fragment="backdrop">
+    <div class="modal_backdrop">
+
+    </div>
+</div>
+
+<div class="modal_window" th:fragment="contacts_modal">
+    <div class="modal_close_wrap" data-dismiss="modal">
+        <div class="modal_close">
+        </div>
+    </div>
+    <div class="modal_content" id="myModal">
+        <div class="contacts_head">
+            <div class="head_title_wrap">
+                <div>
+                    <a class="contact_action">Edit</a>
+                    <a class="contact_action contact_close" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+            <div class="head_title">
+                <span class="title_text">Contacts</span>
+            </div>
+        </div>
+        <div class="contacts_body">
+            <div class="contacts_search">
+                <input class="contacts_search_field" placeholder="Search">
+                <a class="search_dialog_clear">
+                    <i class="icon_search_clear"></i>
+                </a>
+            </div>
+            <div class="modal_contacts_wrap" id="myModal_body">
+
+                <div class="modal_contacts_list">
+                    <div class="list-group contacts_list">
+                        <a class="contact list-group-item"> First</a>
+                        <a class="contact list-group-item"> First</a>
+                        <a class="contact list-group-item"> First</a>
+                        <a class="contact list-group-item"> First</a>
+                        <a class="contact list-group-item"> First</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                    </div>
+                    <div class="nano_pane">
+                        <div class="nano_slider">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div th:align="center" class="contacts_footer">
+            <div class="text-center">
+                <button class="btn btn_contact"> New contact</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
