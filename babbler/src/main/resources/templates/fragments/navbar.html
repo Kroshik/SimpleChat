@@ -14,7 +14,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="#" data-toggle="modal" data-target="#myModal">Contact</a>
+                                <a href="#" data-toggle="modal" data-target="#modal_contacts">Contacts</a>
 
                             </li>
                             <li><a href="#">Settings</a></li>
@@ -51,8 +51,11 @@
             </div>
         </div>
     </nav>
-    <div th:include="fragments/contact"></div>
+    <!--Включение меню контактов-->
+    <div id="modal_contacts" class="modal fade"  role="dialog">
+        <div th:replace="fragments/contacts::backdrop"></div>
+        <div class="modal-dialog" th:include="fragments/contacts::contacts_modal"></div>
+    </div>
 </div>
-
 </body>
 </html>
