@@ -33,7 +33,7 @@ public class PatientController {
 
     @RequestMapping(value = "/patient", method = RequestMethod.GET)
     public ModelAndView getPatients() {
-        val mav = new ModelAndView("therapy/patients");
+        val mav = new ModelAndView("therapy/user");
         val patients = therapyService.getPatients();
         mav.addObject("patients", patients);
         return mav;

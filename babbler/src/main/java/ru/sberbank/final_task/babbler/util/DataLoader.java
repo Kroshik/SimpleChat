@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import ru.sberbank.final_task.babbler.domain.auth.User;
+import ru.sberbank.final_task.babbler.service.MessageService;
 import ru.sberbank.final_task.babbler.service.UserService;
 import ru.sberbank.final_task.babbler.service.internal.TherapyServiceImpl;
 
@@ -18,8 +19,11 @@ public class DataLoader implements ApplicationRunner {
     @NonNull
     private UserService userService;
 
+    @NonNull
+    private MessageService messageService;
+
     public void run(ApplicationArguments args) {
         therapyService.mockData();
-        userService.save(new User("user", "test", "test@t.ru", "$2a$11$JGMVKy4VZaLCHW4u/M6jK.oUKpVukuHtLskGR5RxwgaTHYrnhpr4S"));
+        userService.save(new User("Karina", "Dergun", "lala@mail.ru", "$2a$10$2fJ7ufJb1Pk3jMSWbixsluiYq/L97Uvm9UAAnDkg0XDqhm5Fdc.zG"));
     }
 }

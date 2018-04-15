@@ -1,57 +1,65 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 <body>
 <div th:fragment="navbar(activeTab)">
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-collapse collapse" id="navbar-main">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-expanded="false">
-                            <span class="glyphicon 	glyphicon glyphicon-th-list">
-                            </span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="#" data-toggle="modal" data-target="#myModal">Contact</a>
+        <ul class="nav navbar-nav">
+            <li class="dropdown" style="">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   style="width: 260px; position: inherit;"
+                   aria-expanded="false">
+                    <span style="font-size:20px">&#9776; <span style="margin-left: 50px;"> Babler</span></span>
+                </a>
+                <ul class="dropdown-menu" role="menu" style="width: 260px;">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#Contact">Contact</a>
+                    </li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav">
 
-                            </li>
-                            <li><a href="#">Settings</a></li>
-                            <li><a href="#">About</a></li>
-                        </ul>
-                    </li>
-                    <li th:class="${activeTab == 'patient'}? 'active' : null" sec:authorize="isAuthenticated()">
-                        <img th:src="@{/image/babler.png}" alt="Logotype" width="30px" height="30px">
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-expanded="false">
-                            <span class="glyphicon glyphicon glyphicon-search">
+            <li class="">
+                <a href="#" data-toggle="modal" data-target="#id-info"
+                   th:if="${user_info != null}" th:text="${user_info.firstName}" />
+            </li>
+            <li>
+                <form class="navbar-form" role="search"
+                      style="margin-left: 250px;">
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" placeholder="Найти">
+                    </div>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-search">
+                            </span></button>
+                </form>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   style="width: 275px;"
+                   aria-expanded="false">
+                            <span class="glyphicon glyphicon glyphicon-option-vertical" style="margin-left: 200px;">
                             </span>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-expanded="false">
-                            <span class="glyphicon glyphicon glyphicon-option-vertical">
-                            </span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Select Message</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Photo</a></li>
-                            <li><a href="#">Video</a></li>
-                            <li><a href="#">Music</a></li>
-                        </ul>
-                    </li>
+                </a>
+                <ul class="dropdown-menu" role="menu" style="width: 275px;">
+                    <li><a href="#">Select Message</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Photo</a></li>
+                    <li><a href="#">Video</a></li>
+                    <li><a href="#">Music</a></li>
+                    <li><a th:href="@{/logout}" >Sign Out</a></li>
                 </ul>
-            </div>
-        </div>
+            </li>
+        </ul>
     </nav>
-    <div th:include="fragments/contact"></div>
+    <div th:include="user/contact"></div>
+    <div th:include="user/id-info"></div>
 </div>
 
 </body>

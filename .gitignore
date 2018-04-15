@@ -116,6 +116,7 @@ Temporary Items
 .idea/*
 
 # CMake
+babbler/build
 cmake-build-debug/
 cmake-build-release/
 
@@ -126,6 +127,7 @@ cmake-build-release/
 
 # IntelliJ
 out/
+babbler/build
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

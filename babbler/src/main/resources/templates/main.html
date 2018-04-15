@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="icon" th:href="@{/img/favicon.png}">
+    <div th:include="fragments/head :: head" th:remove="tag">Global Header</div>
+    <title>Babler Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</style>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar('main')"></nav>
+<div class="leftnav">
+    <p align="center" style="color:white; font-size:26px;">Тут будут диалоги</p>
+    <a href="#">Dialog 1</a>
+    <a href="#">Dialog 2</a>
+    <a href="#">Dialog 3</a>
+    <a href="#">Dialog 4</a>
+</div>
+
+<div class="rightnav">
+    <p align="center" style="color:white; font-size:26px;">Тут будут стикеры</p>
+    <a href="#">one</a>
+    <a href="#">two</a>
+</div>
+
+<div class="dialog">
+    <h2>Dialog Example</h2>
+    <div id="chatbox"></div>
+
+    <th:block th:each="message : ${messages}">
+        <div class="chat_from darker" role="button" action="true">
+            <img th:src="@{/img/avatar/men.jpg}" alt="Avatar" style="width:100%;">
+            <p th:text="${message.nameUser}"></p>
+            <p th:text="${message.textMessage}"></p>
+            <span class="time-left" th:text="${message.dateMessage}"></span>
+        </div>
+    </th:block>
+
+    <form th:action="@{/message}" th:object="${message}" method="post">
+        <input class="message" type="text" placeholder="Writing message ... " th:field="*{textMessage}" />
+    </form>
+</div>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>

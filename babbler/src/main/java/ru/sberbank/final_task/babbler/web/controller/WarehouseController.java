@@ -50,8 +50,7 @@ public class WarehouseController {
         if (itemId == null) {
             return service.findAllStockItemsAudit();
         } else {
-            List<StockItemAudit> tmp = service.findStockItemsAuditByItemId(itemId);
-            return tmp;
+            return service.findStockItemsAuditByItemId(itemId);
         }
     }
 
@@ -70,7 +69,7 @@ public class WarehouseController {
         if (result.hasErrors()) {
             return "redirect:/warehouse";
         }
-        item.setCount(new Long(0));
+        item.setCount(0L);
         service.saveStockItem(item);
         return "redirect:/warehouse";
     }
