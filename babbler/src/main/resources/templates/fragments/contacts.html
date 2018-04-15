@@ -19,9 +19,10 @@
     <div class="modal_content" id="myModal">
         <div class="contacts_head">
             <div class="head_title_wrap">
-                <div>
-                    <a class="contact_action">Edit</a>
-                    <a class="contact_action contact_close" data-dismiss="modal">Close</a>
+                <div id="contact_action">
+                    <a class="contact_action" id="edit_contact">Edit</a>
+                    <a class="contact_action contact_close" id="contact_close" data-dismiss="modal">Close</a>
+                    <a class="contact_action" id="edit_cancel">Cancel</a>
                 </div>
             </div>
             <div class="head_title">
@@ -31,7 +32,7 @@
         <div class="contacts_body">
             <div class="contacts_search">
                 <input class="contacts_search_field" placeholder="Search">
-                <a class="search_dialog_clear">
+                <a class="search_dialog_clear" id="clear">
                     <i class="icon_search_clear"></i>
                 </a>
             </div>
@@ -62,22 +63,26 @@
                         <a class="contact list-group-item"> Third</a>
                         <a class="contact list-group-item"> Third</a>
                     </div>
-                    <div class="nano_pane">
-                        <div class="nano_slider">
 
-                        </div>
-                    </div>
                 </div>
             </div>
 
 
         </div>
 
-        <div th:align="center" class="contacts_footer">
-            <div class="text-center">
-                <button class="btn btn_contact"> New contact</button>
+        <div class="contacts_footer" >
+            <div class="text-center" id="footer_contact">
+                <button class="btn btn_contact" id="new_contact" data-toggle="modal" data-target="#modal_add_contact">
+                    New contact</button>
+                <button class="btn danger delete_btn btn_contact" id="del_btn" >
+                    Delete <strong id="counts_delete"></strong></button>
             </div>
         </div>
+    </div>
+
+    <!--Добавление нового контакта-->
+    <div id="modal_add_contact" class="modal fade" role="dialog">
+        <div class="modal-dialog add_contact-dialog" th:include="fragments/addContact"></div>
     </div>
 </div>
 

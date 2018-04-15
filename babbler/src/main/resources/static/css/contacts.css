@@ -170,7 +170,7 @@ a.contact_close {
     font-size: 13px;
     padding: 6px 10px;
     font-weight: 700;
-
+    border: 0px;
 }
 
 .btn_contact:hover,
@@ -184,10 +184,28 @@ a.contact_close {
     outline: 0;
 }
 
+.delete_btn {
+    background: none;
+    color: #a94442;
+    opacity: 0.65;
+    align-items: flex-start;
+    float: right;
+}
+
+.delete_btn:hover,
+.delete_btn:focus,
+.delete_btn:active,
+.delete_btn:visited {
+    color: #a94442;
+    background: #fbe7e6;
+    outline-offset: -2px;
+    box-shadow: none;
+    outline: 0;
+}
+
 #myModal_body.modal_contacts_wrap {
     position: relative;
     width: 100%;
-    /*FIXME Нужна динамическая высота*/
     height: 697px;
 }
 
@@ -231,24 +249,6 @@ a.contact_close {
     margin-top: 0;
 }
 
-.nano_pane {
-    width: 5px;
-    right: 4px;
-    top: 10px;
-    background: rgba(216, 223, 225, 0.45);
-    transition: none;
-    bottom: 0;
-    opacity: .01;
-    position: absolute;
-}
-
-.nano_slider {
-    transform: translate(0px, 0px);
-    background: rgba(137, 160, 179, 0.5);
-    margin: 0;
-    border-radius: 2px;
-    position: relative;
-}
 
 @media (min-width: 800px) {
     .modal_close_wrap {
