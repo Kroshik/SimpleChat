@@ -3,6 +3,7 @@
 <body>
 <div th:fragment="navbar(activeTab)">
     <nav class="navbar navbar-inverse navbar-fixed-top">
+<<<<<<< HEAD
         <ul class="nav navbar-nav">
             <li class="dropdown" style="">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -12,7 +13,7 @@
                 </a>
                 <ul class="dropdown-menu" role="menu" style="width: 260px;">
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#Contact">Contact</a>
+                        <a href="#" data-toggle="modal" data-target="#modal_contacts">Contacts</a>
                     </li>
                     <li><a href="#">Settings</a></li>
                     <li><a href="#">About</a></li>
@@ -58,9 +59,13 @@
             </li>
         </ul>
     </nav>
-    <div th:include="user/contact"></div>
-    <div th:include="user/id-info"></div>
-</div>
 
+    <!--Включение меню контактов-->
+    <div th:include="user/id-info"></div>
+    <div id="modal_contacts" class="modal fade"  role="dialog">
+        <div th:replace="fragments/contacts::backdrop"></div>
+        <div class="modal-dialog" th:include="fragments/contacts::contacts_modal"></div>
+    </div>
+</div>
 </body>
 </html>
