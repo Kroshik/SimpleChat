@@ -12,7 +12,7 @@
 </div>
 
 <div class="modal_window" th:fragment="contacts_modal">
-    <div class="modal_close_wrap" data-dismiss="modal">
+    <div id="close_contacts_wrap" class="modal_close_wrap" data-dismiss="modal">
         <div class="modal_close">
         </div>
     </div>
@@ -80,10 +80,7 @@
         </div>
     </div>
 
-    <!--Добавление нового контакта-->
-    <div id="modal_add_contact" class="modal fade" role="dialog">
-        <div class="modal-dialog add_contact-dialog" th:include="fragments/addContact"></div>
-    </div>
+
 </div>
 
 </body>

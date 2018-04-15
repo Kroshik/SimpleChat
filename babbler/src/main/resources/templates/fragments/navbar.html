@@ -64,7 +64,12 @@
     <div th:include="user/id-info"></div>
     <div id="modal_contacts" class="modal fade"  role="dialog">
         <div th:replace="fragments/contacts::backdrop"></div>
-        <div class="modal-dialog" th:include="fragments/contacts::contacts_modal"></div>
+        <div id="modal_window" class="modal-dialog" th:include="fragments/contacts::contacts_modal"></div>
+    </div>
+
+    <!--Добавление нового контакта-->
+    <div id="modal_add_contact" class="modal fade modal_add_contact" role="dialog">
+        <div class="modal-dialog add_contact-dialog" th:include="fragments/addContact"></div>
     </div>
 </div>
 </body>

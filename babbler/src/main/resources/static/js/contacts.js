@@ -71,5 +71,5 @@ $('.contact').click(function () {
 });
 
 $('#new_contact').click(function () {
-   $('.modal_backdrop').css('z-index', '1061');
+   $('#modal_window').css('z-index', '1030');
 });
