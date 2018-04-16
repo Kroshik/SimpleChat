@@ -1,0 +1,128 @@
+.chat_form {
+    border: 2px solid #eeeeee;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.chat_form.active {
+        border: 2px solid #e4c0c7;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+}
+
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+.chat_form::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.chat_form img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.chat_form img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+.time-left {
+    float: left;
+    color: #999;
+}
+
+.leftnav {
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 70px;
+}
+
+.leftnav a {
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+}
+
+.leftnav a:hover {
+    color: #f1f1f1;
+}
+
+.dialog {
+    resize: vertical;
+    min-width: 400px;
+    margin-right: 270px; /* Same as the width of the rightnav */
+    margin-left: 270px; /* Same as the width of the leftnav */
+}
+
+.rightnav {
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0px;
+    float: left;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 70px;
+}
+
+.rightnav a {
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+}
+
+.rightnav a:hover {
+    color: #f1f1f1;
+}
+
+@media screen and (max-height: 450px) { /* ??WTF??*/
+  .leftnav {padding-top: 15px;}
+  .leftnav a {font-size: 18px;}
+}
+
+.message {
+resize: vertical;
+    padding: 10px;
+    height: 100px;
+    width: 500px;
+   // position: relative;
+   // outline: none;
+   // border: none;
+    background-color: white;
+    font-size: 16px;
+}
+.advancedSearchTextbox {
+    width: 526px;
+    margin-right: -4px;
+}
+

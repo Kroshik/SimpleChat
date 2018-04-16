@@ -22,6 +22,11 @@ public class MainController {
         return new MessageDto();
     }
 
+    @ModelAttribute("deleteMessage")
+    public MessageDto deleteMessageDto() {
+        return new MessageDto();
+    }
+
     @NonNull
     private UserService userService;
 

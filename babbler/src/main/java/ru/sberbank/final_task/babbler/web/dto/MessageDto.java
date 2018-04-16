@@ -1,7 +1,11 @@
 package ru.sberbank.final_task.babbler.web.dto;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MessageDto {
     private String textMessage;
 
@@ -13,6 +17,9 @@ public class MessageDto {
 
     private
     Long idFrom;
+
+    private
+    List<Long> setDeleted;
 
     public String getTextMessage() {
         return textMessage;
@@ -44,5 +51,13 @@ public class MessageDto {
 
     public void setIdFrom(Long idFrom) {
         this.idFrom = idFrom;
+    }
+
+    public List<Long> getSetDeleted() {
+        return setDeleted;
+    }
+
+    public void setSetDeleted(List<Long> setDeleted) {
+        this.setDeleted = setDeleted;
     }
 }
