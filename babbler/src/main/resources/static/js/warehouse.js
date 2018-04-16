@@ -1,4 +1,4 @@
-$(document).ready(function ($) {
+$(document).ready(function () {
   $(".disable-click").click(function() {
         return false;
     });

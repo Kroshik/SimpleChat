@@ -3,13 +3,14 @@
 <head>
     <link rel="icon" th:href="@{/img/favicon.png}">
     <div th:include="fragments/head :: head" th:remove="tag">Global Header</div>
-    <title>Babler Web</title>
+    <title>Babbler Web</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
+
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/message.css}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</style>
+
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar('main')"></nav>
@@ -31,20 +32,33 @@
     <h2>Dialog Example</h2>
     <div id="chatbox"></div>
 
-    <th:block th:each="message : ${messages}">
-        <div class="chat_from darker" role="button" action="true">
+
+    <th:block  th:each="message : ${messages}" >
+        <div id="selectMessage" class="chat_form" role="button">
             <img th:src="@{/img/avatar/men.jpg}" alt="Avatar" style="width:100%;">
+            <input id="messageId" type="hidden"  th:value="${message.id}">
             <p th:text="${message.nameUser}"></p>
             <p th:text="${message.textMessage}"></p>
             <span class="time-left" th:text="${message.dateMessage}"></span>
         </div>
     </th:block>
-
-    <form th:action="@{/message}" th:object="${message}" method="post">
-        <input class="message" type="text" placeholder="Writing message ... " th:field="*{textMessage}" />
-    </form>
+    <ul class="nav navbar-nav">
+        <li>
+            <form th:action="@{/message}" th:object="${message}" method="post">
+                <input class="message" type="text" placeholder="Writing message ... " th:field="*{textMessage}" />
+            </form>
+        </li>
+        <li>
+            <span id="removeMessage" class="glyphicon glyphicon-trash"
+                  role="button" style="font-size:16px" >
+            </span>
+        </li>
+    </ul>
 </div>
+
 <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/message.js/}"></script>
+
 </body>
 </html>

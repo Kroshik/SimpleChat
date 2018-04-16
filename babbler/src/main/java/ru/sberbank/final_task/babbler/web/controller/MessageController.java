@@ -4,10 +4,7 @@ import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.sberbank.final_task.babbler.domain.auth.User;
 import ru.sberbank.final_task.babbler.service.MessageService;
 import ru.sberbank.final_task.babbler.service.UserService;
@@ -16,7 +13,6 @@ import ru.sberbank.final_task.babbler.web.dto.MessageDto;
 import java.time.LocalDateTime;
 
 @Controller
-@RequestMapping("/message")
 public class MessageController {
     @Autowired
     MessageService messageService;
@@ -25,7 +21,7 @@ public class MessageController {
     private UserService userService;
 
     //    @GetMapping(value = "/message/{id}")
-    @GetMapping
+    @GetMapping(value = "/message")
     public String showMessage() {
 //    public String showMessage(@PathVariable("id") Long id) {
 //        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -36,8 +32,8 @@ public class MessageController {
         return "/";
     }
 
-    @PostMapping
-    public String formMessage(@ModelAttribute("message") MessageDto messageDto) {
+    @PostMapping(value = "/message")
+    public String sendMessage(@ModelAttribute("message") MessageDto messageDto) {
         val email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByEmail(email);
         messageDto.setDateMessage(LocalDateTime.now());
@@ -45,5 +41,18 @@ public class MessageController {
         messageDto.setNameFrom(user.getFirstName());
         messageService.save(messageDto);  //Need do it later
         return "redirect:/";
+    }
+
+    @PostMapping(value = "/deleteMessage")
+    public @ResponseBody
+    String deleteMessages(@RequestBody MessageDto messageDto) {
+        messageService.deleteMessages(messageDto);
+        /*
+        val email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findByEmail(email);
+
+        messageService.save(messageDto);  //Need do it later
+        return "redirect:/"; */
+        return "succes";
     }
 }

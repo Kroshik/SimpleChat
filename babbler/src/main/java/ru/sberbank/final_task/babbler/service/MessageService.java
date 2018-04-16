@@ -8,5 +8,6 @@ import java.util.List;
 public interface MessageService {
     Message save (MessageDto messageDto);
     List<Message> getMessages();
+    void deleteMessages(MessageDto messageDto);
 //    String getNameOwner()
 }

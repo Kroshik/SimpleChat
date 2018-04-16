@@ -32,4 +32,9 @@ public class MessageServiceImpl implements MessageService {
         return messageRepository.findAll();
 //        return messageRepository.findByIdFrom(id);
     }
+
+    @Override
+    public void deleteMessages(MessageDto messageDto) {
+        messageDto.getSetDeleted().forEach(id->messageRepository.deleteById(id));
+    }
 }

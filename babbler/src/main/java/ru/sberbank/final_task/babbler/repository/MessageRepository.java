@@ -6,5 +6,5 @@ import ru.sberbank.final_task.babbler.domain.Message;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
-//    Message findByIdFrom(Long id);
+    Message findByIdFrom(Long id);
 }
