@@ -37,6 +37,10 @@ div {
     max-height: 100%;
 }
 
+.modal-backdrop {
+    background: none;
+}
+
 .modal_close_wrap {
     cursor: pointer;
     position: fixed;
@@ -75,7 +79,7 @@ div {
 }
 
 .contacts_head {
-    background-color: rgb(85, 128, 163);
+    background-color: rgb(139, 14, 163);
     color: #ffffff;
     padding: 0 0 13px 26px;
 
@@ -161,7 +165,7 @@ a.contact_close {
 }
 
 .btn_contact {
-    color: #4680b3;
+    color: #9319a3;
     background: 0 0;
     text-decoration: none !important;
     border-radius: 2px;
@@ -170,15 +174,34 @@ a.contact_close {
     font-size: 13px;
     padding: 6px 10px;
     font-weight: 700;
-
+    border: 0px;
 }
 
 .btn_contact:hover,
 .btn_contact:focus,
 .btn_contact:active,
 .btn_contact:visited {
-    color: #4680b3;
+    color: #9319a3;
     background: #f2f6fa;
+    outline-offset: -2px;
+    box-shadow: none;
+    outline: 0;
+}
+
+.delete_btn {
+    background: none;
+    color: #16041b;
+    opacity: 0.65;
+    align-items: flex-start;
+    float: right;
+}
+
+.delete_btn:hover,
+.delete_btn:focus,
+.delete_btn:active,
+.delete_btn:visited {
+    color: #16041b;
+    background: #fbe7e6;
     outline-offset: -2px;
     box-shadow: none;
     outline: 0;
@@ -187,7 +210,6 @@ a.contact_close {
 #myModal_body.modal_contacts_wrap {
     position: relative;
     width: 100%;
-    /*FIXME Нужна динамическая высота*/
     height: 697px;
 }
 
@@ -211,17 +233,17 @@ a.contact_close {
 /* Track */
 ::-webkit-scrollbar-track {
     border-radius: 4px;
-    box-shadow: inset 10px 0 5px rgba(216, 223, 225, 0.75);
+    box-shadow: inset 10px 0 5px rgba(212, 146, 222, 0.75);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgba(137, 160, 179, 0.8);
+    background: rgba(157, 58, 179, 0.8);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(137, 160, 179, 1);
+    background: rgb(108, 56, 131);
 }
 
 .contacts_list {
@@ -231,27 +253,20 @@ a.contact_close {
     margin-top: 0;
 }
 
-.nano_pane {
-    width: 5px;
-    right: 4px;
-    top: 10px;
-    background: rgba(216, 223, 225, 0.45);
-    transition: none;
-    bottom: 0;
-    opacity: .01;
-    position: absolute;
-}
-
-.nano_slider {
-    transform: translate(0px, 0px);
-    background: rgba(137, 160, 179, 0.5);
-    margin: 0;
-    border-radius: 2px;
-    position: relative;
-}
 
 @media (min-width: 800px) {
     .modal_close_wrap {
         display: block;
     }
+}
+
+.contact.active,
+.contact.active:focus,
+.contact.active:hover,
+.contact.active:active{
+    color: #ffffff;
+    font-weight: 900;
+    background-color: #9d3ab3;
+    border-color: #9d3ab3;
+    outline: none;
 }
