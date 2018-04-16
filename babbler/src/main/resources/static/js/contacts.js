@@ -75,14 +75,17 @@ $('#new_contact').click(function () {
 });
 
 $('#modal_contacts').on('hide.bs.modal', function () {
-    edit.appendTo('#contact_action');
-    close.appendTo('#contact_action');
-    cancel = $('#edit_cancel').detach();
-    $('#del_btn').css('opacity', '0.65');
-    del = $('#del_btn').detach();
-    $('#new_contact').css('visibility', 'visible');
+    if (edit_flag === true){
+
+        edit.appendTo('#contact_action');
+        close.appendTo('#contact_action');
+        cancel = $('#edit_cancel').detach();
+        $('#del_btn').css('opacity', '0.65');
+        del = $('#del_btn').detach();
+        $('#new_contact').css('visibility', 'visible');
+        $('.contact').removeClass('active');
+    }
     edit_flag = false;
-    $('.contact').removeClass('active');
     count = 0;
 });
 
