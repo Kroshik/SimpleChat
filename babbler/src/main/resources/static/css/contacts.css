@@ -37,6 +37,10 @@ div {
     max-height: 100%;
 }
 
+.modal-backdrop {
+    background: none;
+}
+
 .modal_close_wrap {
     cursor: pointer;
     position: fixed;
