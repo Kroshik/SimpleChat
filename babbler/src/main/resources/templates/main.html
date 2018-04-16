@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="icon" th:href="@{/img/favicon.png}">
+    <div th:include="fragments/head :: head" th:remove="tag">Global Header</div>
+    <title>Babbler Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/message.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar('main')"></nav>
+<div class="leftnav">
+    <p align="center">Тут будут диалоги</p>
+    <a href="#">Dialog 1</a>
+    <a href="#">Dialog 2</a>
+    <a href="#">Dialog 3</a>
+    <a href="#">Dialog 4</a>
+</div>
+
+<div class="rightnav">
+    <p align="center">Тут будут стикеры</p>
+    <a href="#">one</a>
+    <a href="#">two</a>
+</div>
+
+<div class="dialog">
+    <h2>Dialog Example</h2>
+    <div id="chatbox"></div>
+
+
+    <th:block  th:each="message : ${messages}" >
+        <div id="selectMessage" class="chat_form" role="button">
+            <img th:src="@{/img/avatar/men.jpg}" alt="Avatar" style="width:100%;">
+            <input id="messageId" type="hidden"  th:value="${message.id}">
+            <p th:text="${message.nameUser}"></p>
+            <p th:text="${message.textMessage}"></p>
+            <span class="time-left" th:text="${message.dateMessage}"></span>
+        </div>
+    </th:block>
+    <ul class="nav navbar-nav">
+        <li>
+            <form th:action="@{/message}" th:object="${message}" method="post">
+                <input class="message" type="text" placeholder="Writing message ... " th:field="*{textMessage}" />
+            </form>
+        </li>
+        <li>
+            <span id="removeMessage" class="glyphicon glyphicon-trash"
+                  role="button" style="font-size:16px" >
+            </span>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/message.js/}"></script>
+<script type="text/javascript" th:src="@{/js/contacts.js}"></script>
+<script type="text/javascript" th:src="@{/js/addContact.js}"></script>
+</body>
+</html>

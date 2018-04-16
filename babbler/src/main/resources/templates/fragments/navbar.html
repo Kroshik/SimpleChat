@@ -1,46 +1,78 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 <body>
 <div th:fragment="navbar(activeTab)">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only" th:text="#{navbar.toggle}">[Toggle navigation]</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" th:href="@{/}">Ashecliffe Hospital</a>
-            </div>
-            <div class="navbar-collapse collapse" id="navbar-main">
-                <ul class="nav navbar-nav">
-                    <li th:class="${activeTab == 'home'}? 'active' : null" sec:authorize="isAnonymous()">
-                        <a th:href="@{/}"><span
-                                class="glyphicon glyphicon-home nav-glyphicon">Home</span>
-                        </a>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <ul class="nav navbar-nav">
+            <li id="logo_menu" class="dropdown" style="">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   style="width: 260px; position: inherit;"
+                   aria-expanded="false">
+                    <span style="font-size:20px">&#9776;</span>
+                    <div id="navbar_logo">
+
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" style="width: 260px;">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#modal_contacts">Contacts</a>
                     </li>
-                    <li th:class="${activeTab == 'patient'}? 'active' : null" sec:authorize="isAuthenticated()">
-                        <a th:href="@{/patient}"><span
-                                class="glyphicon glyphicon glyphicon-user nav-glyphicon">Patients</span></a>
-                    </li>
-                    <li th:class="${activeTab == 'warehouse'}? 'active' : null" sec:authorize="isAuthenticated()">
-                        <a th:href="@{/warehouse}"><span
-                                class="glyphicon glyphicon glyphicon-tasks nav-glyphicon">Warehouse</span></a>
-                    </li>
-                    <li th:class="${activeTab == 'registration'}? 'active' : null" sec:authorize="isAnonymous()">
-                        <a th:href="@{/registration}"><span
-                                class="glyphicon glyphicon-list-alt nav-glyphicon">Registration</span></a>
-                    </li>
-                    <li sec:authorize="isAuthenticated()">
-                        <a th:href="@{/logout}" ><span
-                                class="glyphicon glyphicon-log-out nav-glyphicon"></span>Sign Out</a>
-                    </li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">About</a></li>
                 </ul>
-            </div>
-        </div>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav">
+
+            <li class="">
+                <a href="#" data-toggle="modal" data-target="#id-info"
+                   th:if="${user_info != null}" th:text="${user_info.firstName}" />
+            </li>
+            <li>
+                <form class="navbar-form" role="search"
+                      style="margin-left: 250px;">
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" placeholder="Найти">
+                    </div>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-search">
+                            </span></button>
+                </form>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   style="width: 275px;"
+                   aria-expanded="false">
+                            <span class="glyphicon glyphicon glyphicon-option-vertical" style="margin-left: 200px;">
+                            </span>
+                </a>
+                <ul class="dropdown-menu" role="menu" style="width: 275px;">
+                    <li><a href="#">Select Message</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Photo</a></li>
+                    <li><a href="#">Video</a></li>
+                    <li><a href="#">Music</a></li>
+                    <li><a th:href="@{/logout}" >Sign Out</a></li>
+                </ul>
+            </li>
+        </ul>
     </nav>
+
+    <!--Включение меню контактов-->
+    <div th:include="user/id-info"></div>
+    <div id="modal_contacts" class="modal fade"  role="dialog">
+        <div th:replace="fragments/contacts::backdrop"></div>
+        <div id="modal_window" class="modal-dialog" th:include="fragments/contacts::contacts_modal"></div>
+    </div>
+
+    <!--Добавление нового контакта-->
+    <div id="modal_add_contact" class="modal fade modal_add_contact" role="dialog">
+        <div class="modal-dialog add_contact-dialog" th:include="fragments/addContact"></div>
+    </div>
 </div>
 </body>
 </html>

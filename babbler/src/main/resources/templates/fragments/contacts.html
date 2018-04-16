@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+<div th:fragment="backdrop">
+    <div class="modal_backdrop">
+
+    </div>
+</div>
+
+<div class="modal_window" th:fragment="contacts_modal">
+    <div id="close_contacts_wrap" class="modal_close_wrap" data-dismiss="modal">
+        <div class="modal_close">
+        </div>
+    </div>
+    <div class="modal_content" id="myModal">
+        <div class="contacts_head">
+            <div class="head_title_wrap">
+                <div id="contact_action">
+                    <a class="contact_action" id="edit_contact">Edit</a>
+                    <a class="contact_action contact_close" id="contact_close" data-dismiss="modal">Close</a>
+                    <a class="contact_action" id="edit_cancel">Cancel</a>
+                </div>
+            </div>
+            <div class="head_title">
+                <span class="title_text">Contacts</span>
+            </div>
+        </div>
+        <div class="contacts_body">
+            <div class="contacts_search">
+                <input class="contacts_search_field" placeholder="Search">
+                <a class="search_dialog_clear" id="clear">
+                    <i class="icon_search_clear"></i>
+                </a>
+            </div>
+            <div class="modal_contacts_wrap" id="myModal_body">
+
+                <div class="modal_contacts_list">
+                    <div class="list-group contacts_list">
+                        <a class="contact list-group-item"> First</a>
+                        <a class="contact list-group-item"> First</a>
+                        <a class="contact list-group-item"> First</a>
+                        <a class="contact list-group-item"> First</a>
+                        <a class="contact list-group-item"> First</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                        <a class="contact list-group-item"> Third</a>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="contacts_footer" >
+            <div class="text-center" id="footer_contact">
+                <button class="btn btn_contact" id="new_contact" data-toggle="modal" data-target="#modal_add_contact">
+                    New contact</button>
+                <button class="btn danger delete_btn btn_contact" id="del_btn" >
+                    Delete <strong id="counts_delete"></strong></button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

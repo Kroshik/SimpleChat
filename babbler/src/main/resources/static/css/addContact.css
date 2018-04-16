@@ -1,0 +1,76 @@
+.simple_modal_window {
+}
+
+#add_contact_modal {
+    max-width: 348px;
+}
+
+.simple_modal_body {
+    padding: 40px 37px 0;
+}
+
+.modal_simple_form {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+.modal_simple_form h4 {
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 38px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.input_group {
+    height: 50px;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 0;
+    margin: 0 0 22px;
+}
+
+.input_label {
+    max-width: 100%;
+    font-weight: 400;
+    color: #999;
+    cursor: pointer;
+    display: block;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    pointer-events: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-transform-origin: left center;
+    transform: translate3d(0,22px,0);
+}
+
+.input_field {
+    color: #000;
+    background: #fff;
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    font-size: 13px;
+    padding: 3px 0;
+    margin: 3px 0 0;
+    width: 100%;
+    resize: none;
+    box-shadow: none;
+}
+
+.simple_modal_footer {
+    text-align: right;
+    padding: 10px 27px 15px;
+}
+
+.simple_modal_footer .btn {
+    margin-left: 10px;
+}
+
+#btn_cancel,
+#btn_cancel:hover,
+#btn_cancel:focus {
+    color: #b3709e;
+}
