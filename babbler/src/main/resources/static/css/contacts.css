@@ -79,7 +79,7 @@ div {
 }
 
 .contacts_head {
-    background-color: rgb(85, 128, 163);
+    background-color: rgb(139, 14, 163);
     color: #ffffff;
     padding: 0 0 13px 26px;
 
@@ -165,7 +165,7 @@ a.contact_close {
 }
 
 .btn_contact {
-    color: #4680b3;
+    color: #9319a3;
     background: 0 0;
     text-decoration: none !important;
     border-radius: 2px;
@@ -181,7 +181,7 @@ a.contact_close {
 .btn_contact:focus,
 .btn_contact:active,
 .btn_contact:visited {
-    color: #4680b3;
+    color: #9319a3;
     background: #f2f6fa;
     outline-offset: -2px;
     box-shadow: none;
@@ -190,7 +190,7 @@ a.contact_close {
 
 .delete_btn {
     background: none;
-    color: #a94442;
+    color: #16041b;
     opacity: 0.65;
     align-items: flex-start;
     float: right;
@@ -200,7 +200,7 @@ a.contact_close {
 .delete_btn:focus,
 .delete_btn:active,
 .delete_btn:visited {
-    color: #a94442;
+    color: #16041b;
     background: #fbe7e6;
     outline-offset: -2px;
     box-shadow: none;
@@ -233,17 +233,17 @@ a.contact_close {
 /* Track */
 ::-webkit-scrollbar-track {
     border-radius: 4px;
-    box-shadow: inset 10px 0 5px rgba(216, 223, 225, 0.75);
+    box-shadow: inset 10px 0 5px rgba(212, 146, 222, 0.75);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgba(137, 160, 179, 0.8);
+    background: rgba(157, 58, 179, 0.8);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(137, 160, 179, 1);
+    background: rgb(108, 56, 131);
 }
 
 .contacts_list {
@@ -258,4 +258,15 @@ a.contact_close {
     .modal_close_wrap {
         display: block;
     }
+}
+
+.contact.active,
+.contact.active:focus,
+.contact.active:hover,
+.contact.active:active{
+    color: #ffffff;
+    font-weight: 900;
+    background-color: #9d3ab3;
+    border-color: #9d3ab3;
+    outline: none;
 }

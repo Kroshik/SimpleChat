@@ -11,7 +11,7 @@ $('#modal_add_contact').on('hide.bs.modal', function () {
 });
 
 $('.input_field').on('focus', function () {
-    $(this).parent().css('border-bottom', '2px solid #6bace1');
+    $(this).parent().css('border-bottom', '2px solid #8b0ea3');
     $(this).parent().children('.input_label').css('transform', 'scale(.9)');
 });
 
