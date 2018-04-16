@@ -1,5 +1,5 @@
 h1 {
-    color: #78ab46;
+    color: #930784;
 }
 
 footer {
@@ -33,3 +33,130 @@ body {
     min-width: 800px;
 }
 
+
+.chat_from {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+
+.darker {
+    border-color: rgba(186, 7, 187, 0.2);
+    background-color: rgba(186, 7, 187, 0.1);
+}
+
+.chat_from::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.chat_from img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.chat_from img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+.time-left {
+    float: left;
+    color: #999;
+}
+
+.leftnav,
+.rightnav{
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    background-color: rgba(186, 7, 187, 0.05);
+    overflow-x: hidden;
+    padding-top: 70px;
+}
+
+.leftnav {
+    left: 0;
+}
+.rightnav{
+    right: 0;
+}
+
+.leftnav p,
+.rightnav p{
+    color:#3a0853;
+    font-size:26px;
+}
+
+.leftnav a,
+.rightnav a{
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #917ed9;
+    display: block;
+}
+
+.leftnav a:hover,
+.rightnav a:hover{
+    color: #ba07bb;
+}
+
+.dialog {
+    resize: vertical;
+    min-width: 400px;
+    margin-right: 270px; /* Same as the width of the rightnav */
+    margin-left: 270px; /* Same as the width of the leftnav */
+}
+
+@media screen and (max-height: 450px) { /* ??WTF??*/
+  .leftnav {padding-top: 15px;}
+  .leftnav a {font-size: 18px;}
+}
+
+.message {
+resize: vertical;
+    padding: 10px;
+    height: 100px;
+    width: 500px;
+    background-color: white;
+    font-size: 16px;
+}
+.advancedSearchTextbox {
+    width: 526px;
+    margin-right: -4px;
+}
+
+.navbar-fixed-top {
+    background-color: #930784;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    font-weight: 700;
+    color: #cccef7;
+}
+
+#navbar_logo{
+    z-index: 1040;
+    margin-top: 8px;
+    margin-left: 30px;
+    position: absolute;
+    width: 129px;
+    height: 50px;
+    top: 0;
+    background: url("../image/logo.png") no-repeat;
+}

@@ -79,7 +79,7 @@ div {
 }
 
 .contacts_head {
-    background-color: rgb(139, 14, 163);
+    background-color: #930784;
     color: #ffffff;
     padding: 0 0 13px 26px;
 
@@ -96,7 +96,7 @@ div {
 }
 
 a.contact_action {
-    color: #dde8f1;
+    color: #cccef7;
     cursor: pointer;
     font-weight: 700;
     padding: 19px 13px 5px;
@@ -125,6 +125,7 @@ a.contact_close {
 .contacts_search_field {
     font-size: 12px;
     line-height: normal;
+    outline-color: white;
     border: 1px solid #fff !important;
     border-radius: 2px;
     padding: 6px 27px 6px 30px;
@@ -143,6 +144,7 @@ a.contact_close {
     width: 34px;
     height: 34px;
     opacity: .6;
+    outline-color: white;
     cursor: pointer;
 }
 
@@ -165,7 +167,7 @@ a.contact_close {
 }
 
 .btn_contact {
-    color: #9319a3;
+    color: #ba07bb;
     background: 0 0;
     text-decoration: none !important;
     border-radius: 2px;
@@ -181,8 +183,8 @@ a.contact_close {
 .btn_contact:focus,
 .btn_contact:active,
 .btn_contact:visited {
-    color: #9319a3;
-    background: #f2f6fa;
+    color: #ba07bb;
+    background: rgba(186, 7, 187, 0.1);
     outline-offset: -2px;
     box-shadow: none;
     outline: 0;
@@ -190,7 +192,7 @@ a.contact_close {
 
 .delete_btn {
     background: none;
-    color: #16041b;
+    color: #3a0853;
     opacity: 0.65;
     align-items: flex-start;
     float: right;
@@ -200,8 +202,8 @@ a.contact_close {
 .delete_btn:focus,
 .delete_btn:active,
 .delete_btn:visited {
-    color: #16041b;
-    background: #fbe7e6;
+    color: #3a0853;
+    background: #917ed9;
     outline-offset: -2px;
     box-shadow: none;
     outline: 0;
@@ -233,17 +235,17 @@ a.contact_close {
 /* Track */
 ::-webkit-scrollbar-track {
     border-radius: 4px;
-    box-shadow: inset 10px 0 5px rgba(212, 146, 222, 0.75);
+    box-shadow: inset 10px 0 5px rgba(204, 206, 247, 0.75);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgba(157, 58, 179, 0.8);
+    background: rgba(186, 7, 187, 0.7);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(108, 56, 131);
+    background: rgba(186, 7, 187, 1);
 }
 
 .contacts_list {
@@ -252,7 +254,6 @@ a.contact_close {
     padding-left: 0;
     margin-top: 0;
 }
-
 
 @media (min-width: 800px) {
     .modal_close_wrap {
@@ -263,10 +264,10 @@ a.contact_close {
 .contact.active,
 .contact.active:focus,
 .contact.active:hover,
-.contact.active:active{
-    color: #ffffff;
-    font-weight: 900;
-    background-color: #9d3ab3;
-    border-color: #9d3ab3;
+.contact.active:active {
+    color: #3a0853;
+    font-weight: 700;
+    background-color: rgba(186, 7, 187, 0.3);
+    border-color: #eab5eb;
     outline: none;
 }
