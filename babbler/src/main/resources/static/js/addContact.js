@@ -7,6 +7,8 @@ $(window).resize(function () {
 });
 
 $('#modal_add_contact').on('hide.bs.modal', function () {
+    $('.input_field').val('');
+    $('.input_label').css('transform', '');
     $('#modal_window').css('z-index', '1060');
 });
 
@@ -25,4 +27,5 @@ $('.input_field').on('blur', function () {
 $('#btn_cancel').click(function () {
     $('.input_field').val('');
     $('.input_label').css('transform', '');
+    $('#modal_window').css('z-index', '1060');
 });
