@@ -1,23 +1,15 @@
 .chat_form {
-    border: 2px solid #eeeeee;
+    border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
 }
 
-.chat_form.active {
-        border: 2px solid #e4c0c7;
-        background-color: #f1f1f1;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px 0;
-}
-
 
 .darker {
-    border-color: #ccc;
-    background-color: #ddd;
+    border-color: rgba(186, 7, 187, 0.2);
+    background-color: rgba(186, 7, 187, 0.1);
 }
 
 .chat_form::after {
@@ -49,28 +41,43 @@
     color: #999;
 }
 
-.leftnav {
+.leftnav,
+.rightnav{
     height: 100%;
     width: 260px;
     position: fixed;
     z-index: 1;
     top: 0;
-    left: 0;
-    background-color: #111;
+    background-color: rgba(186, 7, 187, 0.05);
     overflow-x: hidden;
     padding-top: 70px;
 }
 
-.leftnav a {
+.leftnav {
+    left: 0;
+}
+.rightnav{
+    right: 0;
+}
+
+.leftnav p,
+.rightnav p{
+    color:#3a0853;
+    font-size:26px;
+}
+
+.leftnav a,
+.rightnav a{
     padding: 6px 6px 6px 32px;
     text-decoration: none;
     font-size: 15px;
-    color: #818181;
+    color: #917ed9;
     display: block;
 }
 
-.leftnav a:hover {
-    color: #f1f1f1;
+.leftnav a:hover,
+.rightnav a:hover{
+    color: #ba07bb;
 }
 
 .dialog {
@@ -80,44 +87,16 @@
     margin-left: 270px; /* Same as the width of the leftnav */
 }
 
-.rightnav {
-    height: 100%;
-    width: 260px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0px;
-    float: left;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 70px;
-}
-
-.rightnav a {
-    padding: 6px 6px 6px 32px;
-    text-decoration: none;
-    font-size: 15px;
-    color: #818181;
-    display: block;
-}
-
-.rightnav a:hover {
-    color: #f1f1f1;
-}
-
 @media screen and (max-height: 450px) { /* ??WTF??*/
-  .leftnav {padding-top: 15px;}
-  .leftnav a {font-size: 18px;}
+    .leftnav {padding-top: 15px;}
+    .leftnav a {font-size: 18px;}
 }
 
 .message {
-resize: vertical;
+    resize: vertical;
     padding: 10px;
     height: 100px;
     width: 500px;
-   // position: relative;
-   // outline: none;
-   // border: none;
     background-color: white;
     font-size: 16px;
 }
@@ -126,3 +105,11 @@ resize: vertical;
     margin-right: -4px;
 }
 
+
+.chat_form.active {
+        border: 2px solid #e4c0c7;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+}
