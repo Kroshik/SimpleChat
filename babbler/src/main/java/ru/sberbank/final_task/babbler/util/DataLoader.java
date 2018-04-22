@@ -20,6 +20,8 @@ public class DataLoader implements ApplicationRunner {
     private MessageService messageService;
 
     public void run(ApplicationArguments args) {
-        userService.save(new User("Karina", "Dergun", "lala@mail.ru", "$2a$10$2fJ7ufJb1Pk3jMSWbixsluiYq/L97Uvm9UAAnDkg0XDqhm5Fdc.zG"));
+        userService.save(new User("Karina", "Dergun", "karina@mail.ru", "$2a$10$RGQGawn9qO4ZQNNl7bU4.eTUcXj1iKYOzWbl1vhAt87obvAbyzaFW"));
+        userService.save(new User("Anton", "Polushin", "anton@mail.ru", "$2a$10$LCkE5V7pXqmBYWopvhDW7OabJ9EA8Vo5.Xwl9ZAbQuo3nfi6eaRSa"));
+        userService.save(new User("Ruslan", "Kvasov", "ruslan@mail.ru", "$2a$10$QNvd7YyJOxXsnTzrHTmVl.MNEB6G.6kzjm4DgYFN82oYC0C/b1r7G"));
     }
 }

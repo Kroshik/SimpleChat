@@ -16,18 +16,24 @@ import java.util.Collection;
 public class User {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NonNull
+    @Column(name = "firstName")
     private String firstName;
 
     @NonNull
+    @Column(name = "lastName")
     private String lastName;
 
     @NonNull
+    @Column(name = "email")
     private String email;
+
     @NonNull
+    @Column(name = "password")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

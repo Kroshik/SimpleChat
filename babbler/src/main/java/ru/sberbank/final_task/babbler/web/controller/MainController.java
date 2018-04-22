@@ -9,13 +9,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
+import ru.sberbank.final_task.babbler.domain.Message;
+import ru.sberbank.final_task.babbler.domain.auth.User;
 import ru.sberbank.final_task.babbler.service.MessageService;
 import ru.sberbank.final_task.babbler.service.UserService;
+import ru.sberbank.final_task.babbler.web.dto.DeletedMessagesDto;
 import ru.sberbank.final_task.babbler.web.dto.MessageDto;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class MainController {
+
+    @NonNull
+    MessageService messageService;
+    @NonNull
+    private UserService userService;
 
     @ModelAttribute("message")
     public MessageDto messageDto() {
@@ -23,23 +33,19 @@ public class MainController {
     }
 
     @ModelAttribute("deleteMessage")
-    public MessageDto deleteMessageDto() {
-        return new MessageDto();
+    public DeletedMessagesDto deleteMessageDto() {
+        return new DeletedMessagesDto();
     }
-
-    @NonNull
-    private UserService userService;
-
-    @NonNull
-    MessageService messageService;
 
     @GetMapping(value = "/")
     public ModelAndView getUserName() {
         val mav = new ModelAndView("main");
         if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
             val email = SecurityContextHolder.getContext().getAuthentication().getName();
-            mav.addObject("user_info", userService.findByEmail(email));
-            mav.addObject("messages", messageService.getMessages());
+            User user = userService.findByEmail(email);
+            mav.addObject("user_info", user);
+            List<Message> messages = messageService.getMessages(user.getId(), user.getId());
+            mav.addObject("messages", messages);
         }
         return mav;
     }

@@ -2,10 +2,7 @@ package ru.sberbank.final_task.babbler.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,33 +11,47 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
+//@Table(name = "Message", schema="spring_jpa_message")
+//@NamedQuery(name = "Message.findDialog",
+//        query = "SELECT msg FROM Message msg WHERE msg.idFromUser = :idFromUser"
+//)
 public class Message {
     @Id
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "textMessage", nullable = false)
     @NonNull
     private String textMessage;
 
+    @Column(name = "nameUser", nullable = false)
     @NonNull
     private String nameUser;
 
+    @Column(name = "dateMessage", nullable = false)
     @NonNull
     private LocalDateTime dateMessage;
 
+    /* --- */
+//    @Column(name = "idFrom", nullable = false)
+//    @NonNull
+//    private Long idFrom;
+    /* --- */
+
+
+    @Column(name = "idFromUser", nullable = false)
     @NonNull
-    private Long idFrom;
+    private Long idFromUser;
 
-//    @NonNull
-//    @DateTimeFormat(pattern = "dd.MM.yyyy")
-//    @Temporal(TemporalType.DATE)
-//    private Date birthDate;
+    @Column(name = "idToUser", nullable = false)
+    @NonNull
+    private Long idToUser;
 
-//    @NonNull
-//    @Builder.Default
-//    @OneToMany(cascade = CascadeType.ALL,
-//            fetch = FetchType.EAGER,
-//            mappedBy = "message")
-//    @OrderBy("start_date desc")
-//    private List<Message> messages = new ArrayList<>();
+    @Lob @Basic(fetch = FetchType.LAZY)
+    @Column(name="file")
+    private byte[] file;
+//
+//    @Column(name = "status")
+//    private Boolean status; // 0 - не прочитано 1 - прочитано
 }
