@@ -1,10 +1,14 @@
 package ru.sberbank.final_task.babbler.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
+@Getter
+@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MessageDto {
     private String textMessage;
@@ -15,49 +19,15 @@ public class MessageDto {
     private
     String nameFrom;
 
-    private
-    Long idFrom;
+//    private
+//    Long idFrom;
 
     private
-    List<Long> setDeleted;
+    Long idFromUser;
 
-    public String getTextMessage() {
-        return textMessage;
-    }
+    private
+    Long idToUser;
 
-    public void setTextMessage(String textMessage) {
-        this.textMessage = textMessage;
-    }
-
-    public LocalDateTime getDateMessage() {
-        return dateMessage;
-    }
-
-    public void setDateMessage(LocalDateTime dateMessage) {
-        this.dateMessage = dateMessage;
-    }
-
-    public String getNameFrom() {
-        return nameFrom;
-    }
-
-    public void setNameFrom(String nameFrom) {
-        this.nameFrom = nameFrom;
-    }
-
-    public Long getIdFrom() {
-        return idFrom;
-    }
-
-    public void setIdFrom(Long idFrom) {
-        this.idFrom = idFrom;
-    }
-
-    public List<Long> getSetDeleted() {
-        return setDeleted;
-    }
-
-    public void setSetDeleted(List<Long> setDeleted) {
-        this.setDeleted = setDeleted;
-    }
+    private
+    MultipartFile [] file;
 }

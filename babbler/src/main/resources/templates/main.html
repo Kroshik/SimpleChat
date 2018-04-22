@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="icon" th:href="@{/img/favicon.png}">
     <div th:include="fragments/head :: head" th:remove="tag">Global Header</div>
@@ -33,10 +33,10 @@
     <div id="chatbox"></div>
 
 
-    <th:block  th:each="message : ${messages}" >
+    <th:block th:each="message : ${messages}">
         <div id="selectMessage" class="chat_form" role="button">
             <img th:src="@{/img/avatar/men.jpg}" alt="Avatar" style="width:100%;">
-            <input id="messageId" type="hidden"  th:value="${message.id}">
+            <input id="messageId" type="hidden" th:value="${message.id}">
             <p th:text="${message.nameUser}"></p>
             <p th:text="${message.textMessage}"></p>
             <span class="time-left" th:text="${message.dateMessage}"></span>
@@ -44,13 +44,15 @@
     </th:block>
     <ul class="nav navbar-nav">
         <li>
-            <form th:action="@{/message}" th:object="${message}" method="post">
-                <input class="message" type="text" placeholder="Writing message ... " th:field="*{textMessage}" />
+            <form th:action="@{/dialog/{id}(id=${id})}" th:object="${message}" method="post" enctype="multipart/form-data">
+                <input class="message" type="text" placeholder="Writing message ... "
+                       id="sendMessage" th:field="*{textMessage}"/>
+                <input type="file" name="file" multiple="multiple">
             </form>
         </li>
         <li>
             <span id="removeMessage" class="glyphicon glyphicon-trash"
-                  role="button" style="font-size:16px" >
+                  role="button" style="font-size:16px">
             </span>
         </li>
     </ul>

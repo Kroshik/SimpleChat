@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.sberbank.final_task.babbler.domain.auth.User;
 import ru.sberbank.final_task.babbler.service.MessageService;
 import ru.sberbank.final_task.babbler.service.UserService;
+import ru.sberbank.final_task.babbler.web.dto.DeletedMessagesDto;
 import ru.sberbank.final_task.babbler.web.dto.MessageDto;
 
 import java.time.LocalDateTime;
@@ -37,7 +38,8 @@ public class MessageController {
         val email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByEmail(email);
         messageDto.setDateMessage(LocalDateTime.now());
-        messageDto.setIdFrom(user.getId());
+        messageDto.setIdFromUser(user.getId());
+        messageDto.setIdToUser(user.getId());
         messageDto.setNameFrom(user.getFirstName());
         messageService.save(messageDto);  //Need do it later
         return "redirect:/";
@@ -45,14 +47,8 @@ public class MessageController {
 
     @PostMapping(value = "/deleteMessage")
     public @ResponseBody
-    String deleteMessages(@RequestBody MessageDto messageDto) {
+    String deleteMessages(@RequestBody DeletedMessagesDto messageDto) {
         messageService.deleteMessages(messageDto);
-        /*
-        val email = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userService.findByEmail(email);
-
-        messageService.save(messageDto);  //Need do it later
-        return "redirect:/"; */
-        return "succes";
+        return "success";
     }
 }
