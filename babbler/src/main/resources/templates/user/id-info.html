@@ -12,15 +12,16 @@
                 <h4 class="modal-title" th:text="'login = ' + ${user_info.login}"></h4>
             </div>
             <div class="modal-body">
-                <h3>User Info</h3>
-                <h5 data-toggle="modal" data-target="#id-info"
-                    th:text="'id = ' + ${user_info.id}"/>
-                <h5 data-toggle="modal" data-target="#id-info"
-                    th:text="'firstName = ' + ${user_info.firstName}"/>
-                <h5 data-toggle="modal" data-target="#id-info"
-                    th:text="'lastName = ' + ${user_info.lastName}"/>
-                <h5 data-toggle="modal" data-target="#id-info"
-                    th:text="'email = ' + ${user_info.email}"/>
+                <!--<h3>User Info <span id="setting user-info" role= "button" class="glyphicon glyphicon-cog"-->
+                                    <!--href="setting" data-toggle="modal" data-target="#setting"/></h3>-->
+                    <!--<a href="userSetting" data-toggle="modal" data-target="#setting"-->
+                       <!--th:text="${user_info.firstName}"  />-->
+
+                <h5 th:text="'id = ' + ${user_info.id}"/>
+                <h5 th:text="'firstName = ' + ${user_info.firstName}"/>
+                <h5 th:text="'lastName = ' + ${user_info.lastName}"/>
+                <h5 th:text="'email = ' + ${user_info.email}"/>
+
                 <p>Some text in the modal.</p>
             </div>
             <div class="modal-footer">

@@ -11,7 +11,9 @@ public interface UserService extends UserDetailsService {
 
     User findByLogin(String login);
 
-    User save(UserRegistrationDto registration);
+    User save(UserRegistrationDto userRegistrationDto);
+
+    User updateUser(UserRegistrationDto userRegistrationDto);
 
     User save(User user);
 }
