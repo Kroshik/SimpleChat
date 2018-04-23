@@ -58,11 +58,6 @@ public class MessageServiceImpl implements MessageService {
         messages.addAll(messageRepository.findByIdToUser(idToUser));
 
         return messages;
-//        List<Message> messages = messageRepository.findByPairIdUsers(Pair.of(idFromUser, idToUser));
-//        messages.addAll(messageRepository.findByPairIdUsers(Pair.of(idToUser, idFromUser)));
-//        return messages;
-//        return messageRepository.findAll();
-//        return messageRepository.findDialog(idFromUser, idToUser);
     }
 
     public void deleteMessagesAllUser(DeletedMessagesDto messageDto) {

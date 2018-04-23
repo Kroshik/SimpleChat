@@ -15,6 +15,7 @@ import ru.sberbank.final_task.babbler.service.MessageService;
 import ru.sberbank.final_task.babbler.service.UserService;
 import ru.sberbank.final_task.babbler.web.dto.DeletedMessagesDto;
 import ru.sberbank.final_task.babbler.web.dto.MessageDto;
+import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 
 import java.util.List;
 
@@ -30,6 +31,11 @@ public class MainController {
     @ModelAttribute("message")
     public MessageDto messageDto() {
         return new MessageDto();
+    }
+
+    @ModelAttribute("userSetting")
+    public UserRegistrationDto userRegistrationDto() {
+        return new UserRegistrationDto();
     }
 
     @ModelAttribute("deleteMessage")

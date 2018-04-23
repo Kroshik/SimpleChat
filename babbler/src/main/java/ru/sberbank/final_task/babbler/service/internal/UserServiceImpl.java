@@ -26,23 +26,38 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public User findByEmail(String email){
+    public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    public User findByLogin(String login){
+    public User findByLogin(String login) {
         return userRepository.findByLogin(login);
     }
 
-    public User save(UserRegistrationDto registration){
+    public User save(UserRegistrationDto userRegistrationDto) {
         User user = new User();
-        user.setFirstName(registration.getFirstName());
-        user.setLastName(registration.getLastName());
-        user.setEmail(registration.getEmail());
-        user.setLogin(registration.getLogin());
-        user.setPassword(passwordEncoder.encode(registration.getPassword()));
+        user.setFirstName(userRegistrationDto.getFirstName());
+        user.setLastName(userRegistrationDto.getLastName());
+        user.setEmail(userRegistrationDto.getEmail());
+        user.setLogin(userRegistrationDto.getLogin());
+        user.setPassword(passwordEncoder.encode(userRegistrationDto.getPassword()));
         user.setRoles(Collections.singletonList(new Role("ROLE_USER")));
         return userRepository.save(user);
+    }
+
+    @Override
+    public User updateUser(UserRegistrationDto userDto) {
+        User user = userRepository.findByEmail(userDto.getEmail());
+        String email = user.getEmail();
+        String firstName = userDto.getFirstName().equals("") ? user.getFirstName() : userDto.getFirstName();
+        String lastName = userDto.getLastName().equals("") ? user.getLastName() : userDto.getLastName();
+        String login = userDto.getLogin().equals("") ? user.getLogin() : userDto.getLogin();
+        if (userDto.getPassword().equals("")) {
+            userRepository.updateUserInfo(email, firstName, lastName, login);
+        } else {
+            userRepository.updateUserInfo(email, firstName, lastName, login, userDto.getPassword());
+        }
+        return userRepository.findByEmail(email);
     }
 
     @Override
@@ -53,7 +68,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
-        if (user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
@@ -61,7 +76,7 @@ public class UserServiceImpl implements UserService {
                 mapRolesToAuthorities(user.getRoles()));
     }
 
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());

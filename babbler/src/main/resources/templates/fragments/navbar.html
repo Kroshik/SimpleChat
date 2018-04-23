@@ -17,7 +17,9 @@
                     <li>
                         <a href="#" data-toggle="modal" data-target="#modal_contacts">Contacts</a>
                     </li>
-                    <li><a href="#">Settings</a></li>
+                    <li><a href="setting" data-toggle="modal" data-target="#setting">
+                        <span class="glyphicon glyphicon-cog"/>
+                        Settings</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
             </li>
@@ -25,7 +27,7 @@
         <ul class="nav navbar-nav">
 
             <li class="">
-                <a href="#" data-toggle="modal" data-target="#id-info"
+                <a href="userInfo" data-toggle="modal" data-target="#id-info"
                    th:if="${user_info != null}" th:text="${user_info.firstName}"  />
             </li>
             <li>
@@ -64,6 +66,7 @@
 
     <!--Включение меню контактов-->
     <div th:include="user/id-info"></div>
+    <div th:include="user/setting"></div>
     <div id="modal_contacts" class="modal fade"  role="dialog">
         <div th:replace="fragments/contacts::backdrop"></div>
         <div id="modal_window" class="modal-dialog" th:include="fragments/contacts::contacts_modal"></div>
