@@ -29,6 +29,11 @@ public class User {
     private String lastName;
 
     @NonNull
+    @Column(name = "login")
+    private String login;
+
+
+    @NonNull
     @Column(name = "email")
     private String email;
 

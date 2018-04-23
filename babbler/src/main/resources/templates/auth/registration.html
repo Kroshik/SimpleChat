@@ -45,6 +45,16 @@
                        th:text="${error}">Validation error</p>
                 </div>
                 <div class="form-group"
+                     th:classappend="${#fields.hasErrors('login')}? 'has-error':''">
+                    <label for="login" class="control-label">Login</label>
+                    <input id="login"
+                           class="form-control"
+                           th:field="*{login}"/>
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('login')}"
+                       th:text="${login}">Validation error</p>
+                </div>
+                <div class="form-group"
                      th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
                     <label for="email" class="control-label">E-mail</label>
                     <input id="email"

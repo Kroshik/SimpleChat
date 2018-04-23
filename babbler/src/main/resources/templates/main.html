@@ -39,6 +39,7 @@
             <input id="messageId" type="hidden" th:value="${message.id}">
             <p th:text="${message.nameUser}"></p>
             <p th:text="${message.textMessage}"></p>
+            <p th:src="${message.file}"></p>
             <span class="time-left" th:text="${message.dateMessage}"></span>
         </div>
     </th:block>
