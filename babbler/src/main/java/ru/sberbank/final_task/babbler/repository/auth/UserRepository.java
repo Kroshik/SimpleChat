@@ -8,4 +8,5 @@ import ru.sberbank.final_task.babbler.domain.auth.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByEmail(String email);
+    User findByLogin(String login);
 }
