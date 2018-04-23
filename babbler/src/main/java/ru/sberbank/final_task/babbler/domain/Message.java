@@ -48,8 +48,9 @@ public class Message {
     @NonNull
     private Long idToUser;
 
-    @Lob @Basic(fetch = FetchType.LAZY)
-    @Column(name="file")
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "file")
     private byte[] file;
 //
 //    @Column(name = "status")

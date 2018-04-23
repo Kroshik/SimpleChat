@@ -14,6 +14,7 @@ import ru.sberbank.final_task.babbler.domain.auth.User;
 import ru.sberbank.final_task.babbler.service.MessageService;
 import ru.sberbank.final_task.babbler.service.UserService;
 import ru.sberbank.final_task.babbler.web.dto.MessageDto;
+import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,6 +31,11 @@ public class DialogController {
     @ModelAttribute("message")
     public MessageDto messageDto() {
         return new MessageDto();
+    }
+
+    @ModelAttribute("userSetting")
+    private UserRegistrationDto userRegistrationDto() {
+        return new UserRegistrationDto();
     }
 
     @GetMapping(value = "/dialog/{id}")

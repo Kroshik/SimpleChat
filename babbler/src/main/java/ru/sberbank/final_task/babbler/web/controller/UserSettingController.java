@@ -30,7 +30,7 @@ public class UserSettingController {
                                     BindingResult result) {
         val email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByEmail(email);
-        if (!userDto.getPassword().equals(userDto.getConfirmEmail()) && !userDto.getPassword().equals("")){
+        if (!userDto.getPassword().equals(userDto.getConfirmEmail()) && !userDto.getPassword().equals("")) {
             result.rejectValue("password", null, "Confirm password != password");
             return "redirect:/";
             /** Here it is necessary to finish

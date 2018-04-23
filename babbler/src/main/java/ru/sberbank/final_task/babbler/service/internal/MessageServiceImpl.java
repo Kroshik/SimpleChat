@@ -28,7 +28,7 @@ public class MessageServiceImpl implements MessageService {
         message.setIdFromUser(messageDto.getIdFromUser());
         message.setIdToUser(messageDto.getIdToUser());
         try {
-            if(messageDto.getFile().length > 0) {
+            if (messageDto.getFile().length > 0) {
                 message.setFile(messageDto.getFile()[0].getBytes());
             }
         } catch (IOException e) {
@@ -39,21 +39,21 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List <Message> getMessages() {
+    public List<Message> getMessages() {
         return messageRepository.findAll();
 //        return messageRepository.findByIdFrom(id);
     }
 
     @Override
     public void deleteMessages(DeletedMessagesDto messageDto) {
-        messageDto.getSetDeleted().forEach(id->messageRepository.deleteById(id));
+        messageDto.getSetDeleted().forEach(id -> messageRepository.deleteById(id));
     }
 
     public List<Message> getDialog(Long idFromUser, Long idToUser) {
         return messageRepository.findDialog(idFromUser, idToUser);
     }
 
-    public List <Message> getMessages(Long idFromUser, Long idToUser) {
+    public List<Message> getMessages(Long idFromUser, Long idToUser) {
         List<Message> messages = messageRepository.findByIdFromUser(idFromUser);
         messages.addAll(messageRepository.findByIdToUser(idToUser));
 
@@ -61,7 +61,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     public void deleteMessagesAllUser(DeletedMessagesDto messageDto) {
-        messageDto.getSetDeleted().forEach(id->messageRepository.deleteById(id));
+        messageDto.getSetDeleted().forEach(id -> messageRepository.deleteById(id));
     }
 
     public void deleteMessagesOneUser(DeletedMessagesDto messageDto) {

@@ -52,11 +52,8 @@ public class UserServiceImpl implements UserService {
         String firstName = userDto.getFirstName().equals("") ? user.getFirstName() : userDto.getFirstName();
         String lastName = userDto.getLastName().equals("") ? user.getLastName() : userDto.getLastName();
         String login = userDto.getLogin().equals("") ? user.getLogin() : userDto.getLogin();
-        if (userDto.getPassword().equals("")) {
-            userRepository.updateUserInfo(email, firstName, lastName, login);
-        } else {
-            userRepository.updateUserInfo(email, firstName, lastName, login, userDto.getPassword());
-        }
+        String password = userDto.getPassword().equals("") ? user.getPassword() : passwordEncoder.encode(userDto.getPassword());
+        userRepository.updateUserInfo(email, firstName, lastName, login, password);
         return userRepository.findByEmail(email);
     }
 

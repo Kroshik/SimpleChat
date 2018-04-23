@@ -13,6 +13,7 @@ import ru.sberbank.final_task.babbler.domain.auth.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByEmail(String email);
+
     User findByLogin(String login);
 
     @Transactional
@@ -25,11 +26,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
                         @Param("newLogin") String newLogin,
                         @Param("newPassword") String newPassword);
 
-    @Transactional
-    @Modifying
-    @Query("UPDATE User u SET u.firstName =:newFirstName, u.lastName =:newLastName, " +
-            "u.login =:newLogin WHERE u.email =:email")
-    void updateUserInfo(@Param("email") String email, @Param("newFirstName") String newFirstName,
-                        @Param("newLastName") String newLastName,
-                        @Param("newLogin") String newLogin);
 }
