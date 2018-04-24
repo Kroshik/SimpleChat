@@ -8,6 +8,7 @@ import ru.sberbank.final_task.babbler.web.constraint.FieldMatch;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
@@ -31,6 +32,12 @@ public class UserRegistrationDto {
 
     @NotEmpty
     private String confirmPassword;
+
+    @NotEmpty
+    private LocalDateTime lastSeen;
+
+    @NotEmpty
+    private String status;
 
     @Email
     @NotEmpty

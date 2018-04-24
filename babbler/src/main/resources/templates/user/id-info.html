@@ -9,15 +9,25 @@
             <div class="modal-header">
                 <button type="button" class="close"
                         data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" th:text="'login = ' + ${user_info.login}"></h4>
+                <h4 class="modal-title" th:text="'Я = ' + ${user_info.login}"></h4>
             </div>
             <div class="modal-body">
-                <h5 th:text="'id = ' + ${user_info.id}"/>
-                <h5 th:text="'firstName = ' + ${user_info.firstName}"/>
-                <h5 th:text="'lastName = ' + ${user_info.lastName}"/>
-                <h5 th:text="'email = ' + ${user_info.email}"/>
+                <h3 th:if="${friend_info != null}">Мои данные
+                    <h5 th:text="'id = ' + ${user_info.id}"/>
+                    <h5 th:text="'Имя = ' + ${user_info.firstName}"/>
+                    <h5 th:text="'Фамилия= ' + ${user_info.lastName}"/>
+                    <h5 th:text="'Статус= ' + ${user_info.status}"/>
+                    <h5 th:text="'email = ' + ${user_info.email}"/>
+                </h3>
 
-                <p>Some text in the modal.</p>
+                <h3 th:if="${friend_info != null}">Собеседник
+                    <h5 th:text="'id = ' + ${friend_info.id}"/>
+                    <h5 th:text="'Имя = ' + ${friend_info.firstName}"/>
+                    <h5 th:text="'Фамилия= ' + ${friend_info.lastName}"/>
+                    <h5 th:text="'Статус= ' + ${friend_info.status}"/>
+                    <h5 th:text="'email = ' + ${friend_info.email}"/>
+                </h3>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">

@@ -13,6 +13,7 @@ import ru.sberbank.final_task.babbler.repository.auth.UserRepository;
 import ru.sberbank.final_task.babbler.service.UserService;
 import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -34,13 +35,19 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByLogin(login);
     }
 
-    public User save(UserRegistrationDto userRegistrationDto) {
+    @Override
+    public User findById(Long id) {
+        return userRepository.getOne(id);
+    }
+
+    public User save(UserRegistrationDto userDto) {
         User user = new User();
-        user.setFirstName(userRegistrationDto.getFirstName());
-        user.setLastName(userRegistrationDto.getLastName());
-        user.setEmail(userRegistrationDto.getEmail());
-        user.setLogin(userRegistrationDto.getLogin());
-        user.setPassword(passwordEncoder.encode(userRegistrationDto.getPassword()));
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setLogin(userDto.getLogin());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setLastSeen(userDto.getLastSeen());
         user.setRoles(Collections.singletonList(new Role("ROLE_USER")));
         return userRepository.save(user);
     }
@@ -55,6 +62,11 @@ public class UserServiceImpl implements UserService {
         String password = userDto.getPassword().equals("") ? user.getPassword() : passwordEncoder.encode(userDto.getPassword());
         userRepository.updateUserInfo(email, firstName, lastName, login, password);
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void updateLastSeen(String email, LocalDateTime lastSeen, String status) {
+        userRepository.updateLastSeen(email, lastSeen, status);
     }
 
     @Override

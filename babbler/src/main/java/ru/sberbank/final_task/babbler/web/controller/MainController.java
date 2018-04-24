@@ -50,7 +50,6 @@ public class MainController {
             val email = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.findByEmail(email);
             mav.addObject("user_info", user);
-//            mav.addObject("userSetting", userRegistrationDto());
             List<Message> messages = messageService.getMessages(user.getId(), user.getId());
             mav.addObject("messages", messages);
         }

@@ -13,6 +13,7 @@ import ru.sberbank.final_task.babbler.service.UserService;
 import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/registration")
@@ -48,7 +49,7 @@ public class UserRegistrationController {
         if (result.hasErrors()){
             return "auth/registration";
         }
-
+        userDto.setLastSeen(LocalDateTime.now());
         userService.save(userDto);
         return "redirect:/login";
     }

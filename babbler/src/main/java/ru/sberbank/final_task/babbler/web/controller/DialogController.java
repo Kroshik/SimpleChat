@@ -33,6 +33,7 @@ public class DialogController {
         return new MessageDto();
     }
 
+
     @ModelAttribute("userSetting")
     private UserRegistrationDto userRegistrationDto() {
         return new UserRegistrationDto();
@@ -46,6 +47,7 @@ public class DialogController {
             User user = userService.findByEmail(email);
             mav.addObject("user_info", user);
             List<Message> messages = messageService.getDialog(user.getId(), id);
+            mav.addObject("friend_info", userService.findById(id));
 //            mav.addObject("message", messageDto());
             mav.addObject("messages", messages);
         }

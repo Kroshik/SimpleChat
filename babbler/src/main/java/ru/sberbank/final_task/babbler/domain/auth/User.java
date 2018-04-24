@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Data
@@ -32,7 +33,6 @@ public class User {
     @Column(name = "login")
     private String login;
 
-
     @NonNull
     @Column(name = "email")
     private String email;
@@ -40,6 +40,12 @@ public class User {
     @NonNull
     @Column(name = "password")
     private String password;
+
+    @Column(name = "lastSeen")
+    private LocalDateTime lastSeen = LocalDateTime.now();
+
+    @Column(name = "status")
+    private String status = "online";
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
