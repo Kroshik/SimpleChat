@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.sberbank.final_task.babbler.domain.auth.Role;
 import ru.sberbank.final_task.babbler.domain.auth.User;
 import ru.sberbank.final_task.babbler.repository.auth.UserRepository;
 import ru.sberbank.final_task.babbler.service.UserService;
@@ -16,6 +15,7 @@ import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,7 +49,6 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setLastSeen(LocalDateTime.now());
         user.setStatus("online");
-        user.setRoles(Collections.singletonList(new Role("ROLE_USER")));
         return userRepository.save(user);
     }
 
@@ -82,13 +81,6 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
-                user.getPassword(),
-                mapRolesToAuthorities(user.getRoles()));
-    }
-
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
+                user.getPassword(),new HashSet<GrantedAuthority>());
     }
 }

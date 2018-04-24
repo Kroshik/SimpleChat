@@ -8,12 +8,14 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "User", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 
     @Id
@@ -48,13 +50,16 @@ public class User {
     @Column(name = "status")
     private String status = "online";
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "users_roles",
+    @JoinTable(name = "contact",
             joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
+                    name = "user_id",
+                    referencedColumnName = "id"
+            ),
             inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+                    name = "friend_id",
+                    referencedColumnName = "id"
+            ))
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<User> contacts = new LinkedHashSet<>();
 
 }
