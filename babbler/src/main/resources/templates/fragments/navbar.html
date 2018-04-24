@@ -1,70 +1,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 >
 <body>
-<div th:fragment="navbar(activeTab)">
+<div class="top_navbar" th:fragment="navbar(activeTab)">
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <ul class="nav navbar-nav">
-            <li id="logo_menu" class="dropdown" style="">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   style="width: 260px; position: inherit;"
-                   aria-expanded="false">
-                    <span style="font-size:20px">&#9776;</span>
-                    <div id="navbar_logo">
+        <div class="top_left">
+            <ul class="nav navbar-nav top_left logo_menu">
+                <li id="logo_menu" class="dropdown logo_menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-expanded="false">
+                        <div style="font-size:20px">&#9776;</div>
+                        <div id="navbar_logo">
 
-                    </div>
-                </a>
-                <ul class="dropdown-menu" role="menu" style="width: 260px;">
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#modal_contacts">Contacts</a>
-                    </li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav">
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu logo_menu" role="menu">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#modal_contacts">Contacts</a>
+                        </li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
 
-            <li class="">
-                <a href="#" data-toggle="modal" data-target="#id-info"
-                   th:if="${user_info != null}" th:text="${user_info.firstName}" />
-            </li>
-            <li>
-                <form class="navbar-form" role="search"
-                      style="margin-left: 250px;">
-                    <div class="form-group">
+        <div class="nav navbar-nav top_center">
+            <div class="center_left">
 
-                        <input type="text" class="form-control" placeholder="Найти">
-                    </div>
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-search">
-                            </span></button>
-                </form>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav">
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   style="width: 275px;"
-                   aria-expanded="false">
-                            <span class="glyphicon glyphicon glyphicon-option-vertical" style="margin-left: 200px;">
+                <div class="navbar_user" data-toggle="modal" data-target="#id-info">
+                    <a id="user-info" href="#" th:if="${user_info != null}" th:text="${user_info.firstName}"></a>
+                </div>
+
+                <div class="dropdown navbar_menu">
+                    <a href="#" id="navbar_menu" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-expanded="false">
+                            <span class="glyphicon glyphicon glyphicon-option-vertical">
                             </span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Select Message</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Photo</a></li>
+                        <li><a href="#">Video</a></li>
+                        <li><a href="#">Music</a></li>
+                        <li><a th:href="@{/logout}">Sign Out</a></li>
+                    </ul>
+                </div>
+                <a href="#" id="navbar_search">
+                    <i class="icon icon_search"></i>
                 </a>
-                <ul class="dropdown-menu" role="menu" style="width: 275px;">
-                    <li><a href="#">Select Message</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Photo</a></li>
-                    <li><a href="#">Video</a></li>
-                    <li><a href="#">Music</a></li>
-                    <li><a th:href="@{/logout}" >Sign Out</a></li>
-                </ul>
-            </li>
-        </ul>
+            </div>
+            <div class="nav navbar-nav center_right">
+
+            </div>
+
+        </div>
+
+
     </nav>
 
-    <!--Включение меню контактов-->
     <div th:include="user/id-info"></div>
-    <div id="modal_contacts" class="modal fade"  role="dialog">
+    <!--Включение меню контактов-->
+    <div id="modal_contacts" class="modal fade" role="dialog">
         <div th:replace="fragments/contacts::backdrop"></div>
         <div id="modal_window" class="modal-dialog" th:include="fragments/contacts::contacts_modal"></div>
     </div>

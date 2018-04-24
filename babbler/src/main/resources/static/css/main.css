@@ -2,18 +2,6 @@ h1 {
     color: #930784;
 }
 
-footer {
-    position: fixed;
-    height: 50px;
-    bottom: 0;
-    width: 100%;
-    background-color: #ccc
-}
-
-footer p {
-    padding: 15px;
-}
-
 .error-message {
     color: #a94442;
 }
@@ -27,29 +15,88 @@ footer p {
 }
 
 body {
-    padding-top: 50px;
-    font-family: "Lato", sans-serif;
+    font-family: Tahoma, sans-serif, Arial, Helvetica;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    color: black;
     margin: 0 auto;
-    min-width: 800px;
+    min-width: 480px;
+    background-color: rgba(186, 7, 187, 0.05);
+    /*overflow: hidden;*/
 }
 
 
-.navbar-fixed-top {
-    background-color: #930784;
-}
 
-.navbar-inverse .navbar-nav>li>a {
-    font-weight: 700;
-    color: #cccef7;
-}
 
-#navbar_logo{
-    z-index: 1040;
-    margin-top: 8px;
-    margin-left: 30px;
-    position: absolute;
-    width: 129px;
-    height: 50px;
+
+.leftnav,
+.rightnav {
+    height: 100%;
+    z-index: 1;
     top: 0;
-    background: url("../image/logo.png") no-repeat;
+    background-color: rgba(186, 7, 187, 0.05);
+    overflow-x: hidden;
+}
+
+.rightnav p {
+    color: #3a0853;
+    font-size: 26px;
+}
+
+.rightnav a {
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #917ed9;
+    display: block;
+}
+
+.rightnav a:hover {
+    color: #ba07bb;
+}
+
+
+/*Свойства для полей поиска*/
+/*==========================*/
+.search_field {
+    font-size: 12px;
+    line-height: normal;
+    outline-color: white;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    padding: 6px 26px 6px 30px;
+    margin: 0;
+    width: 100%;
+    height: 34px;
+    background: url(../image/icons/IconsetW.png) no-repeat -6px -205px;
+}
+
+.search_dialog_clear {
+    /*display: none!important;*/
+    /*display: block;*/
+    position: absolute;
+    margin-top: -34px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    opacity: .6;
+    outline-color: white;
+    cursor: pointer;
+}
+
+.icon_search_clear {
+    display: inline-block;
+    color: #999;
+    width: 13px;
+    height: 13px;
+    margin: 10px 0 0 11px;
+    /*vertical-align: text-top;*/
+    background: url(../image/icons/IconsetW.png) no-repeat -15px -192px;
+}
+/*===========================*/
+
+/*Поля контактов*/
+.contact {
+    cursor: pointer;
 }
