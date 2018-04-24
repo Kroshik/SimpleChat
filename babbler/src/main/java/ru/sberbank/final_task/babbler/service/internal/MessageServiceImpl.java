@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.sberbank.final_task.babbler.domain.Message;
 import ru.sberbank.final_task.babbler.repository.MessageRepository;
+import ru.sberbank.final_task.babbler.repository.auth.UserRepository;
 import ru.sberbank.final_task.babbler.service.MessageService;
 import ru.sberbank.final_task.babbler.web.dto.DeletedMessagesDto;
 import ru.sberbank.final_task.babbler.web.dto.MessageDto;
@@ -18,10 +19,12 @@ public class MessageServiceImpl implements MessageService {
     @Autowired
     private MessageRepository messageRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public Message save(MessageDto messageDto) {
         Message message = new Message();
-//        message.setIdFrom(messageDto.getIdFrom());
         message.setTextMessage(messageDto.getTextMessage());
         message.setNameUser(messageDto.getNameFrom());
         message.setDateMessage(messageDto.getDateMessage());
@@ -42,10 +45,16 @@ public class MessageServiceImpl implements MessageService {
     public List<Message> getMessages() {
         return messageRepository.findAll();
 //        return messageRepository.findByIdFrom(id);
+        /*
+        Old method
+         */
     }
 
     @Override
     public void deleteMessages(DeletedMessagesDto messageDto) {
+        /*
+         delete from one user
+         */
         messageDto.getSetDeleted().forEach(id -> messageRepository.deleteById(id));
     }
 
@@ -58,6 +67,9 @@ public class MessageServiceImpl implements MessageService {
         messages.addAll(messageRepository.findByIdToUser(idToUser));
 
         return messages;
+        /*
+        Old method
+         */
     }
 
     public void deleteMessagesAllUser(DeletedMessagesDto messageDto) {

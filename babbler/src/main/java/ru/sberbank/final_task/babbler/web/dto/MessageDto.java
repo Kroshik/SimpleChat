@@ -19,9 +19,6 @@ public class MessageDto {
     private
     String nameFrom;
 
-//    private
-//    Long idFrom;
-
     private
     Long idFromUser;
 

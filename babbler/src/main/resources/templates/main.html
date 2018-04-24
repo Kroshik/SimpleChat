@@ -35,7 +35,7 @@
         <div id="selectMessage" class="chat_form" role="button">
             <img th:src="@{/img/avatar/men.jpg}" alt="Avatar" style="width:100%;">
             <input id="messageId" type="hidden" th:value="${message.id}">
-            <p th:text="${message.nameUser}"></p>
+            <p th:text= "${message.nameUser}"></p>
             <p th:text="${message.textMessage}"></p>
             <p th:src="${message.file}"></p>
             <span class="time-left" th:text="${message.dateMessage}"></span>
@@ -43,14 +43,14 @@
     </th:block>
     <ul class="nav navbar-nav">
         <li>
-            <form th:action="@{/dialog/{id}(id=${id})}" th:object="${message}" method="post" enctype="multipart/form-data">
+            <form th:action="@{/dialog/{id}(id=${id})}" th:if="${friend_info != null}" th:object="${message}" method="post" enctype="multipart/form-data">
                 <input class="message" type="text" placeholder="Writing message ... "
                        id="sendMessage" th:field="*{textMessage}"/>
                 <input type="file" name="file" multiple="multiple">
             </form>
         </li>
         <li>
-            <span id="removeMessage" class="glyphicon glyphicon-trash"
+            <span id="removeMessage" th:if="${friend_info != null}" class="glyphicon glyphicon-trash"
                   role="button" style="font-size:16px">
             </span>
         </li>

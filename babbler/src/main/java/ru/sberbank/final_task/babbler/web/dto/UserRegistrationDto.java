@@ -32,6 +32,9 @@ public class UserRegistrationDto {
     @NotEmpty
     private String confirmPassword;
 
+    @NotEmpty
+    private String status;
+
     @Email
     @NotEmpty
     private String email;

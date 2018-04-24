@@ -33,13 +33,6 @@ public class Message {
     @NonNull
     private LocalDateTime dateMessage;
 
-    /* --- */
-//    @Column(name = "idFrom", nullable = false)
-//    @NonNull
-//    private Long idFrom;
-    /* --- */
-
-
     @Column(name = "idFromUser", nullable = false)
     @NonNull
     private Long idFromUser;
