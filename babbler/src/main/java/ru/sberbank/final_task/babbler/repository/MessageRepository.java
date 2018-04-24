@@ -14,7 +14,11 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 
     List<Message> findByIdToUser(Long id);
 
-    @Query("SELECT m FROM Message m where (m.idFromUser = :idFromUser AND m.idToUser = :idToUser) " +
+    @Query("SELECT m FROM Message m WHERE (m.idFromUser = :idFromUser AND m.idToUser = :idToUser) " +
             "OR (m.idFromUser = :idToUser AND m.idToUser = :idFromUser) ORDER BY m.dateMessage ASC")
     List<Message> findDialog(@Param("idFromUser") Long idFromUser, @Param("idToUser") Long idToUser);
+
+    @Query("SELECT m FROM Message m WHERE (m.idFromUser = :idUser OR m.idToUser = :idUser) " +
+            "AND m.textMessage LIKE %:textSearch% ORDER BY m.dateMessage ASC")
+    List<Message> searchMessagesByText(@Param("idUser") Long idUser, @Param("textSearch") String textSearch);
 }

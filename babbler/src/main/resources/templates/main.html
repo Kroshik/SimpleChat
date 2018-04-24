@@ -18,12 +18,15 @@
 <div class="im_dialog_col_wrap">
     <div class="im_dialog_panel">
         <div class="im_dialog_search">
-            <input type="text" class="search_field" id="dialog-search" placeholder="Search">
-
-            <!--Сделать это - режим видимости/невидимости!!!-->
-            <a class="search_dialog_clear" id="clear-dialogs-search">
-                <i class="icon_search_clear"></i>
-            </a>
+            <form th:action="@{/search}" th:object="${textSearch}" method="post">
+                <input id="dialog-search" type="text" class="search_field"
+                       placeholder="Search" th:field="*{textSearch}"/>
+                <!--th:object="${textSearch}" th:field="*{textSearch}"-->
+                <!--Сделать это - режим видимости/невидимости!!!-->
+                <a class="search_dialog_clear" id="clear-dialogs-search">
+                    <i class="icon_search_clear"></i>
+                </a>
+            </form>
         </div>
     </div>
 
@@ -31,7 +34,7 @@
         <div class="im_dialogs_scrollable_wrap">
             <div class="list-group contacts_list">
 
-                <a href="#" class="contact list-group-item im_dialog active">
+                <a href="/dialog/2" class="contact list-group-item im_dialog active">
                     <div class="im_dialog_meta">
                         <div class="im_dialog_date">
                             11/12/18
@@ -53,7 +56,7 @@
                     </div>
                 </a>
 
-                <a href="#" class="contact list-group-item im_dialog ">
+                <a href="/dialog/1" class="contact list-group-item im_dialog ">
                     <div class="im_dialog_meta">
                         <div class="im_dialog_date">
                             04/12/18
@@ -75,7 +78,7 @@
                     </div>
                 </a>
 
-                <a href="#" class="contact list-group-item im_dialog ">
+                <a href="/dialog/3" class="contact list-group-item im_dialog ">
                     <div class="im_dialog_meta">
                         <div class="im_dialog_date">
                             08/07/18
@@ -97,333 +100,6 @@
                     </div>
                 </a>
 
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            11/12/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Anton Polushin</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Как твои дела? И..</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            04/12/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Karina Dergun</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Сделай дизу!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            08/07/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Ruslan Kvasov</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">JPA!!!!!!!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            11/12/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Anton Polushin</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Как твои дела? И..</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            04/12/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Karina Dergun</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Сделай дизу!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            08/07/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Ruslan Kvasov</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">JPA!!!!!!!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            11/12/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Anton Polushin</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Как твои дела? И..</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            04/12/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Karina Dergun</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Сделай дизу!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            08/07/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Ruslan Kvasov</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">JPA!!!!!!!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            11/12/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Anton Polushin</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Как твои дела? И..</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            04/12/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Karina Dergun</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Сделай дизу!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            08/07/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Ruslan Kvasov</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">JPA!!!!!!!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            11/12/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Anton Polushin</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Как твои дела? И..</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            04/12/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Karina Dergun</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Сделай дизу!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            08/07/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Ruslan Kvasov</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">JPA!!!!!!!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
             </div>
             <!--<ul class="nav">-->
             <!--<li class="im_dialog_wrap">Dialog 1</li>-->
