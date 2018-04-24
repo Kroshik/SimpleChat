@@ -15,6 +15,8 @@ public interface MessageService {
 
     List<Message> getDialog(Long idFromUser, Long idToUser);
 
+    List<Message> searchMessagesByText(Long idUser, String textMessage);
+
     void deleteMessages(DeletedMessagesDto messageDto);
 
 }

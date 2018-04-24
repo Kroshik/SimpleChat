@@ -13,6 +13,7 @@ import ru.sberbank.final_task.babbler.domain.auth.User;
 import ru.sberbank.final_task.babbler.service.MessageService;
 import ru.sberbank.final_task.babbler.service.UserService;
 import ru.sberbank.final_task.babbler.web.dto.MessageDto;
+import ru.sberbank.final_task.babbler.web.dto.SearchDto;
 import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 
 import java.time.LocalDateTime;
@@ -27,6 +28,11 @@ public class DialogController {
 
     @Autowired
     private UserService userService;
+
+    @ModelAttribute("textSearch")
+    public SearchDto searchDto() {
+        return new SearchDto();
+    }
 
     @ModelAttribute("message")
     public MessageDto messageDto() {

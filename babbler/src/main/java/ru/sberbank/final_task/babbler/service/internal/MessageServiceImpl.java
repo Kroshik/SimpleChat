@@ -62,6 +62,11 @@ public class MessageServiceImpl implements MessageService {
         return messageRepository.findDialog(idFromUser, idToUser);
     }
 
+    @Override
+    public List<Message> searchMessagesByText(Long idUser, String textMessage) {
+        return messageRepository.searchMessagesByText(idUser, textMessage);
+    }
+
     public List<Message> getMessages(Long idFromUser, Long idToUser) {
         List<Message> messages = messageRepository.findByIdFromUser(idFromUser);
         messages.addAll(messageRepository.findByIdToUser(idToUser));
