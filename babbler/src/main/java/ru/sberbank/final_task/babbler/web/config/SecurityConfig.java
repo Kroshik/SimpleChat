@@ -21,23 +21,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers(
-                            "/registration**",
-                            "/js/**",
-                            "/css/**",
-                            "/img/**",
-                            "/webjars/**").permitAll()
-                    .anyRequest().authenticated()
-                .and()
-                    .formLogin()
-                        .loginPage("/login")
-                            .permitAll()
-                .and()
-                    .logout()
-                        .invalidateHttpSession(true)
-                        .clearAuthentication(true)
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/login?logout")
+                .antMatchers("/registration**","/js/**","/css/**","/img/**","/webjars/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and();
+        http
+                .formLogin()
+                .loginPage("/login")// указываем страницу с формой логина
+                .permitAll() // даем всем доступ к форме логина
+                .and();
+        http
+                .logout()
+                .invalidateHttpSession(true) // делаем невалидной текущую сессию
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout") //URL при удачном логауте
                 .permitAll();
         http.csrf().disable();
     }
