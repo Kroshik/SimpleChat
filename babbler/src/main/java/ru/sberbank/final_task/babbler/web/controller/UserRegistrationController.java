@@ -13,7 +13,6 @@ import ru.sberbank.final_task.babbler.service.UserService;
 import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/registration")
@@ -39,17 +38,8 @@ public class UserRegistrationController {
         User existing = userService.findByEmail(userDto.getEmail());
         if (existing != null){
             result.rejectValue("email", null, "There is already an account registered with that email");
-        }
-        User user = userService.findByLogin(userDto.getLogin());
-//        existing = userService.findByLogin(userDto.getLogin());
-//        if (user != null){
-//            result.rejectValue("login", null, "There is already an account registered with that login");
-//        }
-
-        if (result.hasErrors()){
             return "auth/registration";
         }
-        userDto.setLastSeen(LocalDateTime.now());
         userService.save(userDto);
         return "redirect:/login";
     }

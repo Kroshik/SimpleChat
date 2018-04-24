@@ -41,8 +41,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @NonNull
     @Column(name = "lastSeen")
-    private LocalDateTime lastSeen = LocalDateTime.now();
+    private LocalDateTime lastSeen;
 
     @Column(name = "status")
     private String status = "online";

@@ -1,6 +1,5 @@
 package ru.sberbank.final_task.babbler.web.controller;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import ru.sberbank.final_task.babbler.web.dto.MessageDto;
 import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -25,7 +25,7 @@ public class DialogController {
     @Autowired
     MessageService messageService;
 
-    @NonNull
+    @Autowired
     private UserService userService;
 
     @ModelAttribute("message")
@@ -42,15 +42,20 @@ public class DialogController {
     @GetMapping(value = "/dialog/{id}")
     public ModelAndView showMessage(@PathVariable("id") Long id) {
         val mav = new ModelAndView("main");
-        if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
-            val email = SecurityContextHolder.getContext().getAuthentication().getName();
-            User user = userService.findByEmail(email);
-            mav.addObject("user_info", user);
-            List<Message> messages = messageService.getDialog(user.getId(), id);
-            mav.addObject("friend_info", userService.findById(id));
-//            mav.addObject("message", messageDto());
-            mav.addObject("messages", messages);
+        val email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findByEmail(email);
+        mav.addObject("user_info", user);
+        List<Message> messages = messageService.getDialog(user.getId(), id);
+        User friend = userService.findById(id);
+        if (friend.getStatus().equals("online") &&
+                Math.abs(friend.getLastSeen().getMinute() - LocalDateTime.now().getMinute()) >= 1) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            String status = "Last seen  " + String.valueOf(friend.getLastSeen().format(formatter));
+            userService.updateLastSeen(friend.getEmail(), friend.getLastSeen(), status);
         }
+        userService.updateLastSeen(user.getEmail(), LocalDateTime.now(), "online");
+        mav.addObject("friend_info", friend);
+        mav.addObject("messages", messages);
         return mav;
     }
 

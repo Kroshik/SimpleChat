@@ -12,11 +12,13 @@
                 <h4 class="modal-title" th:text="'Я = ' + ${user_info.login}"></h4>
             </div>
             <div class="modal-body">
-                <h3 th:if="${friend_info != null}">Мои данные
+                <h3 th:if="${user_info != null}">Мои данные
                     <h5 th:text="'id = ' + ${user_info.id}"/>
                     <h5 th:text="'Имя = ' + ${user_info.firstName}"/>
                     <h5 th:text="'Фамилия= ' + ${user_info.lastName}"/>
+                    <h5 th:text="'Логин= ' + ${user_info.login}"/>
                     <h5 th:text="'Статус= ' + ${user_info.status}"/>
+                    <h5 th:text="'Последняя активность= ' + ${user_info.lastSeen}"/>
                     <h5 th:text="'email = ' + ${user_info.email}"/>
                 </h3>
 
@@ -24,7 +26,9 @@
                     <h5 th:text="'id = ' + ${friend_info.id}"/>
                     <h5 th:text="'Имя = ' + ${friend_info.firstName}"/>
                     <h5 th:text="'Фамилия= ' + ${friend_info.lastName}"/>
+                    <h5 th:text="'Логин= ' + ${friend_info.login}"/>
                     <h5 th:text="'Статус= ' + ${friend_info.status}"/>
+                    <h5 th:text="'Последняя активность= ' + ${friend_info.lastSeen}"/>
                     <h5 th:text="'email = ' + ${friend_info.email}"/>
                 </h3>
 

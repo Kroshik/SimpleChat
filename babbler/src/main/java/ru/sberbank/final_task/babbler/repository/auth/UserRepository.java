@@ -28,6 +28,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
                         @Param("newLogin") String newLogin,
                         @Param("newPassword") String newPassword);
 
+    @Transactional
+    @Modifying
     @Query("UPDATE User u SET u.lastSeen =:lastSeen, u.status =:status WHERE u.email =:email")
     void updateLastSeen(@Param("email") String email, @Param("lastSeen") LocalDateTime lastSeen,
                         @Param("status") String status);

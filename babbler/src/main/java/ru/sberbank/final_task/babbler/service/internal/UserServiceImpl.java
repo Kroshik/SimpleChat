@@ -47,7 +47,8 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDto.getEmail());
         user.setLogin(userDto.getLogin());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setLastSeen(userDto.getLastSeen());
+        user.setLastSeen(LocalDateTime.now());
+        user.setStatus("online");
         user.setRoles(Collections.singletonList(new Role("ROLE_USER")));
         return userRepository.save(user);
     }
