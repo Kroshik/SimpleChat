@@ -20,9 +20,9 @@ $(window).resize(function () {
 
 });
 
-$('#clear').click(function () {
+$('#clear-contacts-search').click(function () {
 
-    $('.contacts_search_field').val('');
+    $('#contact-search').val('');
 
 });
 
@@ -44,7 +44,7 @@ $('#edit_cancel').click(function () {
     del = $('#del_btn').detach();
     $('#new_contact').css('visibility', 'visible');
     edit_flag = false;
-    $('.contact').removeClass('active');
+    $('.modal_contacts_list .contact').removeClass('active');
     count = 0;
 });
 
@@ -83,7 +83,7 @@ $('#modal_contacts').on('hide.bs.modal', function () {
         $('#del_btn').css('opacity', '0.65');
         del = $('#del_btn').detach();
         $('#new_contact').css('visibility', 'visible');
-        $('.contact').removeClass('active');
+        $('.modal_contacts_list .contact').removeClass('active');
     }
     edit_flag = false;
     count = 0;

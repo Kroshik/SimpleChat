@@ -1,3 +1,6 @@
+
+/*Оформление сообщений в диалоге*/
+/*================================================================*/
 .chat_form {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
@@ -6,17 +9,12 @@
     margin: 10px 0;
 }
 
-
-.darker {
-    border-color: rgba(186, 7, 187, 0.2);
-    background-color: rgba(186, 7, 187, 0.1);
-}
-
 .chat_form::after {
     content: "";
     clear: both;
-    display: table;
+    /*display: table;*/
 }
+
 .chat_form img {
     float: left;
     max-width: 60px;
@@ -28,7 +26,7 @@
 .chat_form img.right {
     float: right;
     margin-left: 20px;
-    margin-right:0;
+    margin-right: 0;
 }
 
 .time-right {
@@ -41,75 +39,213 @@
     color: #999;
 }
 
-.leftnav,
-.rightnav{
-    height: 100%;
-    width: 260px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    background-color: rgba(186, 7, 187, 0.05);
-    overflow-x: hidden;
-    padding-top: 70px;
+.chat_form.active {
+    background-color: rgba(186, 7, 187, 0.1);
+    border: 2px solid rgba(186, 7, 187, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
 }
 
-.leftnav {
-    left: 0;
-}
-.rightnav{
-    right: 0;
+
+/*================================================================*/
+
+
+#removeMessage{
+    display: none;
+    font-size: 16px;
+    line-height: 18px;
+    height: 18px;
+    border-radius: 0;
+    min-width: 0;
+    margin-top: 5px;
+    margin-right: 10px;
+    width: auto;
+    padding: 0;
 }
 
-.leftnav p,
-.rightnav p{
-    color:#3a0853;
-    font-size:26px;
+.im_media_attach {
+    cursor: pointer;
 }
 
-.leftnav a,
-.rightnav a{
-    padding: 6px 6px 6px 32px;
-    text-decoration: none;
-    font-size: 15px;
-    color: #917ed9;
+/*Вот оно поле отправки, нудно будет с ним поработать для прикрепления файлов. */
+/*Пока тупо забил и сделал его невидимым и его открытии происходит по клику на скрепке*/
+#mediaAttach {
+    display: none;
+}
+
+.icon_attach {
+    display: inline-block;
+    width: 19px;
+    height: 23px;
+    vertical-align: text-top;
+    opacity: 0.8;
+    margin-top: -1px;
+    background: url(../image/icons/IconsetW.png) no-repeat -12px -68px;
+}
+
+.icon_attach:hover,
+.icon_attach:focus,
+.icon_attach:visited {
+    background-position: -12px -100px;
+    opacity: 1;
+}
+
+/*Оформление формы отправки сообщений*/
+/*================================================================*/
+.im_send_panel_wrap{
+    margin: 0 auto;
+    padding: 10px 10px 15px;
+    max-width: 554px;
+}
+
+.im_send_form_wrap {
+    position: relative;
+    min-height: 97px;
+    max-height: 322px;
+}
+
+@media (min-height: 601px) {
+    .im_send_form_wrap {
+        min-height: 97px;
+    }
+    .im_history_wrap {
+        margin-top: 0;
+    }
+
+    .rich_message {
+        min-height: 52px;
+    }
+
+    .im_panel_peer_photo,
+    .im_panel_own_photo {
+        display: block;
+    }
+}
+
+@media (max-height: 600px) {
+    .im_send_form_wrap {
+        min-height: 62px;
+        height: 62px;
+    }
+
+    .im_history_wrap {
+        padding-top: 47px;
+    }
+
+    .rich_message {
+        height: 25px;
+    }
+
+    .im_panel_peer_photo,
+    .im_panel_own_photo {
+        visibility: hidden;
+    }
+}
+
+.im_panel_peer_photo,
+.im_panel_own_photo{
+    cursor: pointer;
+    height: 52px;
+    width: 52px;
+    line-height: 52px;
+    border-radius: 50%;
+    overflow: hidden;
     display: block;
 }
 
-.leftnav a:hover,
-.rightnav a:hover{
-    color: #ba07bb;
+a.im_panel_own_photo:hover,
+a.im_panel_peer_photo:hover {
+    text-decoration: none;
 }
 
-.dialog {
-    resize: vertical;
-    min-width: 400px;
-    margin-right: 270px; /* Same as the width of the rightnav */
-    margin-left: 270px; /* Same as the width of the leftnav */
+.pull-right {
+    float: right!important;
 }
 
-@media screen and (max-height: 450px) { /* ??WTF??*/
-    .leftnav {padding-top: 15px;}
-    .leftnav a {font-size: 18px;}
+.pull-left {
+    float: left!important;
+}
+
+#send_form{
+    max-width: 382px;
+    left: 70px;
+    right: 72px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 0;
+}
+
+.im_send_field_wrap {
+    margin-bottom: 13px;
+    padding-bottom: 2px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.rich_message:empty::before  { /* хак: placeholder */
+    content: attr(my_placeholder);
+    color: #9aa2ab;
+    /*display: inherit;*/
+    margin-top: -1px;
+    margin-left: 1px;
+    pointer-events: none;
+    /*background-color: black;*/
+}
+
+.rich_message {
+    left: -15px;
+    width: calc(100% + 15px);
+    padding: 1px 43px 1px 17px;
+    border-radius: 0;
+    border: 0;
+    outline: none;
+    box-shadow: 0 1px 0 0 #e8e8e8;
+    position: relative;
+    margin: 0;
+    /*min-height: 52px;*/
+    line-height: 20px;
+    height: auto;
+    overflow-y: auto;
+    max-height: 284px;
+    /*box-sizing: border-box;*/
+}
+
+.rich_message:focus {
+    border: 0;
+    outline: none;
+    box-shadow: 0 2px 0 0 #ba07bb;
 }
 
 .message {
-    resize: vertical;
-    padding: 10px;
-    height: 100px;
-    width: 500px;
-    background-color: white;
-    font-size: 16px;
-}
-.advancedSearchTextbox {
-    width: 526px;
-    margin-right: -4px;
+    width: 100%;
+    font-size: 12px;
+    margin-bottom: 10px;
+    padding: 6px;
+    min-height: 50px;
+    height: 50px;
+    resize: none;
+    display: none;
 }
 
-
-.chat_form.active {
-        border: 2px solid #e4c0c7;
-        background-color: #f1f1f1;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px 0;
+.im_submit_send {
+    color: rgba(145, 126, 217, 0.7);;
+    font-size: 13px;
+    line-height: 18px;
+    height: 18px;
+    border-radius: 0;
+    float: right;
+    min-width: 0;
+    margin-top: 5px;
+    margin-left: 10px;
+    width: auto;
+    padding: 0;
+    font-weight: bold;
+    background-color: inherit;
 }
+.im_submit_send:hover {
+    color: #917ed9;
+    background: inherit;
+}
+
+/*================================================================*/

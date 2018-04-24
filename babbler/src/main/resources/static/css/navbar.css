@@ -1,0 +1,171 @@
+.navbar-nav {
+    margin: 0;
+}
+
+.navbar-fixed-top {
+    min-width: 480px;
+    position: relative;
+    margin: 0 auto;
+    height: 48px;
+    background: #930784;
+}
+
+.im_dialog_col_wrap,
+.top_left {
+    width: 24%;
+    float: left;
+}
+
+.im_history_col_wrap,
+.top_center {
+    width: 76%;
+    float: right;
+
+}
+
+.logo_menu {
+    width: 100%;
+    z-index: 1010;
+}
+
+.top_center .navbar_user {
+    padding: 20px 10px 12px 10px;
+    float: left;
+    cursor: pointer;
+}
+.navbar_user:hover,
+.top_left:hover,
+.navbar_menu:hover,
+#navbar_search:hover{
+    background: #3a0853;;
+}
+#user-info,
+.navbar_user {
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+.navbar_menu{
+    margin-top: 15px;
+}
+
+#navbar_menu{
+    padding: 17px 19px;
+}
+
+.navbar_menu,
+#navbar_search {
+    float: right;
+}
+
+#navbar_search{
+    padding: 15px 19px;
+}
+
+.glyphicon-option-vertical{
+    margin: 0;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+     background-color: #3a0853;
+     border-color: #3a0853;
+}
+
+#navbar_menu:hover{
+    color: #fff;
+    text-decoration: none;
+    background: #3a0853;
+}
+
+.top_center a {
+    font-weight: 700;
+    color: #cccef7;
+}
+
+#navbar_logo {
+    z-index: 1020;
+    margin-top: 8px;
+    margin-left: 30px;
+    position: absolute;
+    width: 129px;
+    height: 50px;
+    top: 0;
+    background: url("../image/logo.png") no-repeat;
+}
+
+.icon_search {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background: url(../image/icons/IconsetW.png) no-repeat -12px -1037px;
+    vertical-align: middle;
+    opacity: 0.9;
+    font-weight: bold;
+
+    color: #b9cfe3;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+#navbar_search:hover {
+    text-decoration: none;
+}
+
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.open>a:hover {
+    background-color: #3a0853;
+}
+/*
+Костыль от бутстрапа.
+*/
+@media (max-width: 767px) {
+    .navbar-nav .open .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: inherit;
+        float: left;
+        min-width: 150px;
+        padding: 5px 0;
+        font-size: 14px;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        margin: 0;
+        border: 1px solid rgba(0, 0, 0, .15);
+        border-radius: 4px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    }
+
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: 400;
+        line-height: 1.42857143;
+        color: #333;
+        white-space: nowrap;
+    }
+
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
+        color: #262626;
+        text-decoration: none;
+        background-color: #f5f5f5;
+    }
+
+    /*ФИшка с лого, чтобы убирался*/
+    #navbar_logo {
+        display: none;
+    }
+}
+
+/*Фишка с лого чтобы появлялся*/
+@media (min-width: 768px) {
+    #navbar_logo {
+        display: block;
+    }
+}

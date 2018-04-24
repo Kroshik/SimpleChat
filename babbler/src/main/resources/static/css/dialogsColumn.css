@@ -1,0 +1,114 @@
+.im_dialog_col_wrap {
+    border-right: 2px solid #E9EBED;
+}
+
+.leftnav .list-group {
+    padding-top: 0;
+    /*height: 100%;*/
+}
+
+.im_dialog_panel {
+    padding: 12px;
+    position: relative;
+    background-color: rgba(186, 7, 187, 0.05);
+}
+
+#dialog-search {
+    border: 1px solid #cccef7;
+    background-color: rgba(145, 126, 217, 0.2);
+}
+
+#dialog-search:focus {
+    border: 1px solid #cccef7;
+    outline: 0;
+    background-color: #fff;
+}
+
+.im_dialogs_col {
+    position: relative;
+}
+
+.im_dialogs_scrollable_wrap {
+    position: absolute;
+    overflow: auto;
+    overflow-x: hidden;
+    top: 0;
+    right: 0;
+    bottom: 40px;
+    left: 0;
+}
+
+ul.leftnav {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.im_dialog_wrap {
+    margin-top: 0;
+    float: none;
+    position: relative;
+    display: block;
+}
+
+/*Раздел форматирование вывода диалогов*/
+/*======================================*/
+/*Спрятать не влезающие элементы, пока хз как*/
+.im_dialogs_scrollable_wrap a.list-group-item {
+    clear: both;
+    overflow: hidden;
+}
+
+.im_dialog_meta {
+    float: right !important;
+    text-align: right;
+}
+
+.im_dialog_date {
+    font-size: .85em;
+    font-weight: 400;
+}
+
+.im_dialog_photo {
+    margin-right: 15px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left !important;
+}
+
+.peer_initials {
+    display: block;
+    line-height: 48px;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    background: #73cdd0;
+}
+
+.im_dialog_message_wrap {
+    height: 44px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.im_dialog_message, .im_dialog_peer {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.im_dialog_peer {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-weight: 700;
+}
+
+.im_dialog_message {
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+/*======================================*/

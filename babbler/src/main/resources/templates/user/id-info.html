@@ -3,43 +3,111 @@
 <body>
 <!-- Modal -->
 <div class="modal fade" id="id-info" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close"
-                        data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" th:text="'Я = ' + ${user_info.login}"></h4>
-            </div>
-            <div class="modal-body">
-                <h3 th:if="${user_info != null}">Мои данные
-                    <h5 th:text="'id = ' + ${user_info.id}"/>
-                    <h5 th:text="'Имя = ' + ${user_info.firstName}"/>
-                    <h5 th:text="'Фамилия= ' + ${user_info.lastName}"/>
-                    <h5 th:text="'Логин= ' + ${user_info.login}"/>
-                    <h5 th:text="'Статус= ' + ${user_info.status}"/>
-                    <h5 th:text="'Последняя активность= ' + ${user_info.lastSeen}"/>
-                    <h5 th:text="'email = ' + ${user_info.email}"/>
-                </h3>
+    <div th:fragment="backdrop">
+        <div class="modal_backdrop">
 
-                <h3 th:if="${friend_info != null}">Собеседник
-                    <h5 th:text="'id = ' + ${friend_info.id}"/>
-                    <h5 th:text="'Имя = ' + ${friend_info.firstName}"/>
-                    <h5 th:text="'Фамилия= ' + ${friend_info.lastName}"/>
-                    <h5 th:text="'Логин= ' + ${friend_info.login}"/>
-                    <h5 th:text="'Статус= ' + ${friend_info.status}"/>
-                    <h5 th:text="'Последняя активность= ' + ${friend_info.lastSeen}"/>
-                    <h5 th:text="'email = ' + ${friend_info.email}"/>
-                </h3>
+        </div>
+    </div>
 
+    <div class="modal_window modal_user_dialog">
+        <div id="close_user_info_wrap" class="modal_close_wrap" data-dismiss="modal">
+            <div class="modal_close">
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">
-                    Close
-                </button>
+        </div>
+
+        <div class="modal_content" id="modal-user">
+            <div class="user_modal_wrap">
+
+                <div class="modal_head">
+                    <div class="head_title_wrap">
+                        <div id="user_action">
+                            <a class="contact_action" id="edit_user">Edit</a>
+                            <a class="contact_action contact_close" id="user_close" data-dismiss="modal">Close</a>
+                            <a class="contact_action" id="edit_user_cancel">Cancel</a>
+                        </div>
+                    </div>
+
+                    <div class="head_title">
+                        <span class="title_text">Contact Info</span>
+                    </div>
+
+                    <div class="peer_modal_profile_wrap">
+                        <div class="peer_modal_photo_wrap pull-left">
+                            <a class="peer_modal_photo disabled">
+                                <span class="peer_initials peer_modal_photo" id="user-initials"></span>
+                            </a>
+                        </div>
+                        <div class="peer_modal_profile" th:if="${friend_info != null}">
+                            <div class="peer_modal_profile_name"
+                                 th:text="${friend_info.firstName} + ' ' + ${friend_info.lastName}">Василий Пупкин
+                            </div>
+                            <div class="peer_modal_profile_description"
+                                 th:text="${friend_info.status} == 'online' ? 'online' : 'last seen ' + ${friend_info.lastSeen}">
+                                СТоПятЬсоТ лет до нашей эрэ
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal_split_wrap">
+                    <div class="modal_split">
+                        <a class="modal_split_action">
+                            <i class="modal_split_action_msg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="modal_body">
+                    <div class="modal_sections">
+                        <div class="modal_iconed_section_wrap modal_iconed_section_number">
+                            <i class="modal_section_icon modal_section_icon_phone"></i>
+                            <div class="modal_section_param_wrap">
+                                <div class="modal_section_param_value" th:if="${friend_info != null}" th:text="${friend_info.email}">
+                                    ABRA KADABRA!
+                                </div>
+                                <div class="modal_section_param_name">e@mail</div>
+                            </div>
+                        </div>
+                        <div class="modal_iconed_section_wrap modal_iconed_section_toggle">
+                            <i class="modal_section_icon modal_section_icon_notification"></i>
+                            <a class="modal_section_toggle_wrap checkbox_on">
+                                <span class="icon icon-checkbox-outer ">
+                                    <i class="icon-checkbox-inner"></i>
+                                </span>
+                                <span class="checkbox_label">Notifications</span>
+                            </a>
+                        </div>
+                        <div class="modal_iconed_section_wrap modal_iconed_section_link">
+                            <i class="modal_section_icon modal_section_icon_more"></i>
+                            <div class="modal_section_link_wrap">
+                                <a class="modal_section_link">Share contact</a>
+                            </div>
+                            <div class="modal_section_link_wrap">
+                                <a class="modal_section_link" id="more-link">More...</a>
+                            </div>
+                            <div class="modal_section_link_wrap additional_link">
+                                <a class="modal_section_link">Delete contact</a>
+                            </div>
+                            <div class="modal_section_link_wrap additional_link">
+                                <a class="modal_section_link">Block_user</a>
+                            </div>
+                            <div class="modal_section_link_wrap additional_link">
+                                <a class="modal_section_link">Clear_history</a>
+                            </div>
+                            <div class="modal_section_link_wrap additional_link">
+                                <a class="modal_section_link">Delete conversation</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
+
 </div>
 </body>
 </html>

@@ -1,0 +1,236 @@
+.modal {
+    padding: 10px;
+}
+
+#close_user_info_wrap {
+    z-index: 1045;
+}
+
+#modal-user {
+    z-index: 1050;
+    margin-top: 261px;
+    -webkit-transition: margin-top linear 0.2s;
+    transition: margin-top linear 0.2s;
+
+}
+
+.user_modal_wrap .modal_head{
+    padding: 0 0 28px 26px;
+    background: #917ed9;
+}
+
+.peer_modal_profile_wrap {
+    padding: 35px 2px 0;
+}
+
+a.peer_modal_photo,
+div.peer_modal_photo {
+    display: block;
+    margin-right: 19px;
+}
+
+a.disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+.peer_modal_photo {
+    width: 72px;
+    height: 72px;
+    border-radius: 36px;
+    overflow: hidden;
+}
+
+.peer_modal_photo .peer_initials {
+    line-height: 72px;
+    font-size: 22px;
+}
+
+.peer_modal_profile_name{
+    font-size: 14px;
+    padding: 15px 0 9px;
+    font-weight: 700;
+}
+
+.peer_modal_profile_description {
+    color: #ccdeed;
+}
+
+.modal_split_wrap {
+    position: relative;
+}
+
+.modal_split {
+    position: absolute;
+    right: 25px;
+    top: -26px;
+}
+
+.modal_split_action {
+    display: block;
+    background: #fff;
+    float: right;
+    position: relative;
+    width: 52px;
+    height: 52px;
+    margin-left: 20px;
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    cursor: pointer;
+}
+
+.modal_split_action>i:hover,
+.modal_split_action>i:active {
+    background-position: -10px -250px;
+}
+
+.modal_split_action_msg {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 18px 0 0 16px;
+    background: url(../image/icons/ProfileIcons.png) no-repeat -10px -220px;
+}
+
+.modal_sections {
+    padding-top: 17px;
+}
+
+.modal_iconed_section_wrap {
+    position: relative;
+    border-bottom: 1px solid #ebebeb;
+    margin: 19px 0 0 120px;
+    padding-right: 28px;
+}
+
+.modal_iconed_section_number {
+    margin-top: 0;
+}
+
+.modal_iconed_section_toggle {
+    margin-top: 10px;
+}
+
+.modal_section_icon {
+    display: inline-block;
+    margin-left: -64px;
+    margin-top: 5px;
+    position: absolute;
+    background: url(../image/icons/ProfileIcons.png) no-repeat 0 0;
+}
+
+.modal_section_icon_phone {
+    width: 18px;
+    height: 18px;
+    background-position: -12px -10px;
+    margin-top: 3px;
+}
+
+.modal_section_icon_notification{
+    width: 17px;
+    height: 20px;
+    background-position: -12px -38px;
+    margin-top: 8px;
+}
+
+.modal_section_icon_more {
+    width: 18px;
+    height: 12px;
+    background-position: -11px -68px;
+    margin-top: 4px;
+}
+
+.modal_section_param_wrap:last-child {
+    margin-top: 19px;
+    margin-bottom: 16px;
+}
+
+.modal_section_param_wrap .modal_section_param_value {
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.modal_section_param_wrap .modal_section_param_name {
+    color: #909090;
+    font-size: 11px;
+    line-height: 14px;
+    margin-top: 4px;
+}
+
+a.modal_section_toggle_wrap{
+    color: #000;
+    display: block;
+    line-height: 18px;
+    padding: 8px 0;
+    margin: 9px 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+span.icon-checkbox-outer {
+    float: right;
+    display: inline-block;
+    background-color: #e6e6e6;
+    width: 36px;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: middle;
+    border-radius: 8px;
+    margin: 3px 0;
+    -webkit-transition: background-color ease-in-out .1s;
+    transition: background-color ease-in-out .1s;
+}
+
+.checkbox_on span.icon-checkbox-outer{
+    background-color: #cccef7;
+}
+
+i.icon-checkbox-inner {
+    display: inline-block;
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    float: left;
+    margin-left: -1px;
+    margin-top: -3px;
+    -webkit-transition: all ease .1s;
+    transition: all ease .1s;
+    border: 1px solid #E7E7E7;
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 0 1px rgba(0,0,0,.05);
+    box-shadow: 0 0 1px rgba(0,0,0,.05);
+}
+
+.checkbox_on i.icon-checkbox-inner {
+    background: #917ed9;
+    margin-left: 16px;
+    border: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.modal_section_link_wrap {
+    padding-bottom: 15px;
+}
+
+.modal_section_link {
+    color: inherit;
+    display: block;
+    padding: 4px 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.modal_section_link:hover {
+    color: #917ed9;
+    text-decoration: none;
+}
+
+.additional_link {
+    display: none;
+}
