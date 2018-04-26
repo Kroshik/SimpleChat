@@ -124,12 +124,20 @@
                     <div class="im_history_messages">
                         <th:block th:each="message : ${messages}">
                             <div id="selectMessage" class="chat_form" role="button">
-                                <img th:src="@{/img/avatar/men.jpg}" alt="Avatar" style="width:100%;">
-                                <input id="messageId" type="hidden" th:value="${message.id}">
-                                <p th:text="${message.nameUser}"></p>
+                                <img class="avatar" th:src="@{/img/avatar/men.jpg}" alt="Avatar">
+                                <input id="messageId" type="hidden" th:value="${message.id}"/>
+                                <b><p th:text="${message.nameUser}"></p></b>
                                 <div th:wrap="on" th:utext="${message.textMessage.replaceAll('[\n]','<br/> ')}"></div>
-                                <p th:src="${message.file}"></p>
+
+                                <div th:if="${message.file != null}">
+                                    <a th:href="@{/picture/} + ${message.id} + ${message.fileType}">
+                                        <img class="img-responsive"
+                                             th:src="@{/picture/} + ${message.id} +  ${message.fileType}"
+                                             style="width:200px;height:200px;">
+                                    </a>
+                                </div>
                                 <span class="time-left" th:text="${message.dateMessage}"></span>
+
                             </div>
                         </th:block>
                     </div>
@@ -160,20 +168,19 @@
                                     </div>
 
                                     <div class="im_send_buttons_wrap">
-                                        <span id="removeMessage" th:if="${friend_info != null}"
+                                        <span id="removeMessage"
                                               class="glyphicon glyphicon-trash pull-left"
-                                              role="button"></span>
-
+                                              role="button">
+                                        </span>
                                         <div class="pull-left im_media_attach">
-                                            <input id="mediaAttach" type="file" multiple="multiple" title="Send media">
+                                            <input id="mediaAttach" type="file" name="file" multiple="multiple"
+                                                   title="Send media">
                                             <i class="icon icon_attach"></i>
                                         </div>
                                         <button class="btn im_submit_send" type="submit">SEND</button>
                                     </div>
                                 </form>
                             </div>
-
-
                         </div>
                     </div>
                 </div>

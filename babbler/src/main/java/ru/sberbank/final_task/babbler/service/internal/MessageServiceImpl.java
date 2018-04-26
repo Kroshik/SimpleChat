@@ -3,6 +3,7 @@ package ru.sberbank.final_task.babbler.service.internal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import ru.sberbank.final_task.babbler.domain.Message;
 import ru.sberbank.final_task.babbler.repository.MessageRepository;
 import ru.sberbank.final_task.babbler.repository.auth.UserRepository;
@@ -23,22 +24,43 @@ public class MessageServiceImpl implements MessageService {
     private UserRepository userRepository;
 
     @Override
-    public Message save(MessageDto messageDto) {
+    public void save(MessageDto messageDto) {
+//        for (MultipartFile file : messageDto.getFiles()) {
         Message message = new Message();
-        message.setTextMessage(messageDto.getTextMessage());
         message.setNameUser(messageDto.getNameFrom());
         message.setDateMessage(messageDto.getDateMessage());
         message.setIdFromUser(messageDto.getIdFromUser());
         message.setIdToUser(messageDto.getIdToUser());
-        try {
-            if (messageDto.getFile().length > 0) {
-                message.setFile(messageDto.getFile()[0].getBytes());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        message.setTextMessage(messageDto.getTextMessage());
         messageRepository.save(message);
-        return message;
+        if (!messageDto.getFiles().get(0).getContentType().equals("application/octet-stream")) {
+            saveFiles(messageDto);
+        }
+//        }
+    }
+
+    private void saveFiles(MessageDto messageDto) {
+        for (MultipartFile file : messageDto.getFiles()) {
+            Message message = new Message();
+            message.setNameUser(messageDto.getNameFrom());
+            message.setDateMessage(messageDto.getDateMessage());
+            message.setIdFromUser(messageDto.getIdFromUser());
+            message.setIdToUser(messageDto.getIdToUser());
+            try {
+                message.setFile(file.getBytes());
+            } catch (IOException ignored) {
+            }
+            message.setTextMessage("");
+            String currentType = file.getContentType();
+            message.setFileType("." + currentType.substring(currentType.indexOf("/") + 1));
+
+            messageRepository.save(message);
+        }
+    }
+
+    @Override
+    public void save(Message message) {
+        messageRepository.save(message);
     }
 
     @Override
@@ -48,6 +70,11 @@ public class MessageServiceImpl implements MessageService {
         /*
         Old method
          */
+    }
+
+    @Override
+    public Message getMessage(Long idMessage) {
+        return messageRepository.getOne(idMessage);
     }
 
     @Override
