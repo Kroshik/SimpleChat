@@ -34,7 +34,11 @@
                     <div class="peer_modal_profile_wrap">
                         <div class="peer_modal_photo_wrap pull-left">
                             <a class="peer_modal_photo disabled">
-                                <span class="peer_initials peer_modal_photo" id="user-initials"></span>
+
+                                <img th:if="${friend_info != null && friend_info.avatar != null}" class="peer_initials peer_modal_photo" id="user-initials" th:src="@{/setting/picture/} + ${friend_info.id} +  ${friend_info.avatarType}" alt="Avatar" width="64px" height="64px">
+
+                                <span th:if="${friend_info != null && friend_info.avatar == null}" class="peer_initials peer_modal_photo" id="user-initials"></span>
+
                             </a>
                         </div>
                         <div class="peer_modal_profile" th:if="${friend_info != null}">

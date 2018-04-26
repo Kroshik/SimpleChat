@@ -62,4 +62,12 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER)
     private Set<User> contacts = new LinkedHashSet<>();
 
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "avatar")
+    private byte[] avatar;
+
+    @Column(name = "avatarType")
+    private String avatarType;
+
 }

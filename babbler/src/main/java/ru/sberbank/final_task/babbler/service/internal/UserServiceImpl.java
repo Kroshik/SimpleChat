@@ -12,6 +12,7 @@ import ru.sberbank.final_task.babbler.repository.auth.UserRepository;
 import ru.sberbank.final_task.babbler.service.UserService;
 import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
@@ -60,7 +61,15 @@ public class UserServiceImpl implements UserService {
         String lastName = userDto.getLastName().equals("") ? user.getLastName() : userDto.getLastName();
         String login = userDto.getLogin().equals("") ? user.getLogin() : userDto.getLogin();
         String password = userDto.getPassword().equals("") ? user.getPassword() : passwordEncoder.encode(userDto.getPassword());
-        userRepository.updateUserInfo(email, firstName, lastName, login, password);
+        try {
+            byte[] avatar = userDto.getAvatar().isEmpty() ? user.getAvatar() : userDto.getAvatar().getBytes();
+            String avatarType = userDto.getAvatar().isEmpty()
+                    ? user.getAvatarType()
+                    : "." + userDto.getAvatar().getContentType().substring(userDto.getAvatar().getContentType().indexOf("/") + 1);
+            userRepository.updateUserInfo(email, firstName, lastName, login, password, avatar, avatarType);
+        } catch (IOException e) {
+        }
+
         return userRepository.findByEmail(email);
     }
 
