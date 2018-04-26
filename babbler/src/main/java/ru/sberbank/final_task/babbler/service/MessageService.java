@@ -7,9 +7,13 @@ import ru.sberbank.final_task.babbler.web.dto.MessageDto;
 import java.util.List;
 
 public interface MessageService {
-    Message save(MessageDto messageDto);
+    void save(MessageDto messageDto);
+
+    void save(Message message);
 
     List<Message> getMessages();
+
+    Message getMessage(Long idMessage);
 
     List<Message> getMessages(Long idFromUser, Long idToUser);
 

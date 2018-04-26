@@ -22,7 +22,6 @@ public class Message {
     private Long id;
 
     @Column(name = "textMessage", nullable = false)
-    @NonNull
     private String textMessage;
 
     @Column(name = "nameUser", nullable = false)
@@ -45,7 +44,15 @@ public class Message {
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "file")
     private byte[] file;
+
+    @Column(name = "fileType")
+    private String fileType;
+
 //
+//    @OneToOne(mappedBy = "message", cascade = CascadeType.ALL)
+//    @Column(name = "files")
+//    private File messageFile;
+
 //    @Column(name = "status")
 //    private Boolean status; // 0 - не прочитано 1 - прочитано
 }
