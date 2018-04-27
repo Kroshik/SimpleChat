@@ -4,10 +4,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import ru.sberbank.final_task.babbler.domain.Contact;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -50,17 +50,19 @@ public class User {
     @Column(name = "status")
     private String status = "online";
 
-    @JoinTable(name = "contact",
-            joinColumns = @JoinColumn(
-                    name = "user_id",
-                    referencedColumnName = "id"
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "friend_id",
-                    referencedColumnName = "id"
-            ))
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<User> contacts = new LinkedHashSet<>();
+
+//    @JoinTable(name = "contact",
+//            joinColumns = @JoinColumn(
+//                    name = "user_id",
+//                    referencedColumnName = "id"
+//            ),
+//            inverseJoinColumns = @JoinColumn(
+//                    name = "friend_id",
+//                    referencedColumnName = "id"
+//            ))
+    @Column(name = "contacts")
+    @ElementCollection
+    private Set<Contact> contacts = new LinkedHashSet<>();
 
     @Lob
     @Basic(fetch = FetchType.LAZY)

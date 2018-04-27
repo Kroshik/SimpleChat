@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import ru.sberbank.final_task.babbler.domain.Contact;
 import ru.sberbank.final_task.babbler.domain.Message;
 import ru.sberbank.final_task.babbler.domain.auth.User;
+import ru.sberbank.final_task.babbler.service.ContactService;
 import ru.sberbank.final_task.babbler.service.FileService;
 import ru.sberbank.final_task.babbler.service.MessageService;
 import ru.sberbank.final_task.babbler.service.UserService;
@@ -24,6 +26,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,6 +38,9 @@ public class DialogController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ContactService contactService;
 
     @Autowired
     private FileService fileService;
@@ -79,7 +87,15 @@ public class DialogController {
             userService.updateLastSeen(friend.getEmail(), friend.getLastSeen(), status);
         }
         userService.updateLastSeen(user.getEmail(), LocalDateTime.now(), "online");
+        Set<User> contacts = user
+                .getContacts()
+                .stream()
+                .map(x -> userService.findById(x.getFriendId()))
+                .collect(Collectors.toSet());
+
+        mav.addObject("contacts", contacts);
         mav.addObject("friend_info", friend);
+
         mav.addObject("messages", messages);
         return mav;
     }
@@ -91,6 +107,19 @@ public class DialogController {
         if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
             val email = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.findByEmail(email);
+            User friend = userService.findById(id);
+            if (!user.getContacts().stream().filter(x -> Objects.equals(friend.getId(), x.getFriendId())).findAny().isPresent()) {
+                Set<Contact> contacts = user.getContacts();
+                Contact userContact = new Contact(friend.getId());
+                contactService.save(userContact);
+
+                Contact friendContact = new Contact(user.getId());
+                contactService.save(friendContact);
+
+                contacts.add(userContact);
+                friend.getContacts().add(friendContact);
+//                userService.updateUserContacts(user, contacts);
+            }
             messageDto.setDateMessage(LocalDateTime.now());
             messageDto.setIdFromUser(user.getId());
             messageDto.setIdToUser(id);

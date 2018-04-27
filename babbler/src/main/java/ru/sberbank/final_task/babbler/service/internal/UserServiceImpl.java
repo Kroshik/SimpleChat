@@ -2,7 +2,6 @@ package ru.sberbank.final_task.babbler.service.internal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,10 +13,8 @@ import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.stream.Collectors;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,6 +32,11 @@ public class UserServiceImpl implements UserService {
     public User findByLogin(String login) {
         return userRepository.findByLogin(login);
     }
+
+    public List<User> findUsersByLogin(String login) {
+        return userRepository.searchUsersByLogin(login);
+    }
+
 
     @Override
     public User findById(Long id) {
@@ -72,6 +74,11 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findByEmail(email);
     }
+
+   // @Override
+  //  public void updateUserContacts(User user, Set<User> contacts) {
+      //  userRepository.updateUserContacts(user.getId(), contacts);
+  //  }
 
     @Override
     public void updateLastSeen(String email, LocalDateTime lastSeen, String status) {

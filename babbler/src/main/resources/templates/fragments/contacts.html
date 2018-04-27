@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script type="text/javascript">
+      function getRadioButtonValue(rbutton)
+      {
+        for (var i = 0; i < rbutton.length; ++i)
+        {
+          if (rbutton[i].checked)
+            return rbutton[i].value;
+        }
+        return null;
+      }
 
+      function searchContact(event)
+      {
+        alert("Favorite weird creature: "+getRadioButtonValue(this["whichThing"]));
+        event.preventDefault(); // disable normal form submit behavior
+        return false; // prevent further bubbling of event
+      }
+    </script>
 </head>
 <body>
 
@@ -22,7 +39,7 @@
                 <div id="contact_action">
                     <a class="contact_action" id="edit_contact">Edit</a>
                     <a class="contact_action contact_close" id="contact_close" data-dismiss="modal">Close</a>
-                    <a class="contact_action" id="edit_cancel">Cancel</a>
+                    <!--<a class="contact_action" id="edit_cancel">Cancel</a>-->
                 </div>
             </div>
             <div class="head_title">
@@ -30,46 +47,21 @@
             </div>
         </div>
         <div class="modal_body">
-            <div class="contacts_search">
-                <input class="search_field" id="contact-search" placeholder="Search">
-                <a class="search_dialog_clear" id="clear-contacts-search">
-                    <i class="icon_search_clear"></i>
-                </a>
-            </div>
+            <!--<form th:action="@{/searchContact}" th:object="${textSearch}" method="post">-->
+
+                <div class="contacts_search" id="contacts_search" >
+                    <input type="text" class="search_field" id="buttonSearch" placeholder="Search" th:object="${textSearch}">
+                    <a class="search_dialog_clear" id="clear-contacts-search">
+                        <i class="icon_search_clear"></i>
+                    </a>
+                </div>
+
             <div class="modal_contacts_wrap" id="myModal_body">
-
                 <div class="modal_contacts_list">
-                    <div class="list-group contacts_list">
-
-
-
-                        <a href="#" class="contact list-group-item"> First</a>
-                        <a href="#" class="contact list-group-item"> First</a>
-                        <a href="#" class="contact list-group-item"> First</a>
-                        <a href="#" class="contact list-group-item"> First</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
-                        <a href="#" class="contact list-group-item"> Third</a>
+                    <div class="list-group contacts_list" id="list_contacts">
                     </div>
-
                 </div>
             </div>
-
-
         </div>
 
         <div class="contacts_footer" >
