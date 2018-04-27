@@ -55,7 +55,7 @@
 
                 <div class="modal_split_wrap">
                     <div class="modal_split" >
-                        <a class="modal_split_action" th:href="@{/dialog/{id}(id=${friend_info.id})}">
+                        <a th:if="${friend_info != null}" class="modal_split_action" th:href="@{/dialog/{id}(id=${friend_info.id})}">
                             <i class="modal_split_action_msg"></i>
                         </a>
                     </div>
