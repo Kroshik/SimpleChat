@@ -34,7 +34,7 @@
         <div class="im_dialogs_scrollable_wrap">
             <div class="list-group contacts_list" th:if="${contacts != null}">
                 <th:block th:each="friend : ${contacts}">
-                    <a th:href="'/dialog/' + ${friend.id}" class="contact list-group-item im_dialog">
+                    <a th:if="${friend != null}" th:href="'/dialog/' + ${friend.id}" class="contact list-group-item im_dialog">
                         <div class="im_dialog_meta">
                             <div class="im_dialog_date">
                                 27/04/18
@@ -78,7 +78,7 @@
                     <div class="im_history_messages">
                         <th:block th:each="message : ${messages}">
 
-                            <div th:if="${friend_info != null}" id="selectMessage"
+                            <div th:if="${message != null}" id="selectMessage"
                                  th:classappend="(${message.idFromUser} == ${friend_info.id}) ? pull-right : pull-left" class="chat_form" role="button"
 
                                  onclick="choseMessageForDelete(this)">
@@ -104,8 +104,6 @@
                 <div class="im_send_panel_wrap">
                     <div class="im_send_form_wrap1">
                         <div th:if="${friend_info != null}" class="im_send_form_wrap">
-
-
                             <a th:if="${friend_info.avatar == null}" class="im_panel_peer_photo pull-right">
                                 <span class="peer_initials im_panel_peer_photo" th:unless="${friend_info == null}"
                                       th:text="${friend_info.firstName[0]} + ${friend_info.lastName[0]}">на деревню к дедушке</span>

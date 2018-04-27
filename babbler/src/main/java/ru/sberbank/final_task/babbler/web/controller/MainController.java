@@ -56,13 +56,15 @@ public class MainController {
         if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
             val email = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.findByEmail(email);
-            Set<User> contacts = user
-                    .getContacts()
-                    .stream()
-                    .map(x -> userService.findById(x.getFriendId()))
-                    .collect(Collectors.toSet());
+            if (user.getContacts() != null) {
+                Set<User> contacts = user
+                        .getContacts()
+                        .stream()
+                        .map(x -> userService.findById(x.getFriendId()))
+                        .collect(Collectors.toSet());
 
-            mav.addObject("contacts", contacts);
+                mav.addObject("contacts", contacts);
+            }
             mav.addObject("user_info", user);
             mav.addObject("isHomePage", true);
             mav.addObject("choose_dialog_msg","Please select a chat to start messaging");
