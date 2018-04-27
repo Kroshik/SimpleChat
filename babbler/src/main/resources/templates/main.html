@@ -78,9 +78,9 @@
                     <div class="im_history_messages">
                         <th:block th:each="message : ${messages}">
 
-                            <div th:if="${message!= null}" id="selectMessage"
-                                 th:classappend="(${message.idFromUser} == ${friend_info.id}) ? pull-right : pull-left" class="chat_form" role="button"
-
+                            <div th:if="${message!= null} " id="selectMessage"
+                                 class="chat_form" role="button"
+                                 th:classappend="(${message.idFromUser} == ${friend_info == null ? -1 : friend_info.id}) ? pull-right : pull-left"
                                  onclick="choseMessageForDelete(this)">
                                 <input id="messageId" type="hidden" th:value="${message.id}"/>
                                 <b><p th:text="${message.nameUser}"></p></b>
@@ -173,7 +173,8 @@
                 <div id="nowPlay">
                     <span class="right" id="npTitle"></span>
                 </div>
-                <audio preload id="audio1" controls="controls" style="margin-left: 10px; ">Your browser does not support HTML5 Audio!
+                <audio preload id="audio1" controls="controls" style="margin-left: 10px; ">Your browser does not support
+                    HTML5 Audio!
                 </audio>
                 <ul id="plList"></ul>
             </div>

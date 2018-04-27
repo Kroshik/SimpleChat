@@ -123,7 +123,9 @@ $('#send_form').submit(function (event) {
         success: function (data) {
             var message = $.parseJSON(data);
             var textMessage = String(message.textMessage);
-
+            if (message.file != null){
+                return location.href = form.attr('action');
+            }
             this.append('<div id="selectMessage" class="chat_form pull-left" role="button" onclick="choseMessageForDelete(this)">\n' +
                 '                                <input id="messageId" type="hidden" value=' + message.id + '>\n' +
                 '                                <b><p >' + message.nameUser + '</p></b>\n' +
