@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 public class DialogController {
     @Autowired
     MessageService messageService;
-    
+
     @Autowired
     private UserService userService;
 
@@ -49,7 +49,7 @@ public class DialogController {
     public SearchDto searchDto() {
         return new SearchDto();
     }
-    
+
     @ModelAttribute("message")
     public MessageDto messageDto() {
         return new MessageDto();
@@ -74,12 +74,16 @@ public class DialogController {
 
     @GetMapping(value = "/dialog/{id}")
     public ModelAndView showMessage(@PathVariable("id") Long id) {
+        if(userService.findById(id) == null) {
+            return new ModelAndView("redirect:/");
+        }
         val mav = new ModelAndView("main");
         val email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByEmail(email);
         mav.addObject("user_info", user);
         List<Message> messages = messageService.getDialog(user.getId(), id);
         User friend = userService.findById(id);
+
         if (friend.getStatus().equals("online") &&
                 Math.abs(friend.getLastSeen().getMinute() - LocalDateTime.now().getMinute()) >= 1) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -99,7 +103,7 @@ public class DialogController {
         mav.addObject("messages", messages);
         return mav;
     }
-    
+
     @PostMapping(value = "/dialog/{id}")
     public @ResponseBody
     Message sendMessage(@PathVariable("id") Long id,
@@ -120,7 +124,6 @@ public class DialogController {
 
                 contacts.add(userContact);
                 friend.getContacts().add(friendContact);
-//                userService.updateUserContacts(user, contacts);
             }
             messageDto.setDateMessage(LocalDateTime.now());
             messageDto.setIdFromUser(user.getId());

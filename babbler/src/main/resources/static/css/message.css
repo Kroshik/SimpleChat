@@ -88,6 +88,10 @@
     display: none;
 }
 
+#mediaAttachAvatart {
+    display: none;
+}
+
 .icon_attach {
     display: inline-block;
     width: 19px;

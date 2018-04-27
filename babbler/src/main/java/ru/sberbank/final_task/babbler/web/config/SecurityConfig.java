@@ -25,13 +25,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest()
                 .authenticated()
-                .and();
-        http
+                .and()
                 .formLogin()
                 .loginPage("/login")// указываем страницу с формой логина
                 .permitAll() // даем всем доступ к форме логина
-                .and();
-        http
+                .and()
                 .logout()
                 .invalidateHttpSession(true) // делаем невалидной текущую сессию
                 .clearAuthentication(true)

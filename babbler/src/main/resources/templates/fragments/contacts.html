@@ -47,18 +47,20 @@
             </div>
         </div>
         <div class="modal_body">
-            <!--<form th:action="@{/searchContact}" th:object="${textSearch}" method="post">-->
-
-                <div class="contacts_search" id="contacts_search" >
-                    <input type="text" class="search_field" id="buttonSearch" placeholder="Search" th:object="${textSearch}">
-                    <a class="search_dialog_clear" id="clear-contacts-search">
-                        <i class="icon_search_clear"></i>
-                    </a>
-                </div>
-
+            <div class="contacts_search" id="contacts_search" >
+                <input type="text" class="search_field" id="buttonSearch" placeholder="Search" th:object="${textSearch}">
+                <a class="search_dialog_clear" id="clear-contacts-search">
+                    <i class="icon_search_clear"></i>
+                </a>
+            </div>
             <div class="modal_contacts_wrap" id="myModal_body">
                 <div class="modal_contacts_list">
                     <div class="list-group contacts_list" id="list_contacts">
+                        <th:block th:if="${contacts != null}" th:each="friend : ${contacts}">
+                            <a th:href="@{'/dialog/' + ${friend.id}}" class="contact list-group-item"
+                               th:text="${friend.firstName} + ' ' + ${friend.lastName}">
+                            </a>
+                        </th:block>
                     </div>
                 </div>
             </div>
