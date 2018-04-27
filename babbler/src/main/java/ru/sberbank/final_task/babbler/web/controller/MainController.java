@@ -61,7 +61,7 @@ public class MainController {
                     .stream()
                     .map(x -> userService.findById(x.getFriendId()))
                     .collect(Collectors.toSet());
-
+            
             mav.addObject("contacts", contacts);
             mav.addObject("user_info", user);
             mav.addObject("isHomePage", true);
