@@ -5,8 +5,8 @@
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;
-    padding: 5px 25px 25px;
-    margin: 10px 0;
+    padding: 10px;
+    margin: 0 0 20px 0;
 }
 
 .chat_form::after {
@@ -57,8 +57,6 @@
     background-color: rgba(186, 7, 187, 0.1);
     border: 2px solid rgba(186, 7, 187, 0.2);
     border-radius: 5px;
-    padding: 5px 25px 25px;
-    margin: 10px 0;
 }
 
 
@@ -146,7 +144,7 @@
     }
 
     .im_history_wrap {
-        padding-top: 47px;
+        padding-top: 0px;
     }
 
     .rich_message {

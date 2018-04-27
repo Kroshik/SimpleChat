@@ -111,4 +111,9 @@ public class MessageServiceImpl implements MessageService {
     public void deleteMessagesOneUser(DeletedMessagesDto messageDto) {
         List<Message> messages = getMessages();
     }
+    
+    @Override
+    public Message getLast(Long idFromUser) {
+        return messageRepository.findMaxIdFromMessageWhereFromUser(idFromUser);
+    }
 }

@@ -34,13 +34,14 @@
         <div class="im_dialogs_scrollable_wrap">
             <div class="list-group contacts_list" th:if="${contacts != null}">
                 <th:block th:each="friend : ${contacts}">
-                    <a th:href="'/dialog/' + ${friend.id}" class="contact list-group-item im_dialog active">
+                    <a th:href="'/dialog/' + ${friend.id}" class="contact list-group-item im_dialog">
                         <div class="im_dialog_meta">
                             <div class="im_dialog_date">
                                 27/04/18
                             </div>
                             <span class="badge im_dialog_badge"></span>
                         </div>
+
                         <div class="im_dialog_photo">
                             <span class="peer_initials im_dialog_photo"></span>
                         </div>
@@ -48,15 +49,18 @@
                             <div class="im_dialog_peer">
                                 <span th:text="${friend.firstName} + '  ' + ${friend.lastName}"></span>
                             </div>
+
+
                             <div>
                                 <div class="im_dialog_message">
-                                        <span class="im_short_message_text" th:text="${friend.status}"></span>
+                                    <span class="im_short_message_text" th:text="${friend.status}"></span>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </th:block>
             </div>
+
 
             <!--Место под поиск диалогов!-->
         </div>
@@ -66,19 +70,19 @@
 
 <div class="im_history_col_wrap">
     <div class="dialog">
+        <div id="choose_dialog" th:if="${isHomePage}" th:utext="${choose_dialog_msg}"></div>
         <!--<h2>Dialog Example</h2>-->
-        <div id="chatbox">
+        <div id="chatbox" th:unless="${isHomePage}">
             <div class="im_history_wrap" id="history_wrap">
                 <div class="im_history_scrollbar_wrap">
                     <div class="im_history_messages">
                         <th:block th:each="message : ${messages}">
-                            <div th:if="${friend_info != null}" id="selectMessage" class="chat_form" role="button">
-                                <img th:if="${message.idFromUser == user_info.id}" class="avatar" th:src="@{/setting/picture/} + ${user_info.id} +  ${user_info.avatarType}" alt="Avatar" width="64px" height="64px">
-                                <img th:if="${message.idFromUser == friend_info.id}" class="avatar" th:src="@{/setting/picture/} + ${friend_info.id} +  ${friend_info.avatarType}" alt="Avatar" width="64px" height="64px">
+                            <div th:if="${friend_info != null}" id="selectMessage" class="chat_form" role="button"
+                                 onclick="choseMessageForDelete(this)">
                                 <input id="messageId" type="hidden" th:value="${message.id}"/>
                                 <b><p th:text="${message.nameUser}"></p></b>
                                 <div th:wrap="on" th:utext="${message.textMessage.replaceAll('[\n]','<br/> ')}"></div>
-
+                                <!--FIXME сделать стили для сообщений и картинки-->
                                 <div th:if="${message.file != null}">
                                     <a th:href="@{/picture/} + ${message.id} + ${message.fileType}">
                                         <img class="img-responsive"
@@ -93,26 +97,38 @@
                     </div>
                 </div>
             </div>
-            <div class="im_bottom_panel_wrap">
+            <div class="im_bottom_panel_wrap" th:unless="${isHomePage}">
                 <div class="im_send_panel_wrap">
                     <div class="im_send_form_wrap1">
                         <div th:if="${friend_info != null}" class="im_send_form_wrap">
 
+
                             <a th:if="${friend_info.avatar == null}" class="im_panel_peer_photo pull-right">
-                                <span class="peer_initials im_panel_peer_photo">ap</span>
+                                <span class="peer_initials im_panel_peer_photo" th:unless="${friend_info == null}"
+                                      th:text="${friend_info.firstName[0]} + ${friend_info.lastName[0]}">на деревню к дедушке</span>
                             </a>
 
-                            <a th:if="${friend_info.avatar != null}" th:href="@{/setting/picture/} + ${friend_info.id} +  ${friend_info.avatarType}" class="im_panel_peer_photo pull-right">
-                                <img class="avatar" th:src="@{/setting/picture/} + ${friend_info.id} +  ${friend_info.avatarType}" alt="Avatar">
+                            <a th:if="${friend_info.avatar != null}"
+                               th:href="@{/setting/picture/} + ${friend_info.id} +  ${friend_info.avatarType}"
+                               class="im_panel_peer_photo pull-right">
+                                <img class="avatar"
+                                     th:src="@{/setting/picture/} + ${friend_info.id} +  ${friend_info.avatarType}"
+                                     alt="Avatar">
                             </a>
 
                             <a th:if="${user_info.avatar == null}" class="im_panel_own_photo pull-left">
-                                <span class="peer_initials im_panel_own_photo">kd</span>
+                                <span class="peer_initials im_panel_own_photo"
+                                      th:text="${user_info.firstName[0]}+ ${user_info.lastName[0]}">мальчик с пальчик</span>
                             </a>
 
-                            <a th:if="${user_info.avatar != null}" th:href="@{/setting/picture/} + ${user_info.id} +  ${user_info.avatarType}" class="im_panel_own_photo pull-left">
-                                <img class="avatar" th:src="@{/setting/picture/} + ${user_info.id} +  ${user_info.avatarType}" alt="Avatar">
+                            <a th:if="${user_info.avatar != null}"
+                               th:href="@{/setting/picture/} + ${user_info.id} +  ${user_info.avatarType}"
+                               class="im_panel_own_photo pull-left">
+                                <img class="avatar"
+                                     th:src="@{/setting/picture/} + ${user_info.id} +  ${user_info.avatarType}"
+                                     alt="Avatar">
                             </a>
+
                             <div class="my-send-form">
                                 <form id="send_form" th:action="@{/dialog/{id}(id=${id})}"
                                       th:if="${friend_info != null}" th:object="${message}" method="post"
@@ -150,15 +166,15 @@
         <div class="rightnav">
 
 
-                    <div id="mainwrap">
-                        <div id="nowPlay">
-                            <span class="right" id="npTitle"></span>
-                        </div>
-                            <audio preload id="audio1" controls="controls">Your browser does not support HTML5 Audio!
-                            </audio>
-                            <ul id="plList"></ul>
-                    </div>
+            <div id="mainwrap">
+                <div id="nowPlay">
+                    <span class="right" id="npTitle"></span>
+                </div>
+                <audio preload id="audio1" controls="controls">Your browser does not support HTML5 Audio!
+                </audio>
+                <ul id="plList"></ul>
             </div>
+        </div>
     </div>
 </div>
 

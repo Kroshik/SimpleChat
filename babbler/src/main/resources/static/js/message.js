@@ -1,31 +1,30 @@
 var set = new Set();
 var countDelete = 0;
-$(".chat_form").each(function (index) {
-    $(this).on("click", function () {
-        var clicked = $(this); // jQuery wrapper for clicked element
-        if (clicked.hasClass('active')) {
-            countDelete--;
-        } else {
-            countDelete++;
-        }
 
-        if (countDelete > 0) {
-            $('.im_media_attach').css('display', 'none');
-            $('#removeMessage').css('display', 'block');
-        } else {
-            $('#removeMessage').css('display', 'none');
-            $('.im_media_attach').css('display', 'block');
-        }
+function choseMessageForDelete(el) {
+    var clicked = $(el); // jQuery wrapper for clicked element
+    if (clicked.hasClass('active')) {
+        countDelete--;
+    } else {
+        countDelete++;
+    }
 
-        var messageId = clicked.find("#messageId").val();
-        if (set.has(messageId)) {
-            set.delete(messageId);
-        } else {
-            set.add(messageId);
-        }
-        clicked.toggleClass("active");
-    });
-});
+    if (countDelete > 0) {
+        $('.im_media_attach').css('display', 'none');
+        $('#removeMessage').css('display', 'block');
+    } else {
+        $('#removeMessage').css('display', 'none');
+        $('.im_media_attach').css('display', 'block');
+    }
+
+    var messageId = clicked.find("#messageId").val();
+    if (set.has(messageId)) {
+        set.delete(messageId);
+    } else {
+        set.add(messageId);
+    }
+    clicked.toggleClass("active");
+}
 
 $("#removeMessage").click(function () {
     $.ajax({
@@ -75,7 +74,7 @@ $('.im_submit_send').click(function (e) {
     var value = area.val();
     if (value !== "") {
         area.val(value.replace(/<br>/g, "\n"));
-        $('#send_form').submit();
+        // $('#send_form').submit();
     }
     else {
         e.preventDefault();
@@ -92,11 +91,6 @@ $('.rich_message').on('input', function () {
 });
 
 
-/*Устарело*/
-/*Костыль в виде запоминания размера поля ввода*/
-// var lastTextHeight = $(window).innerHeight() > 600 ? 50 : 20;
-
-
 /*Изменение размера при написании собщения*/
 function resizeHeights() {
     var textHeight = $('.rich_message').height();
@@ -109,25 +103,6 @@ function resizeHeights() {
 
     var sendForm = $('.im_send_form_wrap');
     sendForm.height(textHeight + 47);
-
-
-    /*Устарело*/
-
-    // var lastHistoryHeight = $('.im_history_wrap').height();
-    // var textHeight = $('.rich_message').height();
-    // var diff = 0;
-    // diff = lastTextHeight - textHeight;
-    // lastTextHeight = textHeight;
-    //
-    // var innerHeight = $(window).innerHeight();
-    // if (innerHeight >= 452) {
-    //     $('.im_history_wrap').height(lastHistoryHeight + diff);
-    // } else {
-    //     /*HERE!!! костыль от проблемы когда при маленьком окне большой текст и его стираешь, чтобы не плыла верстка*/
-    //     diff - 452 + innerHeight;
-    //     $('.im_history_wrap').height(lastHistoryHeight - 452 + innerHeight + diff);
-    // }
-    //    sendForm.height(textHeight + 47);
 
 }
 

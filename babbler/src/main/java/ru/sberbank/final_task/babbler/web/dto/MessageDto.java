@@ -13,7 +13,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MessageDto {
     private String textMessage;
-
+    
     private
     LocalDateTime dateMessage;
 

@@ -22,5 +22,7 @@ public interface MessageService {
     List<Message> searchMessagesByText(Long idUser, String textMessage);
 
     void deleteMessages(DeletedMessagesDto messageDto);
+    
+    Message getLast(Long idFromUser);
 
 }
