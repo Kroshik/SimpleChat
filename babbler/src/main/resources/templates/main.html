@@ -47,7 +47,7 @@
                         </div>
                         <div class="im_dialog_message_wrap">
                             <div class="im_dialog_peer">
-                                <span th:text="${friend.firstName} + '  ' + ${friend.lastName}"></span>
+                                <span th:text="${friend.firstName} + ' ' + ${friend.lastName}"></span>
                             </div>
 
 
@@ -77,7 +77,8 @@
                 <div class="im_history_scrollbar_wrap">
                     <div class="im_history_messages">
                         <th:block th:each="message : ${messages}">
-                            <div th:if="${friend_info != null}" id="selectMessage" class="chat_form" role="button"
+                            <div th:if="${friend_info != null}" id="selectMessage"
+                                 th:classappend="(${message.idFromUser} == ${friend_info.id}) ? pull-right : pull-left" class="chat_form" role="button"
                                  onclick="choseMessageForDelete(this)">
                                 <input id="messageId" type="hidden" th:value="${message.id}"/>
                                 <b><p th:text="${message.nameUser}"></p></b>
@@ -164,13 +165,13 @@
 
     <div class="im_right_col_wrap">
         <div class="rightnav">
-
+            <h3 style="text-align: center">♫ Babbler Audio <em style="font-size: 18px">alpha</em></h3>
 
             <div id="mainwrap">
                 <div id="nowPlay">
                     <span class="right" id="npTitle"></span>
                 </div>
-                <audio preload id="audio1" controls="controls">Your browser does not support HTML5 Audio!
+                <audio preload id="audio1" controls="controls" style="margin-left: 10px; ">Your browser does not support HTML5 Audio!
                 </audio>
                 <ul id="plList"></ul>
             </div>

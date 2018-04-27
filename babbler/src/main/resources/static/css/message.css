@@ -6,7 +6,8 @@
     background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
-    margin: 0 0 20px 0;
+    margin: 0 10px 20px 10px;
+    width: 70%;
 }
 
 .chat_form::after {
@@ -95,7 +96,9 @@
     vertical-align: text-top;
     opacity: 0.8;
     margin-top: -1px;
-    background: url(../image/icons/IconsetW.png) no-repeat -12px -68px;
+    background:  url(../image/icons/IconsetW.png) no-repeat -12px -68px;
+    /*border-radius: 20%;*/
+
 }
 
 .icon_attach:hover,
@@ -111,6 +114,8 @@
     margin: 0 auto;
     padding: 10px 10px 15px;
     max-width: 554px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
 }
 
 .im_send_form_wrap {
@@ -195,11 +200,12 @@ a.im_panel_peer_photo:hover {
     padding-bottom: 2px;
     overflow-x: hidden;
     position: relative;
+    /*background: rgba(186, 7, 187, 0.3);;*/
 }
 
 .rich_message:empty::before  { /* хак: placeholder */
     content: attr(my_placeholder);
-    color: #9aa2ab;
+    color: #3a0853;
     /*display: inherit;*/
     margin-top: -1px;
     margin-left: 1px;
@@ -243,7 +249,7 @@ a.im_panel_peer_photo:hover {
 }
 
 .im_submit_send {
-    color: rgba(145, 126, 217, 0.7);;
+    color: rgba(58, 8, 83, 0.6);
     font-size: 13px;
     line-height: 18px;
     height: 18px;
@@ -258,7 +264,7 @@ a.im_panel_peer_photo:hover {
     background-color: inherit;
 }
 .im_submit_send:hover {
-    color: #917ed9;
+    color: rgba(58, 8, 83, 1);
     background: inherit;
 }
 
