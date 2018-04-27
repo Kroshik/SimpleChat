@@ -97,10 +97,6 @@ function dawn_offset_and_resize_elements() {
     $('.im_right_col_wrap').height(innerHeight - 50);
     $('.im_dialogs_col').height(innerHeight - 50 - $('.im_dialog_panel').outerHeight());
 
-    /*Смещение вниз, если мало сообщений , чтобы было прижато к низу все равно*/
-    var margin = innerHeight - 260 - $('.im_history_scrollbar_wrap').height();
-    $('.im_history_messages').css('margin-top', margin > 0 ? margin : 0);
-
     /*Размер кнопки информации о пользователе*/
     $('.navbar_user').width($('.center_left').width() - $('.navbar_menu').width() - $('#navbar_search').width() - 62);
 
@@ -128,7 +124,7 @@ $('#send_form').submit(function (event) {
             var message = $.parseJSON(data);
             var textMessage = String(message.textMessage);
 
-            this.append('<div id="selectMessage" class="chat_form" role="button" onclick="choseMessageForDelete(this)">\n' +
+            this.append('<div id="selectMessage" class="chat_form pull-left" role="button" onclick="choseMessageForDelete(this)">\n' +
                 '                                <input id="messageId" type="hidden" value=' + message.id + '>\n' +
                 '                                <b><p >' + message.nameUser + '</p></b>\n' +
                 '                                <div wrap="on">' + textMessage.replace(/[\n]/g, '<br/>') + '</div>\n' +

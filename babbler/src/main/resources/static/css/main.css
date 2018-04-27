@@ -22,7 +22,8 @@ body {
     color: black;
     margin: 0 auto;
     min-width: 480px;
-    background-color: rgba(186, 7, 187, 0.05);
+    background: rgba(186, 7, 187, 0.05) url(../img/back.jpg) repeat-x;
+    background-size: cover;
     /*overflow: hidden;*/
 }
 

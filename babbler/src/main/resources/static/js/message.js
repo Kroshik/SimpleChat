@@ -98,7 +98,12 @@ function resizeHeights() {
     diff -= textHeight;
     $('.im_history_wrap').height(innerHeight - 190 + diff);
 
-    var margin = innerHeight - 260 - $('.im_history_scrollbar_wrap').height() + diff;
+    var chatHeight = 0;
+    $('.chat_form').each(function () {
+       chatHeight += $(this).outerHeight();
+    });
+
+    var margin = innerHeight - 280 - chatHeight + diff;
     $('.im_history_messages').css('margin-top', margin > 0 ? margin : 0);
 
     var sendForm = $('.im_send_form_wrap');
