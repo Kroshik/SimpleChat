@@ -77,8 +77,15 @@ public class MainController {
         val mav = new ModelAndView("main");
         val email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByEmail(email);
-        mav.addObject("user_info", user);
+        Set<User> contacts = user
+                .getContacts()
+                .stream()
+                .map(x -> userService.findById(x.getFriendId()))
+                .collect(Collectors.toSet());
+
+        mav.addObject("contacts", contacts);
         List<Message> messages = messageService.searchMessagesByText(user.getId(), searchDto.getTextSearch());
+        mav.addObject("user_info", user);
         mav.addObject("messages", messages);
         return mav;
     }
