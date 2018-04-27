@@ -80,8 +80,8 @@ a.disabled {
     cursor: pointer;
 }
 
-.modal_split_action>i:hover,
-.modal_split_action>i:active {
+.modal_split_action>.modal_split_action_msg:hover,
+.modal_split_action>.modal_split_action_msg:active {
     background-position: -10px -250px;
 }
 

@@ -1,0 +1,11 @@
+.modal_split_action_camera {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 18px 0 0 16px;
+    background: url(../image/icons/ProfileIcons.png) no-repeat -10px -164px;
+}
+.modal_split_action>.modal_split_action_camera:hover,
+.modal_split_action>.modal_split_action_camera:active {
+    background-position: -10px -194px;
+}

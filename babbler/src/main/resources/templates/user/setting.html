@@ -3,64 +3,134 @@
 <body>
 <!-- Modal -->
 <div class="modal fade" id="setting" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-body">
-                <h1>Setting</h1>
-                <form th:action="@{/setting}" th:object="${userSetting}" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <div><label for="confirmPassword" class="control-label">Avatar</label></div>
-                        <img th:if="${user_info != null && user_info.avatar != null}" class="peer_initials peer_modal_photo" id="user-initials" th:src="@{/setting/picture/} + ${user_info.id} +  ${user_info.avatarType}">
 
-                        <span th:if="${user_info != null && user_info.avatar == null}" class="peer_initials peer_modal_photo" id="user-initials">pd</span>
+    <div th:fragment="backdrop">
+        <div class="modal_backdrop">
 
-                        <div class="pull-left im_media_attach">
-                            <input id="mediaAttachAvatart" type="file" name="avatar" title="Send avatar">
-                            <i class="icon icon_attach"></i>
-                        </div><br />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="firstName" class="control-label">First name</label>
-                        <input id="firstName" class="form-control"
-                               th:placeholder="${user_info.firstName}" th:field="*{firstName}">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName" class="control-label">Last name</label>
-                        <input id="lastName" class="form-control"
-                               th:placeholder="${user_info.lastName}" th:field="*{lastName}">
-                    </div>
-                    <div class="form-group">
-                        <label for="login" class="control-label">Login</label>
-                        <input id="login" class="form-control"
-                               th:placeholder="${user_info.login}" th:field="*{login}">
-                    </div>
-                    <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
-                        <label for="password" class="control-label">Password</label>
-                        <input id="password" class="form-control" type="password"
-                               placeholder="******" th:field="*{password}">
-                    </div>
-                    <div class="form-group" th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
-                        <label for="confirmPassword" class="control-label">Confirm password</label>
-                        <input id="confirmPassword" class="form-control" type="password"
-                               placeholder="******" th:field="*{confirmPassword}">
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success">Save</button>
-                    </div>
-            </form>
-
-
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-                Close
-            </button>
         </div>
     </div>
-</div>
+    <div class="modal_window modal_user_dialog">
+        <div id="close_user_info_wrap" class="modal_close_wrap" data-dismiss="modal">
+            <div class="modal_close">
+            </div>
+        </div>
+        <div class="modal_content" id="modal-user">
+            <form th:action="@{/setting}" th:object="${userSetting}" method="post"
+                  enctype="multipart/form-data">
+                <div class="user_modal_wrap">
+                    <div class="modal_head">
+                        <div class="head_title_wrap">
+                            <div id="user_action">
+                                <!--<a class="contact_action" id="edit_user">Edit</a>-->
+                                <a class="contact_action contact_close" id="user_close" data-dismiss="modal">Close</a>
+                                <!--<a class="contact_action" id="edit_user_cancel">Cancel</a>-->
+                            </div>
+                        </div>
+
+                        <div class="head_title">
+                            <span class="title_text">Settings</span>
+                        </div>
+
+                        <div class="peer_modal_profile_wrap">
+                            <div class="peer_modal_photo_wrap pull-left">
+                                <a class="peer_modal_photo disabled">
+
+                                    <img th:if="${user_info != null && user_info.avatar != null}"
+                                         class="peer_initials peer_modal_photo" id="user-initials"
+                                         th:src="@{/setting/picture/} + ${user_info.id} +  ${user_info.avatarType}"
+                                         alt="Avatar" width="64px" height="64px">
+
+                                    <span th:if="${user_info != null && user_info.avatar == null}"
+                                          class="peer_initials peer_modal_photo" id="user-initials">-N-</span>
+
+                                </a>
+                            </div>
+                            <div class="peer_modal_profile" th:if="${user_info != null}">
+                                <div class="peer_modal_profile_name"
+                                     th:text="${user_info.firstName} + ' ' + ${user_info.lastName}">Василий Пупкин
+                                </div>
+                                <div class="peer_modal_profile_description"
+                                     th:text="${user_info.status}">
+                                    СТоПятЬсоТ лет до нашей эрэ
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal_split_wrap">
+                        <div class="modal_split">
+                            <a class="modal_split_action">
+                                <input id="mediaAttachAvatart" type="file" name="avatar" title="Send avatar">
+                                <i class="modal_split_action_camera icon_attach" onclick="$('#mediaAttachAvatart').click()"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="modal_body">
+                        <div class="modal_sections">
+                            <div class="modal_iconed_section_wrap modal_iconed_section_number">
+                                <i class="modal_section_icon modal_section_icon_phone"></i>
+                                <div class="modal_section_param_wrap">
+                                    <input class="modal_section_param_value" th:if="${user_info != null}"
+                                           th:placeholder="${user_info.login}" th:field="*{login}">
+                                    </input>
+                                    <div th:if="${user_info != null}" style="display: none">
+                                        <input th:placeholder="${user_info.password}"
+                                               th:field="*{confirmPassword}">
+                                        <input th:placeholder="${user_info.password}"
+                                               th:field="*{password}">
+                                        <input th:placeholder="${user_info.lastName}"
+                                               th:field="*{lastName}">
+                                        <input th:placeholder="${user_info.firstName}"
+                                               th:field="*{firstName}">
+                                    </div>
+                                    <div class="modal_section_param_name">login</div>
+                                </div>
+                            </div>
+                            <!--<div class="modal_iconed_section_wrap modal_iconed_section_toggle">-->
+                                <!--<i class="modal_section_icon modal_section_icon_notification"></i>-->
+                                <!--<a class="modal_section_toggle_wrap checkbox_on">-->
+                                <!--<span class="icon icon-checkbox-outer ">-->
+                                    <!--<i class="icon-checkbox-inner"></i>-->
+                                <!--</span>-->
+                                    <!--<span class="checkbox_label">Background notifications</span>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                            <div class="modal_iconed_section_wrap modal_iconed_section_toggle">
+                                <i class="modal_section_icon modal_section_icon_notification"></i>
+                                <a class="modal_section_toggle_wrap checkbox_on">
+                                <span class="icon icon-checkbox-outer ">
+                                    <i class="icon-checkbox-inner"></i>
+                                </span>
+                                    <span class="checkbox_label">Sound</span>
+                                </a>
+                            </div>
+                            <div class="modal_iconed_section_wrap modal_iconed_section_link">
+                                <i class="modal_section_icon modal_section_icon_more"></i>
+                                <div class="modal_section_link_wrap">
+
+                                    <a class="modal_section_link" onclick="$('#submitInfo').click()">Save</a>
+                                </div>
+
+                            </div>
+                            <div class="modal_iconed_section_wrap modal_iconed_section_link">
+                                <i class="modal_section_icon modal_section_icon_more"></i>
+                                <div class="modal_section_link_wrap">
+                                    <a href="/logout" class="modal_section_link">Log out</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="display: none">
+                    <button id="submitInfo" type="submit" class="btn btn-success pull-right">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
 </div>
 
 </body>
