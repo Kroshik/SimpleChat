@@ -32,8 +32,8 @@
 
     <div class="leftnav im_dialogs_col">
         <div class="im_dialogs_scrollable_wrap">
-            <div class="list-group contacts_list" th:if="${user_info != null}">
-                <th:block th:each="friend : ${user_info.contacts}">
+            <div class="list-group contacts_list" th:if="${contacts != null}">
+                <th:block th:each="friend : ${contacts}">
                     <a th:href="'/dialog/' + ${friend.id}" class="contact list-group-item im_dialog active">
                         <div class="im_dialog_meta">
                             <div class="im_dialog_date">

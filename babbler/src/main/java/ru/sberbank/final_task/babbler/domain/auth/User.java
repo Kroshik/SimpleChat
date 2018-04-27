@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import ru.sberbank.final_task.babbler.domain.Contact;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -49,21 +50,18 @@ public class User {
     @Column(name = "status")
     private String status = "online";
 
-    @JoinTable(name = "contact",
-            joinColumns = @JoinColumn(
-                    name = "user_id",
-                    referencedColumnName = "id"
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "friend_id",
-                    referencedColumnName = "id"
-            ))
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Set<User> contacts = new LinkedHashSet<>();
 
-    @Override
-    public String toString() {
-        return "";
-    }
+//    @JoinTable(name = "contact",
+//            joinColumns = @JoinColumn(
+//                    name = "user_id",
+//                    referencedColumnName = "id"
+//            ),
+//            inverseJoinColumns = @JoinColumn(
+//                    name = "friend_id",
+//                    referencedColumnName = "id"
+//            ))
+    @Column(name = "contacts")
+    @ElementCollection
+    private Set<Contact> contacts = new LinkedHashSet<>();
 
 }

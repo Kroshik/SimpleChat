@@ -10,7 +10,6 @@ import ru.sberbank.final_task.babbler.domain.auth.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 @Transactional
@@ -36,10 +35,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     void updateLastSeen(@Param("email") String email, @Param("lastSeen") LocalDateTime lastSeen,
                         @Param("status") String status);
 
-    @Transactional
-    @Modifying
-    @Query("UPDATE User u SET u.contacts =:contacts WHERE u.id =:id")
-    void updateUserContacts(@Param("id") Long id, @Param("contacts")Set<User> contacts);
+//    @Transactional
+//    @Modifying
+//    @Query("UPDATE User u SET u.contacts =:contacts WHERE u.id =:id")
+//    void updateUserContacts(@Param("id") Long id, @Param("contacts")Set<User> contacts);
 
     @Query("SELECT u FROM User u WHERE u.login LIKE %:textSearch%")
     List<User> searchUsersByLogin(@Param("textSearch") String textSearch);

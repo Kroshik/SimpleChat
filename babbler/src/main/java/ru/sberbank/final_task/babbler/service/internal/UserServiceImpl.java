@@ -14,7 +14,6 @@ import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -67,10 +66,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
-    @Override
-    public void updateUserContacts(User user, Set<User> contacts) {
-        userRepository.updateUserContacts(user.getId(), contacts);
-    }
+   // @Override
+  //  public void updateUserContacts(User user, Set<User> contacts) {
+      //  userRepository.updateUserContacts(user.getId(), contacts);
+  //  }
 
     @Override
     public void updateLastSeen(String email, LocalDateTime lastSeen, String status) {

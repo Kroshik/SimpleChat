@@ -7,7 +7,6 @@ import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 public interface UserService extends UserDetailsService {
 
@@ -23,7 +22,7 @@ public interface UserService extends UserDetailsService {
 
     User updateUser(UserRegistrationDto userRegistrationDto);
 
-    void updateUserContacts(User user, Set<User> contacts);
+//    void updateUserContacts(User user, Set<User> contacts);
 
     void updateLastSeen(String email, LocalDateTime lastSeen, String status);
 
