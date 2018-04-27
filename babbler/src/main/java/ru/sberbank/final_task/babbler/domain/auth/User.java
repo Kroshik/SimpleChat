@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -59,7 +58,12 @@ public class User {
                     name = "friend_id",
                     referencedColumnName = "id"
             ))
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<User> contacts = new LinkedHashSet<>();
+
+    @Override
+    public String toString() {
+        return "";
+    }
 
 }

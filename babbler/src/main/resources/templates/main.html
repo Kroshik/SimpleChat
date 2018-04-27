@@ -32,82 +32,31 @@
 
     <div class="leftnav im_dialogs_col">
         <div class="im_dialogs_scrollable_wrap">
-            <div class="list-group contacts_list">
-
-                <a href="/dialog/2" class="contact list-group-item im_dialog active">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            11/12/18
+            <div class="list-group contacts_list" th:if="${user_info != null}">
+                <th:block th:each="friend : ${user_info.contacts}">
+                    <a th:href="'/dialog/' + ${friend.id}" class="contact list-group-item im_dialog active">
+                        <div class="im_dialog_meta">
+                            <div class="im_dialog_date">
+                                27/04/18
+                            </div>
+                            <span class="badge im_dialog_badge"></span>
                         </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Anton Polushin</span>
+                        <div class="im_dialog_photo">
+                            <span class="peer_initials im_dialog_photo"></span>
                         </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Как твои дела? И..</span>
+                        <div class="im_dialog_message_wrap">
+                            <div class="im_dialog_peer">
+                                <span th:text="${friend.firstName} + '  ' + ${friend.lastName}"></span>
+                            </div>
+                            <div>
+                                <div class="im_dialog_message">
+                                        <span class="im_short_message_text" th:text="${friend.status}"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-
-                <a href="/dialog/1" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            04/12/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Karina Dergun</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">Сделай дизу!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="/dialog/3" class="contact list-group-item im_dialog ">
-                    <div class="im_dialog_meta">
-                        <div class="im_dialog_date">
-                            08/07/18
-                        </div>
-                        <span class="badge im_dialog_badge"></span>
-                    </div>
-                    <div class="im_dialog_photo">
-                        <span class="peer_initials im_dialog_photo"></span>
-                    </div>
-                    <div class="im_dialog_message_wrap">
-                        <div class="im_dialog_peer">
-                            <span>Ruslan Kvasov</span>
-                        </div>
-                        <div>
-                            <div class="im_dialog_message">
-                                <span class="im_short_message_text">JPA!!!!!!!</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
+                    </a>
+                </th:block>
             </div>
-            <!--<ul class="nav">-->
-            <!--<li class="im_dialog_wrap">Dialog 1</li>-->
-            <!--<li class="im_dialog_wrap">Dialog 2</li>-->
-            <!--<li class="im_dialog_wrap">Dialog 3</li>-->
-            <!--<li class="im_dialog_wrap">Dialog 4</li>-->
-            <!--</ul>-->
-
 
             <!--Место под поиск диалогов!-->
         </div>
@@ -190,7 +139,7 @@
 
     <div class="im_right_col_wrap">
         <div class="rightnav">
-            <p align="center">Тут будут стикеры</p>
+            <p align="center">Тут LALALA будут стикеры</p>
             <a href="#">one</a>
             <a href="#">two</a>
         </div>

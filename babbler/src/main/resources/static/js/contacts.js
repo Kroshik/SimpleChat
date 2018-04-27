@@ -74,6 +74,45 @@ $('#new_contact').click(function () {
    $('#modal_window').css('z-index', '1030');
 });
 
+//document.getElementById('contacts_search').onkeypress = function(e){
+//    if (!e) e = window.event;
+//    var keyCode = e.keyCode || e.which;
+//    if (keyCode == '13'){
+//      // Enter pressed
+//      return false;
+//    }
+//  }
+
+
+
+
+
+$('.search_field').keyup( function (e) {
+    if (e.keyCode == 13) {
+//        console.log($(this).val());
+        $.ajax({
+               url: "/searchContact",
+               type: 'POST',
+               data: JSON.stringify({"textSearch": $(this).val()}),
+               dataType: "html",
+               contentType: 'application/json',
+               mimeType: 'application/json',
+               success: function (data) {
+                    $("#list_contacts").contents().remove();
+                    data = JSON.parse(data)
+                    for (var item in data) {
+                        $("#list_contacts").append(
+                             '<a href="/dialog/' + data[item].id + '"  class="contact list-group-item">'
+                                + data[item].firstName +
+                             '</a>'
+                     );
+                    }
+                   return false;
+               }
+         });
+    }
+});
+
 $('#modal_contacts').on('hide.bs.modal', function () {
     if (edit_flag === true){
 

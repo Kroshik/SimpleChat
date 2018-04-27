@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequiredArgsConstructor
@@ -91,6 +92,13 @@ public class DialogController {
         if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
             val email = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.findByEmail(email);
+            User friend = userService.findById(id);
+            if (!user.getContacts().contains(friend)) {
+                Set<User> contacts = user.getContacts();
+                contacts.add(friend);
+//                friend.getContacts().add(user);
+//                userService.updateUserContacts(user, contacts);
+            }
             messageDto.setDateMessage(LocalDateTime.now());
             messageDto.setIdFromUser(user.getId());
             messageDto.setIdToUser(id);

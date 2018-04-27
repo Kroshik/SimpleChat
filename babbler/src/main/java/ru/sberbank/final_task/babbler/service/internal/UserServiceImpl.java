@@ -2,7 +2,6 @@ package ru.sberbank.final_task.babbler.service.internal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,10 +12,9 @@ import ru.sberbank.final_task.babbler.service.UserService;
 import ru.sberbank.final_task.babbler.web.dto.UserRegistrationDto;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,6 +32,11 @@ public class UserServiceImpl implements UserService {
     public User findByLogin(String login) {
         return userRepository.findByLogin(login);
     }
+
+    public List<User> findUsersByLogin(String login) {
+        return userRepository.searchUsersByLogin(login);
+    }
+
 
     @Override
     public User findById(Long id) {
@@ -62,6 +65,11 @@ public class UserServiceImpl implements UserService {
         String password = userDto.getPassword().equals("") ? user.getPassword() : passwordEncoder.encode(userDto.getPassword());
         userRepository.updateUserInfo(email, firstName, lastName, login, password);
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void updateUserContacts(User user, Set<User> contacts) {
+        userRepository.updateUserContacts(user.getId(), contacts);
     }
 
     @Override

@@ -6,9 +6,7 @@ import lombok.val;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.sberbank.final_task.babbler.domain.Message;
 import ru.sberbank.final_task.babbler.domain.auth.User;
@@ -74,6 +72,16 @@ public class MainController {
         return mav;
     }
 
+
+
+    @PostMapping(value = "/searchContact")
+    public @ResponseBody
+    List<User> searchContact(@RequestBody SearchDto searchDto) {
+        List<User> users = userService.findUsersByLogin(searchDto.getTextSearch());
+        val mav = new ModelAndView("main");
+        mav.addObject("contacts", users);
+        return users;
+    }
 
     @GetMapping("/login")
     public String login(Model model) {
