@@ -77,8 +77,10 @@
                 <div class="im_history_scrollbar_wrap">
                     <div class="im_history_messages">
                         <th:block th:each="message : ${messages}">
+
                             <div th:if="${friend_info != null}" id="selectMessage"
                                  th:classappend="(${message.idFromUser} == ${friend_info.id}) ? pull-right : pull-left" class="chat_form" role="button"
+
                                  onclick="choseMessageForDelete(this)">
                                 <input id="messageId" type="hidden" th:value="${message.id}"/>
                                 <b><p th:text="${message.nameUser}"></p></b>
