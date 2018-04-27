@@ -72,8 +72,9 @@
                 <div class="im_history_scrollbar_wrap">
                     <div class="im_history_messages">
                         <th:block th:each="message : ${messages}">
-                            <div id="selectMessage" class="chat_form" role="button">
-                                <img class="avatar" th:src="@{/img/avatar/men.jpg}" alt="Avatar">
+                            <div th:if="${friend_info != null}" id="selectMessage" class="chat_form" role="button">
+                                <img th:if="${message.idFromUser == user_info.id}" class="avatar" th:src="@{/setting/picture/} + ${user_info.id} +  ${user_info.avatarType}" alt="Avatar" width="64px" height="64px">
+                                <img th:if="${message.idFromUser == friend_info.id}" class="avatar" th:src="@{/setting/picture/} + ${friend_info.id} +  ${friend_info.avatarType}" alt="Avatar" width="64px" height="64px">
                                 <input id="messageId" type="hidden" th:value="${message.id}"/>
                                 <b><p th:text="${message.nameUser}"></p></b>
                                 <div th:wrap="on" th:utext="${message.textMessage.replaceAll('[\n]','<br/> ')}"></div>
@@ -95,15 +96,23 @@
             <div class="im_bottom_panel_wrap">
                 <div class="im_send_panel_wrap">
                     <div class="im_send_form_wrap1">
-                        <div class="im_send_form_wrap">
+                        <div th:if="${friend_info != null}" class="im_send_form_wrap">
 
-                            <a class="im_panel_peer_photo pull-right">
+                            <a th:if="${friend_info.avatar == null}" class="im_panel_peer_photo pull-right">
                                 <span class="peer_initials im_panel_peer_photo">ap</span>
                             </a>
-                            <a class="im_panel_own_photo pull-left">
+
+                            <a th:if="${friend_info.avatar != null}" th:href="@{/setting/picture/} + ${friend_info.id} +  ${friend_info.avatarType}" class="im_panel_peer_photo pull-right">
+                                <img class="avatar" th:src="@{/setting/picture/} + ${friend_info.id} +  ${friend_info.avatarType}" alt="Avatar">
+                            </a>
+
+                            <a th:if="${user_info.avatar == null}" class="im_panel_own_photo pull-left">
                                 <span class="peer_initials im_panel_own_photo">kd</span>
                             </a>
 
+                            <a th:if="${user_info.avatar != null}" th:href="@{/setting/picture/} + ${user_info.id} +  ${user_info.avatarType}" class="im_panel_own_photo pull-left">
+                                <img class="avatar" th:src="@{/setting/picture/} + ${user_info.id} +  ${user_info.avatarType}" alt="Avatar">
+                            </a>
                             <div class="my-send-form">
                                 <form id="send_form" th:action="@{/dialog/{id}(id=${id})}"
                                       th:if="${friend_info != null}" th:object="${message}" method="post"
@@ -139,10 +148,17 @@
 
     <div class="im_right_col_wrap">
         <div class="rightnav">
-            <p align="center">Тут LALALA будут стикеры</p>
-            <a href="#">one</a>
-            <a href="#">two</a>
-        </div>
+
+
+                    <div id="mainwrap">
+                        <div id="nowPlay">
+                            <span class="right" id="npTitle"></span>
+                        </div>
+                            <audio preload id="audio1" controls="controls">Your browser does not support HTML5 Audio!
+                            </audio>
+                            <ul id="plList"></ul>
+                    </div>
+            </div>
     </div>
 </div>
 
@@ -154,5 +170,6 @@
 <script type="text/javascript" th:src="@{/js/contacts.js}"></script>
 <script type="text/javascript" th:src="@{/js/addContact.js}"></script>
 <script type="text/javascript" th:src="@{/js/userInfo.js}"></script>
+<script type="text/javascript" th:src="@{/js/audioPlayer.js}"></script>
 </body>
 </html>

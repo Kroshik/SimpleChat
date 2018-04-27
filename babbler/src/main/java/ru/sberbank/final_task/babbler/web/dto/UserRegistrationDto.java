@@ -3,11 +3,13 @@ package ru.sberbank.final_task.babbler.web.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 import ru.sberbank.final_task.babbler.web.constraint.FieldMatch;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
@@ -45,6 +47,9 @@ public class UserRegistrationDto {
 
     @AssertTrue
     private Boolean terms;
+
+    private
+    MultipartFile avatar;
 
 //
 }

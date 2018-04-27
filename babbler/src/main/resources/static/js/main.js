@@ -88,6 +88,6 @@ $('.leftnav .contact').click(function () {
 /*====================================================================================================*/
 function rand() {
     var c = parseInt(Math.random() * 255).toString(16);
-    return ("" + c).length == 1 ? '0' + c : c;
+    return ("" + c).length === 1 ? '0' + c : c;
 
-};
+}

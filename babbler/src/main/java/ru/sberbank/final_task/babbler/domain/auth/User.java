@@ -64,4 +64,12 @@ public class User {
     @ElementCollection
     private Set<Contact> contacts = new LinkedHashSet<>();
 
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "avatar")
+    private byte[] avatar;
+
+    @Column(name = "avatarType")
+    private String avatarType;
+
 }
