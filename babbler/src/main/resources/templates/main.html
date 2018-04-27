@@ -199,10 +199,18 @@
 
     <div class="im_right_col_wrap">
         <div class="rightnav">
-            <p align="center">Тут будут стикеры</p>
-            <a href="#">one</a>
-            <a href="#">two</a>
-        </div>
+
+                    <div id="mainwrap">
+                        <div id="nowPlay">
+                            <span class="right" id="npTitle"></span>
+                        </div>
+                            <audio preload id="audio1" controls="controls">Your browser does not support HTML5 Audio!
+                            </audio>
+                            <ul id="plList"></ul>
+                    </div>
+            </div>
+
+
     </div>
 </div>
 
@@ -214,5 +222,6 @@
 <script type="text/javascript" th:src="@{/js/contacts.js}"></script>
 <script type="text/javascript" th:src="@{/js/addContact.js}"></script>
 <script type="text/javascript" th:src="@{/js/userInfo.js}"></script>
+<script type="text/javascript" th:src="@{/js/audioPlayer.js}"></script>
 </body>
 </html>
