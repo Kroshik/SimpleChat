@@ -51,4 +51,10 @@ public class MessageController {
         messageService.deleteMessages(messageDto);
         return "success";
     }
+    
+    @PostMapping(value = "/test")
+    public @ResponseBody
+    String test() {
+        return "success";
+    }
 }

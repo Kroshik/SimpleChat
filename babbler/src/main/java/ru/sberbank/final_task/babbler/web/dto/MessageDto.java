@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MessageDto {
     private String textMessage;
-
+    
     private
     LocalDateTime dateMessage;
 
@@ -26,5 +26,5 @@ public class MessageDto {
     Long idToUser;
 
     private
-    MultipartFile [] file;
+    MultipartFile[] file;
 }

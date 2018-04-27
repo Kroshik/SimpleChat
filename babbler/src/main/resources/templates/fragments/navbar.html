@@ -29,7 +29,7 @@
         <div class="nav navbar-nav top_center">
             <div class="center_left">
 
-                <div class="navbar_user" data-toggle="modal" data-target="#id-info">
+                <div class="navbar_user" data-toggle="modal" data-target="#id-info" th:unless="${friend_info == null}">
                     <a id="user-info" href="#" th:if="${friend_info != null}"
                        th:text="${friend_info.firstName} + ' ' + ${friend_info.status}"></a>
                 </div>
@@ -53,6 +53,7 @@
                     <i class="icon icon_search"></i>
                 </a>
             </div>
+
             <div class="nav navbar-nav center_right">
 
             </div>

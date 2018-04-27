@@ -57,8 +57,10 @@ public class MainController {
             val email = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.findByEmail(email);
             mav.addObject("user_info", user);
-            List<Message> messages = messageService.getMessages(user.getId(), user.getId());
-            mav.addObject("messages", messages);
+            mav.addObject("isHomePage", true);
+            mav.addObject("choose_dialog_msg","Please select a chat to start messaging");
+//            List<Message> messages = messageService.getMessages(user.getId(), user.getId());
+//            mav.addObject("messages", messages);
         }
         return mav;
     }

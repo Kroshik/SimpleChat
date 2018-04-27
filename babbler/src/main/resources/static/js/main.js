@@ -1,20 +1,8 @@
 $(document).ready(function () {
-    var innerHeight = $(window).innerHeight();
+    $('.im_history_wrap').height($(window).innerHeight() - 190);
+    /*Фон для главного окна*/
+    choose_dialog_position();
 
-    $('.im_right_col_wrap').height(innerHeight - 50);
-    $('.im_dialogs_col').height(innerHeight - 50 - $('.im_dialog_panel').outerHeight());
-
-    $('.im_history_wrap').height(innerHeight - 190);
-
-    var margin = innerHeight - 260 - $('.im_history_scrollbar_wrap').height();
-    $('.im_history_messages').css('margin-top', margin > 0 ? margin : 0);
-
-    /*Размер кнопки информации о пользователе*/
-    $('.navbar_user').width($('.center_left').width() - $('.navbar_menu').width() - $('#navbar_search').width() - 62);
-
-    /*прокрутка вниз*/
-    var element = document.getElementById('history_wrap');
-    element.scrollTop = element.scrollHeight - element.clientHeight;
 
     /*Random background*/
     /*====================================================================================================*/
@@ -30,6 +18,18 @@ $(document).ready(function () {
             $(this).html(first + second);
         }
     });
+
+    /*Hardcode для выделения диалога после перезагрузки*/
+    $('.im_dialog').each(function () {
+        var activeElement = $(this).attr('href');
+        if (activeElement === location.pathname) {
+            $(this).addClass('active');
+        }
+    });
+
+
+    resizeHeights();
+    dawn_offset_and_resize_elements();
 });
 
 $('#logo_menu').on('show.bs.dropdown', function () {
@@ -41,25 +41,14 @@ $('#logo_menu').on('hide.bs.dropdown', function () {
 });
 
 $(window).resize(function () {
-    var innerHeight = $(window).innerHeight();
-    /*Высота элементов относительно текущего размера страницы*/
-    $('.im_right_col_wrap').height(innerHeight - 50);
-    $('.im_dialogs_col').height(innerHeight - 50 - $('.im_dialog_panel').outerHeight());
-
-    /*Размер кнопки информации о пользователе*/
-    $('.navbar_user').width($('.center_left').width() - $('.navbar_menu').width() - $('#navbar_search').width() - 62);
-
-    /*Не все так просто с изменением окна. нужно учитывать размер формы отправки сообщений*/
     /*Работает. Но проблемы могут быть тут при изменениях размера. Смотреть сюда*/
+    /*Не все так просто с изменением окна. нужно учитывать размер формы отправки сообщений*/
     resizeHeights();
 
-    /*Смещение вниз, если мало сообщений , чтобы было прижато к низу все равно*/
-    var margin = innerHeight - 260 - $('.im_history_scrollbar_wrap').height();
-    $('.im_history_messages').css('margin-top', margin > 0 ? margin : 0);
+    dawn_offset_and_resize_elements();
 
-    /*Прокрутка автоматически вниз*/
-    var element = document.getElementById('history_wrap');
-    element.scrollTop = element.scrollHeight - element.clientHeight;
+    /*Фон для главного окна*/
+    choose_dialog_position();
 
 });
 
@@ -85,9 +74,91 @@ $('.leftnav .contact').click(function () {
 
 
 /*random background for avatar*/
+
 /*====================================================================================================*/
 function rand() {
     var c = parseInt(Math.random() * 255).toString(16);
     return ("" + c).length == 1 ? '0' + c : c;
 
 };
+
+function choose_dialog_position() {
+    /*Фон для главного окна*/
+    if ($('#choose_dialog')) {
+        $('#choose_dialog').css('padding-top', ($(window).innerHeight() - 50) / 3);
+        /*Если захотим бахнуть другой цвет фона то это понадобится. оставлю опка тут*/
+        // $('#choose_dialog').height( ($(window).innerHeight() - 50) / 3 * 2 );
+    }
+}
+
+function dawn_offset_and_resize_elements() {
+    var innerHeight = $(window).innerHeight();
+    /*Высота элементов относительно текущего размера страницы*/
+    $('.im_right_col_wrap').height(innerHeight - 50);
+    $('.im_dialogs_col').height(innerHeight - 50 - $('.im_dialog_panel').outerHeight());
+
+    /*Смещение вниз, если мало сообщений , чтобы было прижато к низу все равно*/
+    var margin = innerHeight - 260 - $('.im_history_scrollbar_wrap').height();
+    $('.im_history_messages').css('margin-top', margin > 0 ? margin : 0);
+
+    /*Размер кнопки информации о пользователе*/
+    $('.navbar_user').width($('.center_left').width() - $('.navbar_menu').width() - $('#navbar_search').width() - 62);
+
+    /*Прокрутка автоматически вниз*/
+    var element = document.getElementById('history_wrap');
+    if (element != null) {
+        element.scrollTop = element.scrollHeight - element.clientHeight;
+    }
+}
+
+$('#send_form').submit(function (event) {
+    var form = $('#send_form');
+    var formData = new FormData(this);
+    $.ajax({
+        method: form.attr('method'),
+        url: form.attr('action'),
+        enctype: form.attr('enctype'),
+        data: formData,
+        mimeType: 'application/json',
+        dataType: 'html',
+        processData: false,
+        contentType: false,
+        context: $('.im_history_messages'),
+        success: function (data) {
+            var message = $.parseJSON(data);
+            var textMessage = String(message.textMessage);
+
+            this.append('<div id="selectMessage" class="chat_form" role="button" onclick="choseMessageForDelete(this)">\n' +
+                '                                <img src="/img/avatar/men.jpg" alt="Avatar" style="width:100%;">\n' +
+                '                                <input id="messageId" type="hidden" value=' + message.id + '>\n' +
+                '                                <p >' + message.nameUser + '</p>\n' +
+                '                                <div wrap="on">' + textMessage.replace(/[\n]/g, '<br/>') + '</div>\n' +
+                '                                <p src=' + message.file + '></p>\n' +
+                '                                <span class="time-left">' + message.dateMessage + '</span>\n' +
+                '                            </div>');
+            form.trigger("reset");
+            $('.rich_message').html('');
+            dawn_offset_and_resize_elements();
+            resizeHeights();
+        },
+        error: function (jqXHR, exception) {
+            if (jqXHR.status === 0) {
+                alert('НЕ подключен к интернету!');
+            } else if (jqXHR.status == 404) {
+                alert('НЕ найдена страница запроса [404])');
+            } else if (jqXHR.status == 500) {
+                alert('НЕ найден домен в запросе [500].\n' + jqXHR.responseText);
+            } else if (exception === 'parsererror') {
+                alert("Ошибка в коде: \n" + jqXHR.responseText);
+            } else if (exception === 'timeout') {
+                alert('Не ответил на запрос.');
+            } else if (exception === 'abort') {
+                alert('Прерван запрос Ajax.');
+            } else {
+                alert('Неизвестная ошибка:\n' + jqXHR.responseText);
+            }
+        }
+    });
+
+    return false;
+});

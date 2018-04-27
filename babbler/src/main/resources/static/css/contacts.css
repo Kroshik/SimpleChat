@@ -190,6 +190,8 @@ a.contact_close {
 
 /* Track */
 ::-webkit-scrollbar-track {
+    margin-top: 5px;
+
     border-radius: 4px;
     box-shadow: inset 10px 0 5px rgba(204, 206, 247, 0.75);
 }

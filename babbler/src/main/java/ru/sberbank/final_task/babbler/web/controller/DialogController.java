@@ -25,26 +25,26 @@ import java.util.List;
 public class DialogController {
     @Autowired
     MessageService messageService;
-
+    
     @Autowired
     private UserService userService;
-
+    
     @ModelAttribute("textSearch")
     public SearchDto searchDto() {
         return new SearchDto();
     }
-
+    
     @ModelAttribute("message")
     public MessageDto messageDto() {
         return new MessageDto();
     }
-
-
+    
+    
     @ModelAttribute("userSetting")
     private UserRegistrationDto userRegistrationDto() {
         return new UserRegistrationDto();
     }
-
+    
     @GetMapping(value = "/dialog/{id}")
     public ModelAndView showMessage(@PathVariable("id") Long id) {
         val mav = new ModelAndView("main");
@@ -64,11 +64,13 @@ public class DialogController {
         mav.addObject("messages", messages);
         return mav;
     }
-
+    
     @PostMapping(value = "/dialog/{id}")
-    public String sendMessage(@PathVariable("id") Long id,
-                              @ModelAttribute("message") MessageDto messageDto,
-                              @RequestParam("file") MultipartFile[] files) {
+    public @ResponseBody
+    Message sendMessage(@PathVariable("id") Long id,
+                       @ModelAttribute("message") MessageDto messageDto,
+                       @RequestParam("file") MultipartFile[] files) {
+        Message ret = null;
         if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
             val email = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.findByEmail(email);
@@ -78,7 +80,8 @@ public class DialogController {
             messageDto.setNameFrom(user.getFirstName());
             messageDto.setFile(files);
             messageService.save(messageDto);
+            ret = messageService.getLast(user.getId());
         }
-        return "redirect:/dialog/" + id;
+        return ret;
     }
 }
